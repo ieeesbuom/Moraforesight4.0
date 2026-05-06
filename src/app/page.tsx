@@ -50,8 +50,6 @@ export default function Home() {
 
   return (
     <div className="relative h-screen bg-black overflow-hidden">
-      {/* === BACKGROUND LAYER === */}
-
       {/* Subtle grid overlay — digital texture per design guide */}
       <div
         className="fixed inset-0 z-0 pointer-events-none opacity-[0.07]"
@@ -121,7 +119,6 @@ export default function Home() {
         );
       })}
 
-      {/* === CONTENT LAYER === */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -208,7 +205,7 @@ export default function Home() {
               <span className="relative z-10 flex items-center gap-2">
                 Register Now
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:translate-x-1">
-                  <path d="m9 18 6-6-6-6"/>
+                  <path d="m9 18 6-6-6-6" />
                 </svg>
               </span>
             </button>
