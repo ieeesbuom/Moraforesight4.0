@@ -8,8 +8,9 @@ export default function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false);
   const [activeElement, setActiveElement] = useState<"interactive" | null>(null);
 
+  // Mouse tracking
   useEffect(() => {
-    // Hide the default browser cursor globally
+    // Set body to have cursor: none
     if (document.body) {
       document.body.classList.add("cursor-none");
     }
@@ -18,12 +19,20 @@ export default function CustomCursor() {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    const handleMouseEnter = () => setIsHovering(true);
-    const handleMouseLeave = () => setIsHovering(false);
+    const handleMouseEnter = () => {
+      setIsHovering(true);
+    };
+
+    const handleMouseLeave = () => {
+      setIsHovering(false);
+    };
 
     const handleMouseOver = (e: MouseEvent) => {
+      // Check if the element or its parents have interactive classes
       const target = e.target as Element;
-      if (target.closest('a, button, [role="button"], input, select, textarea')) {
+      if (
+        target.closest('a, button, [role="button"], input, select, textarea')
+      ) {
         setActiveElement("interactive");
       } else {
         setActiveElement(null);
@@ -43,54 +52,51 @@ export default function CustomCursor() {
     };
   }, []);
 
-  // SSR guard
+  // Don't render anything on server
   if (typeof window === "undefined") return null;
 
   return (
     <>
       {isHovering && (
         <>
-          {/* Outer ring — brand gradient border */}
           <motion.div
-            className="fixed w-8 h-8 rounded-full pointer-events-none z-[9999]"
+            className="fixed w-8 h-8 rounded-full border-2 border-white pointer-events-none z-[9999] mix-blend-difference"
             style={{
               left: mousePosition.x,
               top: mousePosition.y,
               translateX: "-50%",
               translateY: "-50%",
-              border: "2px solid transparent",
-              background:
-                "linear-gradient(#000, #000) padding-box, linear-gradient(135deg, #01BEEB, #E585E4) border-box",
             }}
-            animate={{ scale: activeElement === "interactive" ? 1.6 : 1 }}
+            animate={{
+              scale: activeElement === "interactive" ? 1.5 : 1,
+            }}
             transition={{ duration: 0.2 }}
           />
-
-          {/* Trailing dots */}
           {[...Array(3)].map((_, index) => (
             <motion.div
               key={index}
-              className="fixed w-2 h-2 rounded-full pointer-events-none z-[9998]"
+              className="fixed w-3 h-3 rounded-full bg-white pointer-events-none mix-blend-difference z-[9998]"
               style={{
                 left: mousePosition.x,
                 top: mousePosition.y,
                 translateX: "-50%",
                 translateY: "-50%",
-                backgroundColor: index === 0 ? "#01BEEB" : index === 1 ? "#E585E4" : "#F8C312",
-                opacity: 0.5 - index * 0.12,
+                opacity: 0.3 - index * 0.1,
               }}
               animate={{
                 left: mousePosition.x,
                 top: mousePosition.y,
                 scale: 0.8 - index * 0.2,
               }}
-              transition={{ duration: 0.45 + index * 0.1, delay: index * 0.07 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             />
           ))}
         </>
       )}
 
-      <style>{`
+      {/* Global Styles */}
+      <style jsx global>{`
+        /* Hide cursor on all elements */
         .cursor-none,
         .cursor-none * {
           cursor: none !important;
