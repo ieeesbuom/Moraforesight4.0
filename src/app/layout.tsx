@@ -11,11 +11,65 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "MoraForesight 4.0 | A Step Beyond Tomorrow",
+  metadataBase: new URL("https://moraforesight.lk"),
+  title: {
+    default: "MoraForesight 4.0 | A Step Beyond Tomorrow",
+    template: "%s | MoraForesight 4.0",
+  },
   description:
     "MoraForesight 4.0 — A futuristic, character-driven inter-school innovation event organized by IEEE Student Branch, University of Moratuwa. Empowering school students aged 16–20 across Sri Lanka.",
+  keywords: [
+    "MoraForesight",
+    "MoraForesight 4.0",
+    "IEEE Student Branch",
+    "University of Moratuwa",
+    "Innovation Event",
+    "Sri Lanka",
+    "School Students",
+    "Technology",
+    "Future",
+  ],
+  authors: [{ name: "IEEE Student Branch, University of Moratuwa" }],
+  creator: "IEEE Student Branch, University of Moratuwa",
+  publisher: "IEEE Student Branch, University of Moratuwa",
+  openGraph: {
+    title: "MoraForesight 4.0 | A Step Beyond Tomorrow",
+    description:
+      "A futuristic, character-driven inter-school innovation event organized by IEEE Student Branch, University of Moratuwa.",
+    url: "https://moraforesight.lk",
+    siteName: "MoraForesight 4.0",
+    images: [
+      {
+        url: "/opengraph-image.png", // Ensure this image is added to the public folder or app directory
+        width: 1200,
+        height: 630,
+        alt: "MoraForesight 4.0 - A Step Beyond Tomorrow",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MoraForesight 4.0 | A Step Beyond Tomorrow",
+    description:
+      "A futuristic, character-driven inter-school innovation event organized by IEEE Student Branch, University of Moratuwa.",
+    images: ["/twitter-image.png"], // Ensure this image is added to the public folder or app directory
+  },
   icons: {
     icon: "/logo.png",
+    apple: "/logo.png",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
