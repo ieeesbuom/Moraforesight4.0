@@ -1,115 +1,62 @@
-/* ============================================================
-   MoraForesight 4.0 — Global Styles
-   Brand: Futuristic · Bold · Dark & High Contrast · Immersive
-   Palette: #01BEEB (cyan) · #E585E4 (pink) · #F8C312 (gold)
-   Typography: Space Grotesk (Title: Medium/Bold | Body: Light)
-   ============================================================ */
-
-@import "tailwindcss";
-
-/* Google Fonts — Space Grotesk */
+/* Import Space Grotesk from Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
 
-/* ── Brand Color Tokens ─────────────────────────────────── */
+/* Import Tailwind CSS */
+@import "tailwindcss";
+
 :root {
-  /* Brand palette */
-  --color-cyan:        #01BEEB;
-  --color-pink:        #E585E4;
-  --color-gold:        #F8C312;
-  --color-white:       #FFFFFF;
-  --color-black:       #000000;
-
-  /* Brand gradient */
-  --gradient-brand:    linear-gradient(135deg, #01BEEB, #E585E4, #F8C312);
-  --gradient-brand-h:  linear-gradient(90deg,  #01BEEB, #E585E4, #F8C312);
-
-  /* Ambient glow colours (used for radial backgrounds) */
-  --glow-cyan:         rgba(1, 190, 235, 0.15);
-  --glow-pink:         rgba(229, 133, 228, 0.12);
-  --glow-gold:         rgba(248, 195, 18, 0.08);
-
-  /* Surface / background */
-  --background:        #000000;
-  --foreground:        #FFFFFF;
-
-  /* Typography */
+  --background: #ffffff;
+  --foreground: #171717;
+  /* Define font variable for Space Grotesk */
   --font-space-grotesk: "Space Grotesk", Arial, Helvetica, sans-serif;
-  --font-sans:          var(--font-space-grotesk);
 }
 
-/* ── Tailwind v4 theme mapping ──────────────────────────── */
-@theme inline {
+:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans:        var(--font-space-grotesk);
+  --font-sans: var(
+    --font-space-grotesk
+  ); /* Use Space Grotesk as the sans-serif font */
+  --font-mono: var(
+    --font-geist-mono
+  ); /* Assuming Geist Mono is still desired for mono */
 }
 
-/* ── Base Reset ─────────────────────────────────────────── */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
 }
 
-html,
 body {
-  height: 100%;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans); /* Apply Space Grotesk globally */
 }
 
-/* ── Custom Cursor ──────────────────────────────────────── */
-.cursor-none,
+/* Hide the default cursor */
+.cursor-none {
+  cursor: none !important;
+}
+
+/* Make sure all interactive elements inherit the cursor-none style */
 .cursor-none * {
   cursor: none !important;
 }
 
-/* ── Scrollbar ──────────────────────────────────────────── */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: #000;
-}
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #01BEEB, #E585E4);
-  border-radius: 2px;
-}
-
-/* ── Selection ──────────────────────────────────────────── */
-::selection {
-  background: rgba(1, 190, 235, 0.3);
-  color: #fff;
-}
-
-/* ── Keyframe Animations ────────────────────────────────── */
-@keyframes gridMove {
-  0%   { background-position: 0 0; }
-  100% { background-position: 80px 80px; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-12px); }
-}
-
-@keyframes ambientPulse {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50%       { opacity: 1;   transform: scale(1.06); }
-}
-
+/* Add animation keyframes for cursor effects */
 @keyframes cursorPulse {
-  0%   { transform: scale(1);   opacity: 0.7; }
-  50%  { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1);   opacity: 0.7; }
-}
-
-@keyframes scanline {
-  0%   { background-position: 0 0; }
-  100% { background-position: 0 100vh; }
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
 }
