@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# design assets (local reference only — not tracked in git)
+*.pdf
+.gemini_pdf_pages/
