@@ -1,3 +1,3 @@
 :HL["/Moraforesight4.0/_next/static/chunks/08jmpbve8e6i1.css","style"]
 :HL["/Moraforesight4.0/_next/static/media/0c89a48fa5027cee-s.p.0rd3rjvnnhw7n.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"GuQyxlhgctej4FXWg9yAi"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"I3xoP-0U9cLg5PQ_ULnVt"}
