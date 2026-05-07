@@ -49,7 +49,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative h-screen bg-black overflow-hidden">
+    <div className="coming-soon-wrapper relative h-[100dvh] bg-black overflow-hidden">
       {/* Subtle grid overlay — digital texture per design guide */}
       <div
         className="fixed inset-0 z-0 pointer-events-none opacity-[0.07]"
@@ -97,6 +97,9 @@ export default function Home() {
         }}
       />
 
+      {/* Dark overlay to improve text readability against the bright character on all screen sizes */}
+      <div className="fixed inset-0 z-0 pointer-events-none bg-black/70 md:bg-black/60 lg:bg-black/50 transition-colors duration-300" />
+
       {/* Floating particles — brand-colored */}
       {particlePositions.map((pos, i) => {
         const colors = ["#01BEEB", "#E585E4", "#F8C312"];
@@ -119,16 +122,16 @@ export default function Home() {
         );
       })}
 
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="flex flex-col items-center max-w-2xl"
+          className="flex flex-col items-center max-w-2xl w-full"
         >
           {/* Title — Space Grotesk Medium, high contrast white */}
           <h1
-            className="text-5xl md:text-7xl lg:text-8xl font-medium text-white mb-4 tracking-tight uppercase"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium text-white mb-3 md:mb-4 tracking-tight uppercase leading-none"
             style={{ letterSpacing: "-0.02em" }}
           >
             MORA{" "}
@@ -150,7 +153,7 @@ export default function Home() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-            className="w-40 h-[3px] rounded-full mb-8"
+            className="w-24 md:w-40 h-[2px] md:h-[3px] rounded-full mb-6 md:mb-8"
             style={{
               background: "linear-gradient(90deg, #01BEEB, #E585E4, #F8C312)",
             }}
@@ -161,7 +164,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-xl md:text-3xl font-light mb-10 tracking-[0.25em] uppercase"
+            className="text-base sm:text-xl md:text-3xl font-light mb-6 md:mb-10 tracking-[0.2em] md:tracking-[0.25em] uppercase"
             style={{ color: "rgba(255,255,255,0.6)" }}
           >
             Coming Soon
@@ -172,7 +175,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="max-w-md mb-12 text-sm md:text-base font-light leading-relaxed"
+            className="max-w-[320px] sm:max-w-lg mb-8 md:mb-12 text-sm sm:text-base md:text-lg font-light leading-relaxed"
             style={{ color: "rgba(255,255,255,0.4)" }}
           >
             We are preparing something extraordinary. A step beyond tomorrow is almost here. Stay tuned for the official launch.
@@ -183,11 +186,11 @@ export default function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="flex flex-col sm:flex-row gap-4 items-center justify-center"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto items-center justify-center px-4 sm:px-0"
           >
             {/* Primary: Register Now — gradient-stroke button */}
             <button
-              className="group relative px-8 py-3 rounded-full font-medium text-white overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95"
+              className="group relative px-6 py-3.5 sm:py-3 w-[260px] sm:w-[220px] lg:w-[240px] rounded-full text-sm md:text-base font-medium text-white overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center"
               style={{
                 background: "linear-gradient(#000, #000) padding-box, linear-gradient(135deg, #01BEEB, #E585E4, #F8C312) border-box",
                 border: "2px solid transparent",
@@ -202,9 +205,9 @@ export default function Home() {
                 e.currentTarget.style.boxShadow = "none";
               }}
             >
-              <span className="relative z-10 flex items-center gap-2">
+              <span className="relative z-10 flex items-center justify-center gap-2">
                 Register Now
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:translate-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:translate-x-1 md:w-[18px] md:h-[18px]">
                   <path d="m9 18 6-6-6-6" />
                 </svg>
               </span>
@@ -212,7 +215,7 @@ export default function Home() {
 
             {/* Secondary: Follow Updates — subtle ghost button */}
             <button
-              className="group px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 active:scale-95"
+              className="group px-6 py-3.5 sm:py-3 w-[260px] sm:w-[220px] lg:w-[240px] rounded-full text-sm md:text-base font-medium transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center"
               style={{
                 color: "rgba(255,255,255,0.5)",
                 border: "1px solid rgba(255,255,255,0.12)",
@@ -242,6 +245,33 @@ export default function Home() {
         html, body {
           overflow: hidden !important;
           height: 100% !important;
+        }
+
+        .coming-soon-wrapper {
+          background-image: url('/coming-soon-bg.png');
+          background-size: cover;
+          background-position: right center;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+        }
+
+        @media (max-width: 1024px) {
+          .coming-soon-wrapper {
+            background-position: 98% bottom;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .coming-soon-wrapper {
+            background-attachment: scroll;
+            background-position: 95% bottom;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .coming-soon-wrapper {
+            background-position: 92% bottom;
+          }
         }
 
         @keyframes gridMove {
