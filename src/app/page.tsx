@@ -127,15 +127,14 @@ export default function Home() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="flex flex-col items-center max-w-2xl w-full"
+          className="flex flex-col items-center w-full"
         >
           {/* Title — Space Grotesk Medium, high contrast white */}
           <h1
-            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium text-white mb-3 md:mb-4 tracking-tight uppercase leading-none"
+            className="text-[8.5vw] sm:text-5xl md:text-7xl lg:text-8xl font-medium text-white mb-3 md:mb-4 tracking-tight uppercase leading-none whitespace-nowrap"
             style={{ letterSpacing: "-0.02em" }}
           >
-            MORA{" "}
-            <span
+            MORA<span
               className="font-bold"
               style={{
                 background: "linear-gradient(135deg, #01BEEB, #E585E4)",

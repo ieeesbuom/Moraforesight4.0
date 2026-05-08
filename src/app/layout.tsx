@@ -56,10 +56,6 @@ export const metadata: Metadata = {
       "A futuristic, character-driven inter-school innovation event organized by IEEE Student Branch, University of Moratuwa.",
     images: ["/twitter-image.png"], // Ensure this image is added to the public folder or app directory
   },
-  icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
-  },
   robots: {
     index: true,
     follow: true,
