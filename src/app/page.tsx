@@ -177,7 +177,7 @@ export default function Home() {
             className="max-w-[320px] sm:max-w-lg mb-8 md:mb-12 text-sm sm:text-base md:text-lg font-light leading-relaxed"
             style={{ color: "rgba(255,255,255,0.4)" }}
           >
-            We are preparing something extraordinary. A step beyond tomorrow is almost here. Stay tuned for the official launch.
+            We are preparing something extraordinary. A Step Beyond Tomorrow is almost here. Stay tuned for the official launch.
           </motion.p>
 
           {/* CTA Buttons — gradient stroke per design guide */}
