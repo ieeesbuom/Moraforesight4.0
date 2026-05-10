@@ -13,7 +13,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://moraforesight.lk"),
   title: {
-    default: "MoraForesight 4.0 | A Step Beyond Tomorrow",
+    default: "MoraForesight 4.0 | Own The Next Move",
     template: "%s | MoraForesight 4.0",
   },
   description:
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   creator: "IEEE Student Branch, University of Moratuwa",
   publisher: "IEEE Student Branch, University of Moratuwa",
   openGraph: {
-    title: "MoraForesight 4.0 | A Step Beyond Tomorrow",
+    title: "MoraForesight 4.0 | Own The Next Move",
     description:
       "A futuristic, character-driven inter-school innovation event organized by IEEE Student Branch, University of Moratuwa.",
     url: "https://moraforesight.lk",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image.png", // Ensure this image is added to the public folder or app directory
         width: 1200,
         height: 630,
-        alt: "MoraForesight 4.0 - A Step Beyond Tomorrow",
+        alt: "MoraForesight 4.0 - Own The Next Move",
       },
     ],
     locale: "en_US",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MoraForesight 4.0 | A Step Beyond Tomorrow",
+    title: "MoraForesight 4.0 | Own The Next Move",
     description:
       "A futuristic, character-driven inter-school innovation event organized by IEEE Student Branch, University of Moratuwa.",
     images: ["/twitter-image.png"], // Ensure this image is added to the public folder or app directory
