@@ -1,13 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function Home() {
-  const [isTimelineVisible, setIsTimelineVisible] = useState(false);
-  const timelineSectionRef = useRef(null);
   const [particlePositions, setParticlePositions] = useState<
-    { x: string; y: string }[]
+    { x: string; y: string; size: string; opacity: number; duration: string; delay: string }[]
   >([]);
 
   useEffect(() => {
@@ -17,36 +15,17 @@ export default function Home() {
       .map(() => ({
         x: `${Math.random() * 100}%`,
         y: `${Math.random() * 100}%`,
+        size: `${1 + Math.random() * 2}px`,
+        opacity: 0.4 + Math.random() * 0.3,
+        duration: `${3 + Math.random() * 3}s`,
+        delay: `${Math.random() * 2}s`,
       }));
-    setParticlePositions(positions);
+    // Defer state update to avoid synchronous cascading render lint error
+    setTimeout(() => {
+      setParticlePositions(positions);
+    }, 0);
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsTimelineVisible(true);
-        }
-      },
-      {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.1,
-      }
-    );
-
-    const currentRef = timelineSectionRef.current;
-
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
 
   return (
     <div className="coming-soon-wrapper relative h-[100dvh] bg-black overflow-hidden">
@@ -109,14 +88,14 @@ export default function Home() {
             key={i}
             className="fixed rounded-full z-0 pointer-events-none"
             style={{
-              width: `${1 + Math.random() * 2}px`,
-              height: `${1 + Math.random() * 2}px`,
+              width: pos.size,
+              height: pos.size,
               backgroundColor: color,
-              opacity: 0.4 + Math.random() * 0.3,
+              opacity: pos.opacity,
               left: pos.x,
               top: pos.y,
-              animation: `float ${3 + Math.random() * 3}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 2}s`,
+              animation: `float ${pos.duration} ease-in-out infinite`,
+              animationDelay: pos.delay,
             }}
           />
         );
