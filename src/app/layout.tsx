@@ -1,23 +1,14 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "@/components/CustomCursor";
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-space-grotesk",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://moraforesight.lk"),
   title: {
-    default: "MoraForesight 4.0 | Own The Next Move",
+    default: "MoraForesight 4.0 | Fully-Funded School Innovation Bootcamp",
     template: "%s | MoraForesight 4.0",
   },
   description:
-    "MoraForesight 4.0 — A futuristic, character-driven inter-school innovation event organized by IEEE Student Branch, University of Moratuwa. Empowering school students aged 16–20 across Sri Lanka.",
+    "MoraForesight 4.0 is a fully-funded three-day residential innovation bootcamp for school students under 20, organized by the IEEE Student Branch of the University of Moratuwa.",
   keywords: [
     "MoraForesight",
     "MoraForesight 4.0",
@@ -26,6 +17,12 @@ export const metadata: Metadata = {
     "Innovation Event",
     "Sri Lanka",
     "School Students",
+    "Residential Bootcamp",
+    "AI",
+    "Programming",
+    "Robotics",
+    "IoT",
+    "Entrepreneurship",
     "Technology",
     "Future",
   ],
@@ -33,17 +30,17 @@ export const metadata: Metadata = {
   creator: "IEEE Student Branch, University of Moratuwa",
   publisher: "IEEE Student Branch, University of Moratuwa",
   openGraph: {
-    title: "MoraForesight 4.0 | Own The Next Move",
+    title: "MoraForesight 4.0 | Fully-Funded School Innovation Bootcamp",
     description:
-      "A futuristic, character-driven inter-school innovation event organized by IEEE Student Branch, University of Moratuwa.",
+      "A fully-funded three-day residential bootcamp for school students under 20, organized by IEEE Student Branch, University of Moratuwa.",
     url: "https://moraforesight.lk",
     siteName: "MoraForesight 4.0",
     images: [
       {
-        url: "/opengraph-image.png", // Ensure this image is added to the public folder or app directory
-        width: 1200,
-        height: 630,
-        alt: "MoraForesight 4.0 - Own The Next Move",
+        url: "/coming-soon.png",
+        width: 1672,
+        height: 941,
+        alt: "MoraForesight 4.0 bootcamp artwork",
       },
     ],
     locale: "en_US",
@@ -51,10 +48,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MoraForesight 4.0 | Own The Next Move",
+    title: "MoraForesight 4.0 | Fully-Funded School Innovation Bootcamp",
     description:
-      "A futuristic, character-driven inter-school innovation event organized by IEEE Student Branch, University of Moratuwa.",
-    images: ["/twitter-image.png"], // Ensure this image is added to the public folder or app directory
+      "A fully-funded three-day residential bootcamp for school students under 20, organized by IEEE Student Branch, University of Moratuwa.",
+    images: ["/coming-soon.png"],
   },
   robots: {
     index: true,
@@ -75,10 +72,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={spaceGrotesk.variable}>
-      <body className={spaceGrotesk.className}>
+    <html lang="en">
+      <body>
         {children}
-        <CustomCursor />
       </body>
     </html>
   );
