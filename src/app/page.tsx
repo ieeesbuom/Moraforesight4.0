@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -11,11 +11,13 @@ import {
   BrainCircuit,
   Building2,
   CalendarDays,
-  Camera,
   CheckCircle2,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   ClipboardCheck,
   Cpu,
+  Images,
   Lightbulb,
   Mail,
   Menu,
@@ -46,13 +48,6 @@ const heroStats = [
   { value: "2500+", label: "applicant target" },
   { value: "25", label: "district reach" },
   { value: "100", label: "final delegates" },
-];
-
-const brandPrinciples = [
-  "Character-based futuristic theme",
-  "Dark, high-contrast visual system",
-  "Clean hierarchy: character, title, support text, CTA",
-  "Gradient-stroke buttons with icons",
 ];
 
 const timelineStages = [
@@ -114,21 +109,6 @@ const timelineStages = [
   },
 ];
 
-const selectionCategories = [
-  {
-    title: "Prime Category",
-    seats: "80 delegates",
-    detail:
-      "Selected through two rounds that assess IQ, creativity, commitment, and readiness for the program.",
-  },
-  {
-    title: "Special Category",
-    seats: "20 delegates",
-    detail:
-      "Selected from students with extracurricular, sports, and national-level achievements.",
-  },
-];
-
 const tracks = [
   {
     title: "AI & Programming",
@@ -161,33 +141,71 @@ const outcomes = [
   "Nurturing the next generation of tech leaders for Sri Lanka",
 ];
 
+const galleryImages = (edition: string, filenames: string[]) =>
+  filenames.map((filename) => `/gallery/${edition}/${filename}.jpg`);
+
 const legacyEditions = [
   {
     year: "1.0",
-    title: "Best Student Branch Project",
-    summary:
-      "Introduced A/L students to programming, robotics, and entrepreneurship through a three-day residential camp.",
-    metric: "1000+ applications",
-    seats: "80 students",
-    images: ["/legacy/1.webp", "/legacy/2.webp", "/legacy/3.webp", "/legacy/4.webp"],
+    images: galleryImages("1.0", [
+      "1-0-18",
+      "1-0-17",
+      "1-0-19",
+      "1-0-20",
+      "1-0-21",
+      "1-0-05",
+      "1-0-16",
+      "1-0-04",
+      "1-0-08",
+      "1-0-09",
+    ]),
   },
   {
     year: "2.0",
-    title: "Scale and Momentum",
-    summary:
-      "Expanded the initiative through a two-day residential camp with workshops, lead ventures, and mini competitions.",
-    metric: "1500+ applications",
-    seats: "100 students",
-    images: ["/legacy/5.webp", "/legacy/6.webp", "/legacy/7.webp", "/legacy/8.webp"],
+    images: galleryImages("2.0", [
+      "2-0-09",
+      "2-0-11",
+      "2-0-10",
+      "2-0-18",
+      "2-0-02",
+      "2-0-03",
+      "2-0-07",
+      "2-0-12",
+      "2-0-14",
+      "2-0-16",
+      "2-0-17",
+      "2-0-19",
+      "2-0-20",
+      "2-0-22",
+      "2-0-23",
+      "2-0-24",
+    ]),
   },
   {
     year: "3.0",
-    title: "Depth and Intensity",
-    summary:
-      "Delivered a three-day residential bootcamp with hands-on workshops, collaborative activities, and expert partners.",
-    metric: "Nationwide impact",
-    seats: "100 delegates",
-    images: ["/legacy/9.webp", "/legacy/10.webp", "/legacy/11.webp", "/legacy/12.webp"],
+    images: galleryImages("3.0", [
+      "3-0-09",
+      "3-0-26",
+      "3-0-18",
+      "3-0-28",
+      "3-0-13",
+      "3-0-25",
+      "3-0-22",
+      "3-0-24",
+      "3-0-03",
+      "3-0-05",
+      "3-0-07",
+      "3-0-10",
+      "3-0-11",
+      "3-0-12",
+      "3-0-14",
+      "3-0-19",
+      "3-0-20",
+      "3-0-27",
+      "3-0-29",
+      "3-0-30",
+      "3-0-31",
+    ]),
   },
 ];
 
@@ -321,10 +339,89 @@ function GradientButton({
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [activeEdition, setActiveEdition] = useState(2);
+  const [galleryEditionIndex, setGalleryEditionIndex] = useState<number | null>(
+    null
+  );
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const closeMenu = () => setMenuOpen(false);
-  const selectedEdition = legacyEditions[activeEdition];
+  const galleryEdition =
+    galleryEditionIndex === null ? null : legacyEditions[galleryEditionIndex];
+  const modalImages = galleryEdition
+    ? galleryEdition.images.map((src, imageIndex) => ({
+        src,
+        imageIndex,
+      }))
+    : [];
+  const selectedModalImage = modalImages[activeImageIndex] ?? modalImages[0];
+
+  const openGallery = (editionIndex: number) => {
+    setGalleryEditionIndex(editionIndex);
+    setActiveImageIndex(0);
+  };
+
+  useEffect(() => {
+    const handleGalleryCardClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const trigger = target.closest<HTMLButtonElement>("[data-gallery-index]");
+      if (!trigger) return;
+
+      const editionIndex = Number(trigger.dataset.galleryIndex);
+      if (!Number.isInteger(editionIndex)) return;
+
+      setGalleryEditionIndex(editionIndex);
+      setActiveImageIndex(0);
+    };
+
+    document.addEventListener("click", handleGalleryCardClick);
+
+    return () => {
+      document.removeEventListener("click", handleGalleryCardClick);
+    };
+  }, []);
+
+  const closeGallery = () => {
+    setGalleryEditionIndex(null);
+    setActiveImageIndex(0);
+  };
+
+  const setModalImage = (imageIndex: number) => {
+    if (!modalImages.length) return;
+    const normalizedIndex =
+      (imageIndex + modalImages.length) % modalImages.length;
+    setActiveImageIndex(normalizedIndex);
+  };
+
+  useEffect(() => {
+    if (galleryEditionIndex === null) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const totalImages = legacyEditions[galleryEditionIndex].images.length;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setGalleryEditionIndex(null);
+        setActiveImageIndex(0);
+      }
+      if (event.key === "ArrowRight") {
+        setActiveImageIndex((current) => (current + 1) % totalImages);
+      }
+      if (event.key === "ArrowLeft") {
+        setActiveImageIndex(
+          (current) => (current - 1 + totalImages) % totalImages
+        );
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [galleryEditionIndex]);
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#050608] text-white">
@@ -423,19 +520,19 @@ export default function Home() {
 
       <section
         id="home"
-        className="relative flex min-h-[94svh] items-center overflow-hidden bg-[url('/coming-soon.png')] bg-[length:auto_100%] bg-[position:70%_bottom] bg-no-repeat pt-24 md:bg-[length:cover] md:bg-[position:center]"
+        className="relative flex min-h-[660px] items-start overflow-hidden bg-[url('/coming-soon.png')] bg-[length:auto_100%] bg-[position:72%_bottom] bg-no-repeat pt-16 md:h-[calc(100svh-3rem)] md:max-h-[920px] md:min-h-[700px] md:bg-[length:cover] md:bg-[position:62%_center]"
       >
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#050608_0%,rgba(5,6,8,0.97)_28%,rgba(5,6,8,0.6)_62%,rgba(5,6,8,0.12)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,6,8,0.7)_0%,rgba(5,6,8,0)_42%,#050608_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#050608_0%,rgba(5,6,8,0.98)_31%,rgba(5,6,8,0.7)_55%,rgba(5,6,8,0.08)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,6,8,0.62)_0%,rgba(5,6,8,0)_38%,rgba(5,6,8,0.3)_76%,#050608_100%)]" />
         <div className="absolute inset-0 opacity-[0.1] [background-image:linear-gradient(rgba(255,255,255,0.28)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.28)_1px,transparent_1px)] [background-size:72px_72px]" />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-4 pb-16 pt-12 sm:px-6 md:grid-cols-[0.95fr_1fr] md:px-8 md:pb-20 md:pt-20">
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-8 px-4 pb-10 pt-8 sm:px-6 md:grid-cols-[minmax(0,650px)_1fr] md:px-8 md:pb-8 md:pt-8 lg:pt-10">
           <motion.div
             initial="hidden"
             animate="visible"
             transition={{ duration: 0.75, ease: "easeOut" }}
             variants={fadeUp}
-            className="min-w-0 max-w-[360px] sm:max-w-3xl"
+            className="min-w-0 max-w-[650px]"
           >
             <Image
               src="/moraforesight-logo.png"
@@ -443,24 +540,24 @@ export default function Home() {
               width={909}
               height={360}
               priority
-              className="h-auto w-full max-w-[330px] sm:max-w-[430px]"
+              className="h-auto w-full max-w-[260px] sm:max-w-[300px] lg:max-w-[320px]"
             />
 
-            <div className="mt-7 inline-flex items-center gap-2 rounded-md border border-white/14 bg-white/[0.04] px-3 py-2 text-sm font-semibold text-white/78">
+            <div className="mt-4 inline-flex items-center gap-2 rounded-md border border-white/14 bg-black/34 px-3 py-2 text-xs font-semibold text-white/78 backdrop-blur-sm sm:text-sm">
               <CalendarDays size={16} className="text-[#01BEEB]" />
               03 May - 08 Aug 2026 roadmap
             </div>
 
-            <h1 className="mt-6 max-w-3xl break-words text-4xl font-semibold leading-[1.02] text-white sm:text-5xl md:text-6xl">
+            <h1 className="mt-4 max-w-[650px] break-words text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem]">
               Fully-funded bootcamp for Sri Lanka&apos;s next tech leaders.
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-white/78 md:text-xl md:leading-8">
-              MoraForesight 4.0 is a character-driven, futuristic, three-day
-              residential bootcamp for school students under 20, organized by
-              the IEEE Student Branch of the University of Moratuwa.
+            <p className="mt-4 max-w-[620px] text-base leading-7 text-white/72 lg:text-lg">
+              A fully-funded three-day residential experience for school
+              students under 20, organized by the IEEE Student Branch of the
+              University of Moratuwa.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <GradientButton href={registerUrl}>Register Now</GradientButton>
               <a
                 href="#timeline"
@@ -471,16 +568,16 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="mt-10 hidden max-w-2xl grid-cols-3 gap-3 sm:grid">
+            <div className="mt-5 hidden max-w-[620px] grid-cols-3 gap-3 sm:grid">
               {heroStats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="min-w-0 overflow-hidden rounded-lg border border-white/12 bg-black/28 p-4 backdrop-blur-sm"
+                  className="min-w-0 overflow-hidden rounded-lg border border-white/12 bg-black/38 px-4 py-3 backdrop-blur-sm"
                 >
-                  <p className="text-2xl font-semibold text-white md:text-3xl">
+                  <p className="text-2xl font-semibold text-white">
                     {stat.value}
                   </p>
-                  <p className="mt-1 text-xs leading-5 text-white/62 md:text-sm">
+                  <p className="mt-1 text-xs leading-5 text-white/62">
                     {stat.label}
                   </p>
                 </div>
@@ -489,17 +586,6 @@ export default function Home() {
           </motion.div>
 
           <div className="hidden md:block" aria-hidden="true" />
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-white/[0.03] py-5">
-        <div className="mx-auto grid max-w-7xl gap-4 px-4 sm:px-6 md:grid-cols-4 md:px-8">
-          {brandPrinciples.map((item) => (
-            <div key={item} className="flex items-center gap-3 text-white/76">
-              <CheckCircle2 size={18} className="shrink-0 text-[#01BEEB]" />
-              <span className="text-sm font-medium">{item}</span>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -680,27 +766,6 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-12 grid gap-4 md:grid-cols-2">
-            {selectionCategories.map((category) => (
-              <div
-                key={category.title}
-                className="rounded-lg border border-white/10 bg-black/24 p-6"
-              >
-                <p className="text-sm font-semibold uppercase text-[#F8C312]">
-                  Selection category
-                </p>
-                <h3 className="mt-2 text-2xl font-semibold text-white">
-                  {category.title}
-                </h3>
-                <p className="mt-3 text-3xl font-semibold text-[#01BEEB]">
-                  {category.seats}
-                </p>
-                <p className="mt-4 text-sm leading-6 text-white/64">
-                  {category.detail}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -759,113 +824,157 @@ export default function Home() {
           <SectionHeader
             eyebrow="Legacy gallery"
             title="Year by year, the project has grown in scale and impact."
-            intro="The gallery is grouped by edition so students can see the progression from MoraForesight 1.0 to 3.0."
+            intro="Each edition opens into a combined photo archive, curated from the official MoraForesight Facebook albums."
           />
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-3">
             {legacyEditions.map((edition, index) => (
               <button
                 key={edition.year}
                 type="button"
-                onClick={() => setActiveEdition(index)}
-                className={`rounded-lg border p-5 text-left transition ${
-                  activeEdition === index
-                    ? "border-[#01BEEB]/70 bg-[#01BEEB]/10"
-                    : "border-white/10 bg-white/[0.04] hover:border-white/24 hover:bg-white/[0.07]"
-                }`}
+                data-gallery-index={index}
+                onClick={() => openGallery(index)}
+                className="group overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] p-4 text-left transition hover:-translate-y-1 hover:border-[#01BEEB]/65 hover:bg-white/[0.07]"
               >
-                <span className="flex items-center justify-between gap-4">
+                <div className="grid h-64 grid-cols-2 grid-rows-2 gap-2">
+                  {edition.images.slice(0, 3).map((image, imageIndex) => (
+                    <div
+                      key={image}
+                      className={`relative overflow-hidden rounded-md bg-black/35 ${
+                        imageIndex === 0 ? "row-span-2" : ""
+                      }`}
+                    >
+                      <Image
+                        src={image}
+                        alt={`MoraForesight ${edition.year} gallery preview ${imageIndex + 1}`}
+                        fill
+                        sizes="(min-width: 768px) 33vw, 100vw"
+                        className="object-cover transition duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-5 flex items-center justify-between gap-4">
                   <span className="text-sm font-semibold uppercase text-[#F8C312]">
                     MoraForesight {edition.year}
                   </span>
-                  <Camera
-                    size={18}
-                    className={
-                      activeEdition === index ? "text-[#01BEEB]" : "text-white/44"
-                    }
-                  />
-                </span>
-                <span className="mt-4 block text-2xl font-semibold text-white">
-                  {edition.title}
-                </span>
-                <span className="mt-3 block text-sm leading-6 text-white/62">
-                  {edition.summary}
-                </span>
-                <span className="mt-5 inline-flex rounded-md bg-white px-3 py-1 text-xs font-semibold text-black">
-                  {edition.metric}
+                  <span className="flex h-10 w-10 items-center justify-center rounded-md border border-white/12 bg-white/[0.04] text-[#01BEEB] transition group-hover:border-[#01BEEB]/55">
+                    <Images size={19} />
+                  </span>
+                </div>
+
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#01BEEB]">
+                  Open edition gallery
+                  <ArrowRight size={16} />
                 </span>
               </button>
             ))}
           </div>
+        </div>
+      </section>
 
-          <motion.div
-            key={selectedEdition.year}
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-            className="mt-8 grid gap-6 lg:grid-cols-[0.72fr_1.28fr]"
-          >
-            <div className="self-start rounded-lg border border-white/10 bg-white/[0.04] p-6 md:p-8">
-              <p className="text-sm font-semibold uppercase text-[#F8C312]">
-                MoraForesight {selectedEdition.year}
+      {galleryEdition && selectedModalImage ? (
+        <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`MoraForesight ${galleryEdition.year} gallery`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-[100] overflow-y-auto bg-[#030406]/98 px-3 py-3 backdrop-blur-xl sm:px-5"
+        >
+          <div className="mx-auto flex min-h-full max-w-7xl flex-col">
+            <div className="sticky top-0 z-20 flex items-center justify-between gap-3 bg-[#030406]/92 py-3 backdrop-blur-xl">
+              <p className="min-w-0 truncate text-sm font-semibold uppercase text-[#F8C312]">
+                MoraForesight {galleryEdition.year}
               </p>
-              <h3 className="mt-3 text-3xl font-semibold text-white md:text-4xl">
-                {selectedEdition.title}
-              </h3>
-              <p className="mt-5 text-base leading-8 text-white/68">
-                {selectedEdition.summary}
-              </p>
-              <div className="mt-7 grid grid-cols-2 gap-3">
-                <div className="rounded-lg border border-white/10 bg-black/22 p-4">
-                  <p className="text-2xl font-semibold text-white">
-                    {selectedEdition.metric}
-                  </p>
-                  <p className="mt-1 text-sm text-white/58">response</p>
-                </div>
-                <div className="rounded-lg border border-white/10 bg-black/22 p-4">
-                  <p className="text-2xl font-semibold text-white">
-                    {selectedEdition.seats}
-                  </p>
-                  <p className="mt-1 text-sm text-white/58">selected cohort</p>
-                </div>
-              </div>
+              <button
+                type="button"
+                aria-label="Close gallery"
+                onClick={closeGallery}
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-white/14 bg-white/[0.04] text-white transition hover:border-white/32 hover:bg-white/[0.08]"
+              >
+                <X size={22} />
+              </button>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              {selectedEdition.images.map((src, index) => (
-                <motion.div
-                  key={src}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.45, delay: index * 0.04 }}
-                  variants={fadeUp}
-                  className={`group relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] ${
-                    index === 0 ? "-rotate-2 sm:row-span-2" : index === 1 ? "rotate-1" : ""
-                  }`}
-                >
-                  <div
-                    className={`relative ${
-                      index === 0 ? "aspect-[4/5] h-full" : "aspect-[16/10]"
+            <div className="grid flex-1 gap-3 pb-3 lg:grid-cols-[minmax(0,1fr)_330px]">
+              <div className="relative min-w-0 overflow-hidden rounded-lg border border-white/10 bg-black">
+                <div className="relative aspect-[16/10] min-h-[290px] md:min-h-[620px]">
+                  <Image
+                    key={selectedModalImage.src}
+                    src={selectedModalImage.src}
+                    alt={`MoraForesight ${galleryEdition.year} gallery photo ${activeImageIndex + 1}`}
+                    fill
+                    sizes="(min-width: 1024px) 72vw, 100vw"
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4">
+                  <span className="rounded-md bg-black/72 px-3 py-2 text-xs font-semibold text-white/80 backdrop-blur">
+                    {String(activeImageIndex + 1).padStart(2, "0")} /{" "}
+                    {String(modalImages.length).padStart(2, "0")}
+                  </span>
+                </div>
+
+                {modalImages.length > 1 ? (
+                  <>
+                    <button
+                      type="button"
+                      aria-label="Previous image"
+                      onClick={() => setModalImage(activeImageIndex - 1)}
+                      className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/16 bg-black/58 text-white backdrop-blur transition hover:border-white/36 hover:bg-black/78"
+                    >
+                      <ChevronLeft size={22} />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label="Next image"
+                      onClick={() => setModalImage(activeImageIndex + 1)}
+                      className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/16 bg-black/58 text-white backdrop-blur transition hover:border-white/36 hover:bg-black/78"
+                    >
+                      <ChevronRight size={22} />
+                    </button>
+                  </>
+                ) : null}
+              </div>
+
+              <div className="grid max-h-[72vh] grid-cols-3 gap-2 overflow-y-auto rounded-lg border border-white/10 bg-white/[0.035] p-2 sm:grid-cols-4 lg:grid-cols-2">
+                {modalImages.map((image, imageIndex) => (
+                  <button
+                    key={image.src}
+                    type="button"
+                    aria-label={`Open MoraForesight ${galleryEdition.year} photo ${imageIndex + 1}`}
+                    onClick={() => setModalImage(imageIndex)}
+                    className={`group relative overflow-hidden rounded-md border transition ${
+                      imageIndex % 7 === 0
+                        ? "aspect-[4/5]"
+                        : imageIndex % 5 === 0
+                          ? "aspect-[16/10]"
+                          : "aspect-square"
+                    } ${
+                      activeImageIndex === imageIndex
+                        ? "border-[#F8C312] opacity-100 shadow-[0_0_0_1px_rgba(248,195,18,0.55)]"
+                        : "border-white/10 opacity-75 hover:border-white/34 hover:opacity-100"
                     }`}
                   >
                     <Image
-                      src={src}
-                      alt={`MoraForesight ${selectedEdition.year} gallery image ${
-                        index + 1
-                      }`}
+                      src={image.src}
+                      alt=""
                       fill
-                      sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
+                      sizes="(min-width: 1024px) 160px, 33vw"
                       className="object-cover transition duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/36 to-transparent opacity-80" />
-                  </div>
-                </motion.div>
-              ))}
+                  </button>
+                ))}
+              </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </motion.div>
+      ) : null}
 
       <section id="merch" className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
