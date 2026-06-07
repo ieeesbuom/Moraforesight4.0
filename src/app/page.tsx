@@ -142,7 +142,7 @@ const outcomes = [
 ];
 
 const galleryImages = (edition: string, filenames: string[]) =>
-  filenames.map((filename) => `/gallery/${edition}/${filename}.jpg`);
+  filenames.map((filename) => `/gallery/${edition}/${filename}.webp`);
 
 const legacyEditions = [
   {
@@ -212,12 +212,12 @@ const legacyEditions = [
 const merchItems = [
   {
     title: "Official T-shirt",
-    image: "/tshirt-40.jpeg",
+    image: "/tshirt-40.webp",
     note: "Main MoraForesight 4.0 event T-shirt artwork.",
   },
   {
     title: "Collar T-shirt",
-    image: "/collar-tshirt-40.jpeg",
+    image: "/collar-tshirt-40.webp",
     note: "Premium collar design aligned with the 4.0 visual identity.",
   },
 ];
@@ -434,10 +434,11 @@ export default function Home() {
             aria-label="MoraForesight 4.0 home"
           >
             <Image
-              src="/moraforesight-spark.png"
+              src="/moraforesight-spark.webp"
               alt=""
               width={34}
               height={34}
+              unoptimized
               className="h-8 w-8 object-contain"
             />
             <span className="text-sm font-semibold uppercase text-white md:text-base">
@@ -520,7 +521,7 @@ export default function Home() {
 
       <section
         id="home"
-        className="relative flex min-h-[660px] items-start overflow-hidden bg-[url('/coming-soon.png')] bg-[length:auto_100%] bg-[position:72%_bottom] bg-no-repeat pt-16 md:h-[calc(100svh-3rem)] md:max-h-[920px] md:min-h-[700px] md:bg-[length:cover] md:bg-[position:62%_center]"
+        className="relative flex min-h-[660px] items-start overflow-hidden bg-[url('/coming-soon.webp')] bg-[length:auto_100%] bg-[position:72%_bottom] bg-no-repeat pt-16 md:h-[calc(100svh-3rem)] md:max-h-[920px] md:min-h-[700px] md:bg-[length:cover] md:bg-[position:62%_center]"
       >
         <div className="absolute inset-0 bg-[linear-gradient(90deg,#050608_0%,rgba(5,6,8,0.98)_31%,rgba(5,6,8,0.7)_55%,rgba(5,6,8,0.08)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,6,8,0.62)_0%,rgba(5,6,8,0)_38%,rgba(5,6,8,0.3)_76%,#050608_100%)]" />
@@ -535,11 +536,13 @@ export default function Home() {
             className="min-w-0 max-w-[650px]"
           >
             <Image
-              src="/moraforesight-logo.png"
+              src="/moraforesight-logo.webp"
               alt="MoraForesight 4.0"
               width={909}
               height={360}
               priority
+              sizes="(min-width: 1024px) 320px, (min-width: 640px) 300px, 260px"
+              unoptimized
               className="h-auto w-full max-w-[260px] sm:max-w-[300px] lg:max-w-[320px]"
             />
 
@@ -614,10 +617,11 @@ export default function Home() {
             <div className="mt-8 rounded-lg border border-[#F8C312]/35 bg-black/28 p-5 shadow-[0_0_32px_rgba(248,195,18,0.08)]">
               <div className="flex items-center gap-4">
                 <Image
-                  src="/moraforesight-spark.png"
+                  src="/moraforesight-spark.webp"
                   alt=""
                   width={64}
                   height={64}
+                  unoptimized
                   className="h-12 w-12 object-contain"
                 />
                 <div>
@@ -848,7 +852,7 @@ export default function Home() {
                         src={image}
                         alt={`MoraForesight ${edition.year} gallery preview ${imageIndex + 1}`}
                         fill
-                        sizes="(min-width: 768px) 33vw, 100vw"
+                        sizes="(min-width: 1280px) 400px, (min-width: 768px) 33vw, 100vw"
                         className="object-cover transition duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
@@ -907,7 +911,7 @@ export default function Home() {
                     src={selectedModalImage.src}
                     alt={`MoraForesight ${galleryEdition.year} gallery photo ${activeImageIndex + 1}`}
                     fill
-                    sizes="(min-width: 1024px) 72vw, 100vw"
+                    sizes="(min-width: 1280px) 920px, (min-width: 1024px) calc(100vw - 390px), 100vw"
                     className="object-contain"
                     priority
                   />
@@ -1014,7 +1018,7 @@ export default function Home() {
                     src={item.image}
                     alt={item.title}
                     fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
+                    sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw"
                     className="object-contain"
                   />
                 </div>
@@ -1127,10 +1131,11 @@ export default function Home() {
 
           <div className="mt-10 rounded-lg border border-white/10 bg-white p-5">
             <Image
-              src="/ieee-uom-blue.png"
+              src="/ieee-uom-blue.webp"
               alt="IEEE Student Branch University of Moratuwa"
-              width={18035}
-              height={3932}
+              width={1600}
+              height={350}
+              sizes="(min-width: 768px) 672px, calc(100vw - 2.5rem)"
               className="mx-auto h-auto w-full max-w-2xl"
             />
           </div>

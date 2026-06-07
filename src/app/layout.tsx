@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "MoraForesight 4.0",
     images: [
       {
-        url: "/coming-soon.png",
+        url: "/coming-soon.webp",
         width: 1672,
         height: 941,
         alt: "MoraForesight 4.0 bootcamp artwork",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "MoraForesight 4.0 | Fully-Funded School Innovation Bootcamp",
     description:
       "A fully-funded three-day residential bootcamp for school students under 20, organized by IEEE Student Branch, University of Moratuwa.",
-    images: ["/coming-soon.png"],
+    images: ["/coming-soon.webp"],
   },
   robots: {
     index: true,
