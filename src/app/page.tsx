@@ -23,13 +23,13 @@ import {
   Menu,
   Phone,
   Rocket,
-  Shirt,
   Sparkles,
   Trophy,
   Users,
   X,
   type LucideIcon,
 } from "lucide-react";
+import { Tshirt360Viewer } from "./components/Tshirt360Viewer";
 
 const registerUrl = "https://register.moraforesight.lk/";
 const updatesUrl = "https://whatsapp.com/channel/0029Vb82hWMEwEjowRgP0X0K";
@@ -211,14 +211,23 @@ const legacyEditions = [
 
 const merchItems = [
   {
-    title: "Official T-shirt",
-    image: "/tshirt-40.webp",
-    note: "Main MoraForesight 4.0 event T-shirt artwork.",
+    title: "Nova Pulse",
+    type: "Crew-neck event T-shirt",
+    frames: [
+      { label: "front view", src: "/merch/nova-front.webp" },
+      { label: "side view", src: "/merch/nova-side.webp" },
+      { label: "back view", src: "/merch/nova-back.webp" },
+    ],
+    note: "A deep navy event tee carrying the Own the Next Move front artwork, subtle MoraForesight patterns, and the 4.0 back mark.",
   },
   {
-    title: "Collar T-shirt",
-    image: "/collar-tshirt-40.webp",
-    note: "Premium collar design aligned with the 4.0 visual identity.",
+    title: "Ether Bloom",
+    type: "Premium collar T-shirt",
+    frames: [
+      { label: "front view", src: "/merch/ether-front.webp" },
+      { label: "back view", src: "/merch/ether-back.webp" },
+    ],
+    note: "A collar edition with magenta shoulder detailing, MoraForesight chest branding, and IEEE Student Branch recognition on the back.",
   },
 ];
 
@@ -980,16 +989,30 @@ export default function Home() {
         </motion.div>
       ) : null}
 
-      <section id="merch" className="py-20 md:py-28">
+      <section id="merch" className="py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-          <SectionHeader
-            eyebrow="Merch"
-            title="Official MoraForesight 4.0 merchandise previews."
-            intro="Choose the design you prefer and place your order through the official form."
-          />
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            variants={fadeUp}
+            className="mx-auto mb-7 max-w-2xl text-center md:mb-9"
+          >
+            <p className="mb-3 text-sm font-semibold uppercase text-[#F8C312]">
+              Merch
+            </p>
+            <h2 className="text-3xl font-semibold text-white md:text-4xl">
+              Official MoraForesight 4.0 merch.
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-white/66">
+              Choose the design you prefer and place your order through the
+              official form.
+            </p>
+          </motion.div>
 
-          <div className="grid gap-5 md:grid-cols-2">
-            {merchItems.map((item) => (
+          <div className="space-y-10 md:space-y-14">
+            {merchItems.map((item, index) => (
               <motion.article
                 key={item.title}
                 initial="hidden"
@@ -997,32 +1020,33 @@ export default function Home() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.55 }}
                 variants={fadeUp}
-                className="rounded-lg border border-white/10 bg-[#11141B] p-6"
+                className="grid items-center gap-5 md:gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)]"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-semibold uppercase text-[#F8C312]">
-                      Order preview
-                    </p>
-                    <h3 className="mt-2 text-2xl font-semibold text-white">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-6 text-white/62">
-                      {item.note}
-                    </p>
-                  </div>
-                  <IconBadge icon={Shirt} />
-                </div>
-                <div className="relative mt-6 aspect-[16/12] overflow-hidden rounded-lg bg-white/[0.03]">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw"
-                    className="object-contain"
+                <div className={index % 2 === 1 ? "lg:order-2" : ""}>
+                  <Tshirt360Viewer
+                    frames={item.frames}
+                    label={item.title}
                   />
                 </div>
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+
+                <div
+                  className={`max-w-xl ${
+                    index % 2 === 1 ? "lg:order-1" : ""
+                  }`}
+                >
+                  <p className="text-sm font-semibold uppercase text-[#F8C312]">
+                    Official merch
+                  </p>
+                  <h3 className="mt-2 text-3xl font-semibold text-white md:text-5xl">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-lg font-semibold text-[#01BEEB]">
+                    {item.type}
+                  </p>
+                  <p className="mt-5 text-base leading-8 text-white/66">
+                    {item.note}
+                  </p>
+                  <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                   <GradientButton href={merchOrderUrl}>Order Merch</GradientButton>
                   <a
                     href={updatesUrl}
@@ -1032,6 +1056,7 @@ export default function Home() {
                   >
                     Ask Availability
                   </a>
+                  </div>
                 </div>
               </motion.article>
             ))}
