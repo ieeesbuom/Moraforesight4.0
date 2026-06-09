@@ -10,20 +10,16 @@ import {
   Award,
   Bot,
   BrainCircuit,
-  Building2,
   CalendarDays,
   CheckCircle2,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  ClipboardCheck,
   Cpu,
   Images,
   Lightbulb,
   Menu,
   Rocket,
-  Sparkles,
-  Trophy,
   Users,
   X,
   type LucideIcon,
@@ -79,7 +75,11 @@ const timelineStages = [
     date: "03 May - 06 June 2026",
     detail:
       "Open island-wide registration for school students under 20 years.",
-    icon: ClipboardCheck,
+    color: "#01BEEB",
+    x: 10,
+    y: 86,
+    label: "left",
+    mobileX: 46,
   },
   {
     stage: "Stage 02",
@@ -87,7 +87,11 @@ const timelineStages = [
     date: "During registration",
     detail:
       "Physical school sessions plus virtual and physical sessions around technology and industry.",
-    icon: Sparkles,
+    color: "#F8C312",
+    x: 27.5,
+    y: 72.5,
+    label: "center",
+    mobileX: 52,
   },
   {
     stage: "Stage 03",
@@ -95,23 +99,23 @@ const timelineStages = [
     date: "12 June 2026",
     detail:
       "A briefing session to guide applicants before the selection process.",
-    icon: CalendarDays,
+    color: "#E585E4",
+    x: 44.5,
+    y: 67.5,
+    label: "center",
+    mobileX: 72,
   },
   {
     stage: "Stage 04",
-    title: "Selection Process",
-    date: "22 June - 24 July 2026",
+    title: "Selection & Assessments",
+    date: "22 June - 01 August 2026",
     detail:
-      "Prime category assessments include online selection, IQ evaluation, commitment, and creativity tests.",
-    icon: BrainCircuit,
-  },
-  {
-    stage: "Assessment Targets",
-    title: "Online & Physical Tests",
-    date: "20 June & 01 Aug 2026",
-    detail:
-      "Online selection test target: 20 June. Physical IQ test target: 01 August.",
-    icon: Building2,
+      "Prime category assessments include online selection, IQ evaluation, commitment, creativity, and the physical evaluation.",
+    color: "#01D5FF",
+    x: 61.25,
+    y: 54,
+    label: "center",
+    mobileX: 52,
   },
   {
     stage: "Stage 05",
@@ -119,7 +123,11 @@ const timelineStages = [
     date: "07 Aug 2026",
     detail:
       "Final delegate selection is completed across the prime and special categories.",
-    icon: Trophy,
+    color: "#F8C312",
+    x: 77.5,
+    y: 46,
+    label: "center",
+    mobileX: 55,
   },
   {
     stage: "Stage 06",
@@ -127,7 +135,11 @@ const timelineStages = [
     date: "06-08 Aug 2026",
     detail:
       "A fully-funded three-day residential bootcamp for the selected delegate cohort.",
-    icon: Rocket,
+    color: "#E585E4",
+    x: 93.25,
+    y: 25.5,
+    label: "right",
+    mobileX: 59,
   },
 ];
 
@@ -747,81 +759,276 @@ export default function Home() {
 
       <section
         id="timeline"
-        className="border-y border-white/10 bg-[#0B0D12] py-20 md:py-28"
+        className="overflow-hidden border-y border-white/10 bg-[#0B0D12] py-12"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-          <SectionHeader
-            eyebrow="Event timeline"
-            title="Target roadmap from registration to bootcamp."
-            intro="Dates are taken from the event information deck. The selection finalization and bootcamp window appear very close together in the source, so both are displayed as target dates."
-          />
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
+            variants={fadeUp}
+            className="mb-5"
+          >
+            <p className="text-xs font-semibold uppercase text-[#F8C312]">
+              Event timeline
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">
+              From registration to the residential bootcamp.
+            </h2>
+          </motion.div>
 
-          <div className="relative mx-auto max-w-6xl">
+          <div className="relative mx-auto hidden h-[440px] max-w-7xl lg:block">
             <svg
-              className="pointer-events-none absolute left-1/2 top-6 hidden h-[calc(100%-3rem)] w-44 -translate-x-1/2 md:block"
-              viewBox="0 0 180 1120"
+              className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
+              viewBox="0 0 1200 620"
               preserveAspectRatio="none"
               aria-hidden="true"
             >
+              <defs>
+                <linearGradient
+                  id="timeline-road-gradient"
+                  x1="40"
+                  y1="590"
+                  x2="1180"
+                  y2="120"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop offset="0%" stopColor="#01BEEB" />
+                  <stop offset="38%" stopColor="#01D5FF" />
+                  <stop offset="65%" stopColor="#E585E4" />
+                  <stop offset="84%" stopColor="#F8C312" />
+                  <stop offset="100%" stopColor="#E585E4" />
+                </linearGradient>
+                <filter
+                  id="timeline-road-glow"
+                  x="-30%"
+                  y="-30%"
+                  width="160%"
+                  height="160%"
+                >
+                  <feGaussianBlur stdDeviation="8" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <marker
+                  id="timeline-arrow"
+                  markerWidth="12"
+                  markerHeight="12"
+                  refX="9"
+                  refY="5"
+                  orient="auto"
+                  markerUnits="strokeWidth"
+                >
+                  <path d="M0,0 L10,5 L0,10 L3,5 Z" fill="#E585E4" />
+                </marker>
+              </defs>
               <path
-                d="M108 0 C28 130 152 245 78 390 C38 500 132 610 82 750 C40 870 138 978 78 1120"
+                d="M20 590 C80 520 110 535 150 535 C250 535 245 460 330 450 C430 438 440 390 535 420 C610 444 650 380 735 335 C820 290 860 340 930 285 C1000 230 1030 240 1080 190 C1120 150 1145 160 1180 120"
                 fill="none"
-                stroke="rgba(1, 190, 235, 0.74)"
-                strokeWidth="10"
+                stroke="#02070C"
+                strokeWidth="86"
                 strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
-                d="M108 0 C28 130 152 245 78 390 C38 500 132 610 82 750 C40 870 138 978 78 1120"
+                d="M20 590 C80 520 110 535 150 535 C250 535 245 460 330 450 C430 438 440 390 535 420 C610 444 650 380 735 335 C820 290 860 340 930 285 C1000 230 1030 240 1080 190 C1120 150 1145 160 1180 120"
                 fill="none"
-                stroke="rgba(248, 195, 18, 0.26)"
-                strokeWidth="3"
+                stroke="url(#timeline-road-gradient)"
+                strokeWidth="70"
                 strokeLinecap="round"
+                strokeLinejoin="round"
+                opacity="0.92"
+                filter="url(#timeline-road-glow)"
+              />
+              <path
+                d="M20 590 C80 520 110 535 150 535 C250 535 245 460 330 450 C430 438 440 390 535 420 C610 444 650 380 735 335 C820 290 860 340 930 285 C1000 230 1030 240 1080 190 C1120 150 1145 160 1180 120"
+                fill="none"
+                stroke="#06131E"
+                strokeWidth="56"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M20 590 C80 520 110 535 150 535 C250 535 245 460 330 450 C430 438 440 390 535 420 C610 444 650 380 735 335 C820 290 860 340 930 285 C1000 230 1030 240 1080 190 C1120 150 1145 160 1180 120"
+                fill="none"
+                stroke="url(#timeline-road-gradient)"
+                strokeWidth="4"
+                strokeDasharray="12 14"
+                strokeLinecap="round"
+                markerEnd="url(#timeline-arrow)"
               />
             </svg>
 
-            <div className="space-y-5 md:space-y-0">
-              {timelineStages.map((stage, index) => {
-                const StageIcon = stage.icon;
-                const isLeft = index % 2 === 0;
-                return (
-                  <motion.div
-                    key={`${stage.stage}-${stage.title}`}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{ duration: 0.5, delay: index * 0.06 }}
-                    variants={fadeUp}
-                    className="relative grid items-center gap-4 md:min-h-40 md:grid-cols-[1fr_150px_1fr]"
+            {timelineStages.map((stage, index) => (
+              <motion.div
+                key={`${stage.stage}-${stage.title}`}
+                initial={{ opacity: 0, scale: 0.88 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.48, delay: index * 0.08 }}
+                className="absolute z-10"
+                style={{
+                  left: `${stage.x}%`,
+                  top: `${stage.y}%`,
+                  color: stage.color,
+                }}
+              >
+                <div className="relative">
+                  <div
+                    className={`absolute bottom-[116px] w-48 ${
+                      stage.label === "left"
+                        ? "left-[-18px] text-left"
+                        : stage.label === "right"
+                          ? "right-[-18px] text-right"
+                          : "left-1/2 -translate-x-1/2 text-center"
+                    }`}
                   >
-                    <div className={isLeft ? "md:pr-8" : "md:col-start-3 md:pl-8"}>
-                      <article className="relative overflow-hidden rounded-lg border border-white/10 bg-[#11141B] p-5 shadow-2xl shadow-black/20">
-                        <div className="absolute -right-8 -top-10 h-24 w-24 rounded-full bg-[#01BEEB]/10 blur-2xl" />
-                        <div className="relative flex flex-wrap items-center justify-between gap-3">
-                          <span className="rounded-md border border-white/12 bg-white/[0.04] px-3 py-1 text-xs font-semibold uppercase text-[#F8C312]">
-                            {stage.stage}
-                          </span>
-                          <span className="rounded-md bg-[#C8FFF4] px-3 py-1 text-xs font-semibold text-[#061013]">
-                            {stage.date}
-                          </span>
-                        </div>
-                        <h3 className="mt-5 text-xl font-semibold text-white md:text-2xl">
-                          {stage.title}
-                        </h3>
-                        <p className="mt-3 text-sm leading-6 text-white/62">
-                          {stage.detail}
-                        </p>
-                      </article>
-                    </div>
+                    <p
+                      className="text-lg font-extrabold uppercase leading-none"
+                      style={{ textShadow: `0 0 18px ${stage.color}` }}
+                    >
+                      {stage.stage}
+                    </p>
+                    <p className="mt-2 text-[11px] font-semibold uppercase leading-4 text-white/70">
+                      {stage.title}
+                    </p>
+                    <p className="mt-1 text-sm font-bold uppercase leading-4 text-current">
+                      {stage.date}
+                    </p>
+                  </div>
 
-                    <div className="relative hidden justify-center md:col-start-2 md:row-start-1 md:flex">
-                      <span className="absolute top-1/2 h-px w-28 -translate-y-1/2 bg-[#01BEEB]/45" />
-                      <span className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border-4 border-[#0B0D12] bg-[#C8FFF4] text-[#061013] shadow-[0_0_28px_rgba(1,190,235,0.38)]">
-                        <StageIcon size={26} strokeWidth={2} />
-                      </span>
-                    </div>
-                  </motion.div>
-                );
-              })}
+                  <div className="absolute bottom-4 left-1/2 h-16 w-px -translate-x-1/2 bg-current shadow-[0_0_12px_currentColor]" />
+                  <div
+                    className="absolute bottom-[78px] left-1/2 h-7 w-7 -translate-x-1/2 rounded-full border-[5px] border-current bg-[#0B0D12]"
+                    style={{ boxShadow: `0 0 20px ${stage.color}` }}
+                  />
+
+                  <div
+                    className="absolute left-1/2 top-1/2 h-14 w-24 -translate-x-1/2 -translate-y-1/2 rounded-[50%] border-2 border-current bg-[#07111A]"
+                    style={{ boxShadow: `0 0 22px ${stage.color}` }}
+                  >
+                    <div className="absolute inset-[5px] rounded-[50%] border border-current/70 bg-black/70" />
+                    <div
+                      className="absolute inset-[13px] rounded-[50%] bg-current opacity-80"
+                      style={{ boxShadow: `0 0 18px ${stage.color}` }}
+                    />
+                    <div className="absolute inset-x-3 bottom-1 h-px bg-white/55" />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="relative mx-auto max-w-xl lg:hidden">
+            <svg
+              className="pointer-events-none absolute bottom-12 left-4 top-10 h-[calc(100%-5.5rem)] w-20 overflow-visible"
+              viewBox="0 0 80 900"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient
+                  id="timeline-mobile-gradient"
+                  x1="20"
+                  y1="0"
+                  x2="60"
+                  y2="900"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop offset="0%" stopColor="#01BEEB" />
+                  <stop offset="35%" stopColor="#F8C312" />
+                  <stop offset="65%" stopColor="#E585E4" />
+                  <stop offset="100%" stopColor="#01D5FF" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M24 0 C64 90 12 180 50 280 C74 350 18 430 42 520 C68 610 14 700 48 900"
+                fill="none"
+                stroke="#02070C"
+                strokeWidth="38"
+                strokeLinecap="round"
+              />
+              <path
+                d="M24 0 C64 90 12 180 50 280 C74 350 18 430 42 520 C68 610 14 700 48 900"
+                fill="none"
+                stroke="url(#timeline-mobile-gradient)"
+                strokeWidth="28"
+                strokeLinecap="round"
+                opacity="0.85"
+              />
+              <path
+                d="M24 0 C64 90 12 180 50 280 C74 350 18 430 42 520 C68 610 14 700 48 900"
+                fill="none"
+                stroke="#07131D"
+                strokeWidth="20"
+                strokeLinecap="round"
+              />
+              <path
+                d="M24 0 C64 90 12 180 50 280 C74 350 18 430 42 520 C68 610 14 700 48 900"
+                fill="none"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeDasharray="8 10"
+                strokeLinecap="round"
+                opacity="0.62"
+              />
+            </svg>
+
+            <div className="space-y-5">
+              {timelineStages.map((stage, index) => (
+                <motion.article
+                  key={`${stage.stage}-${stage.title}-mobile`}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.45, delay: index * 0.04 }}
+                  variants={fadeUp}
+                  className="relative min-h-36 pl-28 pt-3"
+                  title={stage.detail}
+                >
+                  <div
+                    className="absolute top-10 h-9 w-14 -translate-x-1/2 rounded-[50%] border-2 bg-[#07111A]"
+                    style={{
+                      left: `${stage.mobileX}px`,
+                      borderColor: stage.color,
+                      boxShadow: `0 0 18px ${stage.color}`,
+                    }}
+                  >
+                    <div
+                      className="absolute inset-[8px] rounded-[50%] opacity-80"
+                      style={{
+                        backgroundColor: stage.color,
+                        boxShadow: `0 0 12px ${stage.color}`,
+                      }}
+                    />
+                  </div>
+
+                  <p
+                    className="text-base font-extrabold uppercase"
+                    style={{
+                      color: stage.color,
+                      textShadow: `0 0 14px ${stage.color}`,
+                    }}
+                  >
+                    {stage.stage}
+                  </p>
+                  <h3 className="mt-1 text-lg font-semibold text-white">
+                    {stage.title}
+                  </h3>
+                  <p
+                    className="mt-1 text-sm font-bold uppercase"
+                    style={{ color: stage.color }}
+                  >
+                    {stage.date}
+                  </p>
+                  <p className="mt-2 max-w-sm text-sm leading-6 text-white/58">
+                    {stage.detail}
+                  </p>
+                </motion.article>
+              ))}
             </div>
           </div>
 
