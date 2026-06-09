@@ -501,12 +501,12 @@ export default function Home() {
             aria-label="MoraForesight 4.0 home"
           >
             <Image
-              src="/moraforesight-spark.webp"
+              src="/moraforesight-spark-nav.webp"
               alt=""
-              width={34}
-              height={34}
+              width={124}
+              height={130}
               unoptimized
-              className="h-8 w-8 object-contain"
+              className="h-5 w-5 shrink-0 object-contain"
             />
             <span className="text-sm font-semibold uppercase text-white md:text-base">
               MoraForesight 4.0
@@ -594,7 +594,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,6,8,0.62)_0%,rgba(5,6,8,0)_38%,rgba(5,6,8,0.3)_76%,#050608_100%)]" />
         <div className="absolute inset-0 opacity-[0.1] [background-image:linear-gradient(rgba(255,255,255,0.28)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.28)_1px,transparent_1px)] [background-size:72px_72px]" />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-8 px-4 pb-10 pt-8 sm:px-6 md:grid-cols-[minmax(0,650px)_1fr] md:px-8 md:pb-8 md:pt-8 lg:pt-10">
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-8 px-4 pb-10 pt-5 sm:px-6 md:grid-cols-[minmax(0,650px)_1fr] md:px-8 md:pb-8 md:pt-8 lg:pt-10">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -603,14 +603,14 @@ export default function Home() {
             className="min-w-0 max-w-[650px]"
           >
             <Image
-              src="/moraforesight-logo.webp"
+              src="/moraforesight-logo-compact.webp"
               alt="MoraForesight 4.0"
-              width={909}
-              height={360}
+              width={651}
+              height={182}
               priority
-              sizes="(min-width: 1024px) 320px, (min-width: 640px) 300px, 260px"
+              sizes="(min-width: 1024px) 235px, (min-width: 640px) 220px, 190px"
               unoptimized
-              className="h-auto w-full max-w-[260px] sm:max-w-[300px] lg:max-w-[320px]"
+              className="h-auto w-full max-w-[190px] sm:max-w-[220px] lg:max-w-[235px]"
             />
 
             <div className="mt-4 inline-flex items-center gap-2 rounded-md border border-white/14 bg-black/34 px-3 py-2 text-xs font-semibold text-white/78 backdrop-blur-sm sm:text-sm">
