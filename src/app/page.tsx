@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
+  ArrowUp,
   ArrowRight,
   Award,
   Bot,
@@ -19,9 +20,7 @@ import {
   Cpu,
   Images,
   Lightbulb,
-  Mail,
   Menu,
-  Phone,
   Rocket,
   Sparkles,
   Trophy,
@@ -42,6 +41,29 @@ const navItems = [
   { label: "Gallery", href: "#gallery" },
   { label: "Merch", href: "#merch" },
   { label: "Contact", href: "#contact" },
+];
+
+const socialLinks = [
+  {
+    label: "Facebook",
+    href: "https://web.facebook.com/IEEEUOMSB/",
+    icon: "/social/facebook.png",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/ieeeuomsb/",
+    icon: "/social/linkedin.png",
+  },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/@IEEEUOMSB",
+    icon: "/social/youtube.png",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/ieeesbuom/",
+    icon: "/social/instagram.png",
+  },
 ];
 
 const heroStats = [
@@ -237,18 +259,42 @@ const contacts = [
     name: "Tharusha Jayasundara",
     email: "ranidu.jaya171@gmail.com",
     phone: "+94 76 292 1236",
+    image: "/contact/tharusha-cutout.webp",
+    accent: {
+      border: "border-[#01BEEB]",
+      frame: "from-[#01BEEB]/32 via-[#04212B]/88 to-black",
+      glow: "shadow-[0_0_34px_rgba(1,190,235,0.18)]",
+      panel: "from-[#01BEEB] to-[#006F90]",
+      text: "text-[#01BEEB]",
+    },
   },
   {
     role: "Event Vice-Chair",
     name: "Kushani Umanda",
     email: "kushaniumanda2003@gmail.com",
     phone: "+94 71 697 1942",
+    image: "/contact/kushani-cutout.webp",
+    accent: {
+      border: "border-[#E585E4]",
+      frame: "from-[#E585E4]/32 via-[#24112B]/88 to-black",
+      glow: "shadow-[0_0_34px_rgba(229,133,228,0.18)]",
+      panel: "from-[#E585E4] to-[#7D0A82]",
+      text: "text-[#E585E4]",
+    },
   },
   {
     role: "Event Executive Chairman",
     name: "Chanuka Anjana",
     email: "chanukaanjana01@gmai.com",
     phone: "+94 71 760 7248",
+    image: "/contact/chanuka-cutout.webp",
+    accent: {
+      border: "border-[#F8C312]",
+      frame: "from-[#F8C312]/32 via-[#271F06]/88 to-black",
+      glow: "shadow-[0_0_34px_rgba(248,195,18,0.18)]",
+      panel: "from-[#F8C312] to-[#8A6800]",
+      text: "text-[#F8C312]",
+    },
   },
 ];
 
@@ -1116,69 +1162,208 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-          <SectionHeader
-            eyebrow="Contact"
-            title="Reach the organizing team."
-            intro="Contact details are taken from the event information deck."
-          />
-
-          <div className="grid gap-5 md:grid-cols-3">
-            {contacts.map((contact) => (
-              <div
+      <section
+        id="contact"
+        className="relative overflow-hidden border-y border-white/10 bg-[#05060B] py-14 sm:py-16 lg:py-20"
+      >
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-[linear-gradient(125deg,rgba(1,190,235,0.12),transparent_30%,rgba(229,133,228,0.10)_58%,transparent_74%,rgba(248,195,18,0.12))]" />
+          <div className="absolute left-0 top-0 h-72 w-80 bg-[radial-gradient(circle,rgba(84,68,255,0.46)_1px,transparent_1.5px)] bg-[size:18px_18px] opacity-60" />
+          <div className="absolute -left-20 bottom-3 h-px w-[36rem] rotate-[-37deg] bg-gradient-to-r from-transparent via-[#F8C312] to-transparent opacity-70" />
+          <div className="absolute left-8 bottom-24 h-px w-[32rem] rotate-[-36deg] bg-gradient-to-r from-transparent via-[#01BEEB] to-transparent opacity-58" />
+          <div className="absolute right-0 top-16 h-px w-[42rem] rotate-[42deg] bg-gradient-to-r from-transparent via-[#E585E4] to-transparent opacity-50" />
+          <div className="absolute right-8 bottom-12 h-px w-[32rem] rotate-[-46deg] bg-gradient-to-r from-transparent via-[#E585E4] to-transparent opacity-45" />
+          <div className="absolute inset-0 bg-[linear-gradient(115deg,transparent_0%,rgba(255,255,255,0.04)_40%,transparent_49%)] opacity-70" />
+        </div>
+        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
+          <div className="relative grid gap-12 md:grid-cols-3 md:gap-5 xl:gap-7">
+            {contacts.map((contact, index) => (
+              <motion.article
                 key={contact.role}
-                className="rounded-lg border border-white/10 bg-white/[0.04] p-6"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.55, delay: index * 0.06 }}
+                variants={fadeUp}
+                className="group relative min-h-[430px] pt-[270px] sm:min-h-[470px] sm:pt-[300px] md:min-h-[430px] md:pt-[270px] lg:min-h-[470px] lg:pt-[300px]"
               >
-                <p className="text-sm font-semibold uppercase text-[#F8C312]">
-                  {contact.role}
-                </p>
-                <h3 className="mt-3 text-2xl font-semibold text-white">
-                  {contact.name}
-                </h3>
-                <a
-                  href={`mailto:${contact.email}`}
-                  className="mt-5 flex items-center gap-3 text-sm text-white/68 transition hover:text-white"
+                <div
+                  className={`absolute left-1/2 top-0 z-10 h-[295px] w-[76%] -translate-x-1/2 overflow-hidden rounded-[30px] border-[3px] ${contact.accent.border} bg-gradient-to-br ${contact.accent.frame} md:h-[286px] lg:h-[320px] ${contact.accent.glow}`}
                 >
-                  <Mail size={16} className="text-[#01BEEB]" />
-                  {contact.email}
-                </a>
-                <a
-                  href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                  className="mt-3 flex items-center gap-3 text-sm text-white/68 transition hover:text-white"
-                >
-                  <Phone size={16} className="text-[#01BEEB]" />
-                  {contact.phone}
-                </a>
-              </div>
-            ))}
-          </div>
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.18),transparent_42%)]" />
+                  <div className="absolute inset-x-6 bottom-0 h-36 rounded-t-lg bg-gradient-to-t from-black/45 to-transparent" />
+                  <Image
+                    src={contact.image}
+                    alt={contact.name}
+                    fill
+                    sizes="(min-width: 1024px) 300px, (min-width: 768px) 28vw, 70vw"
+                    className="origin-bottom scale-[1.05] object-contain object-bottom px-1 pt-2 transition duration-500 group-hover:scale-[1.09]"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/55 to-transparent" />
+                </div>
 
-          <div className="mt-10 rounded-lg border border-white/10 bg-white p-5">
-            <Image
-              src="/ieee-uom-blue.webp"
-              alt="IEEE Student Branch University of Moratuwa"
-              width={1600}
-              height={350}
-              sizes="(min-width: 768px) 672px, calc(100vw - 2.5rem)"
-              className="mx-auto h-auto w-full max-w-2xl"
-            />
+                <div
+                  className={`relative z-20 min-h-[168px] rounded-[10px] border-[3px] ${contact.accent.border} bg-black/58 px-5 pb-6 pt-11 text-center backdrop-blur-sm ${contact.accent.glow}`}
+                >
+                  <div
+                    className={`absolute left-1/2 top-0 flex min-h-[68px] w-[calc(100%+0.75rem)] -translate-x-1/2 -translate-y-[58%] items-center justify-center rounded-[13px] bg-gradient-to-r ${contact.accent.panel} px-4 py-3 text-center text-[clamp(0.95rem,1.35vw,1.7rem)] font-extrabold uppercase leading-tight text-white shadow-[0_18px_42px_rgba(0,0,0,0.30)] md:min-h-[62px] xl:min-h-[68px]`}
+                  >
+                    {contact.role}
+                  </div>
+
+                  <h3 className="text-[1.55rem] font-extrabold leading-tight text-white md:text-[1.35rem] lg:text-[1.55rem] xl:text-[1.75rem]">
+                    {contact.name}
+                  </h3>
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className={`mt-2 block break-words text-[1.05rem] leading-snug transition hover:text-white md:text-[0.95rem] lg:text-[1.05rem] xl:text-[1.25rem] ${contact.accent.text}`}
+                  >
+                    {contact.email}
+                  </a>
+                  <a
+                    href={`tel:${contact.phone.replace(/\s/g, "")}`}
+                    className="mt-1 block text-[1.1rem] font-medium leading-tight text-white transition hover:text-white/75 md:text-[1rem] lg:text-[1.2rem] xl:text-[1.45rem]"
+                  >
+                    {contact.phone}
+                  </a>
+                </div>
+              </motion.article>
+            ))}
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-white/10 bg-black py-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 text-sm text-white/54 sm:px-6 md:flex-row md:items-center md:justify-between md:px-8">
-          <p>MoraForesight 4.0 - IEEE Student Branch, University of Moratuwa.</p>
-          <div className="flex gap-5">
-            <a href="#home" className="hover:text-white">
-              Top
-            </a>
-            <a href="#timeline" className="hover:text-white">
-              Timeline
-            </a>
-            <a href={registerUrl} target="_blank" rel="noreferrer" className="hover:text-white">
-              Register
+      <footer
+        id="footer"
+        className="relative overflow-hidden border-t border-white/10 bg-[#030407]"
+      >
+        <div className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,#01BEEB_0%,#01BEEB_28%,#E585E4_50%,#F8C312_72%,#F8C312_100%)]" />
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(1,190,235,0.08),transparent_28%,rgba(229,133,228,0.06)_58%,transparent_72%,rgba(248,195,18,0.07))]" />
+          <div className="absolute right-0 top-0 h-64 w-80 bg-[radial-gradient(circle,rgba(248,195,18,0.34)_1px,transparent_1.5px)] bg-[size:18px_18px] opacity-35" />
+          <div className="absolute -left-24 bottom-8 h-px w-[34rem] rotate-[-34deg] bg-gradient-to-r from-transparent via-[#01BEEB] to-transparent opacity-30" />
+          <div className="absolute right-0 top-28 h-px w-[28rem] rotate-[38deg] bg-gradient-to-r from-transparent via-[#E585E4] to-transparent opacity-25" />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-4 pb-7 pt-14 sm:px-6 md:px-8 md:pt-16">
+          <div className="grid gap-12 border-b border-white/10 pb-12 md:grid-cols-2 lg:grid-cols-[1.2fr_0.65fr_0.9fr] lg:gap-16">
+            <div>
+              <div className="flex items-center gap-4">
+                <Image
+                  src="/moraforesight-spark.webp"
+                  alt=""
+                  width={80}
+                  height={80}
+                  unoptimized
+                  className="h-[68px] w-[68px] shrink-0 object-contain"
+                />
+                <div>
+                  <p className="text-xs font-semibold uppercase text-[#01BEEB]">
+                    IEEE SB of UOM presents
+                  </p>
+                  <p className="mt-1 text-xl font-bold text-white">
+                    MoraForesight 4.0
+                  </p>
+                </div>
+              </div>
+              <p className="mt-5 max-w-lg text-sm leading-7 text-white/62">
+                A fully-funded three-day residential bootcamp empowering Sri
+                Lanka&apos;s next generation through technology, innovation,
+                and entrepreneurship.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href={registerUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-white px-5 text-sm font-bold text-black transition hover:bg-[#F8C312]"
+                >
+                  Register
+                  <ArrowRight size={17} />
+                </a>
+                <a
+                  href={updatesUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center justify-center rounded-md border border-white/16 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#01BEEB]/60 hover:bg-[#01BEEB]/10"
+                >
+                  Get Updates
+                </a>
+              </div>
+            </div>
+
+            <nav aria-label="Footer navigation">
+              <p className="text-xs font-semibold uppercase text-[#F8C312]">
+                Explore
+              </p>
+              <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 lg:grid-cols-1">
+                {navItems.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="w-fit text-sm text-white/62 transition hover:text-white"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </nav>
+
+            <div className="md:col-span-2 lg:col-span-1">
+              <p className="text-xs font-semibold uppercase text-[#E585E4]">
+                Organized by
+              </p>
+              <Image
+                src="/ieee-uom-blue.webp"
+                alt="IEEE Student Branch, University of Moratuwa"
+                width={1600}
+                height={350}
+                sizes="(min-width: 1024px) 340px, 300px"
+                className="mt-4 h-auto w-full max-w-[340px]"
+              />
+              <p className="mt-7 text-xs font-semibold uppercase text-white/48">
+                Follow IEEE UOM
+              </p>
+              <div className="mt-3 flex gap-3">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={social.label}
+                    title={social.label}
+                    className="group flex h-11 w-11 items-center justify-center rounded-md border border-white/14 bg-white/[0.04] transition hover:border-[#01BEEB]/60 hover:bg-[#01BEEB]/10"
+                  >
+                    <Image
+                      src={social.icon}
+                      alt=""
+                      width={24}
+                      height={24}
+                      className="h-5 w-5 object-contain opacity-80 transition group-hover:opacity-100"
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="relative flex flex-col items-center gap-5 pt-7 text-center text-xs text-white/42 sm:min-h-11 sm:justify-center sm:gap-0">
+            <div className="leading-5">
+              <p className="font-medium text-white/52">
+                &copy; 2026 MoraForesight 4.0. All rights reserved.
+              </p>
+              <p className="mt-0.5">
+                IEEE Student Branch, University of Moratuwa.
+              </p>
+            </div>
+            <a
+              href="#home"
+              aria-label="Back to top"
+              title="Back to top"
+              className="flex h-11 w-11 items-center justify-center rounded-md border border-white/14 bg-white/[0.04] text-white/68 transition hover:border-[#F8C312]/60 hover:bg-[#F8C312]/10 hover:text-white sm:absolute sm:right-0 sm:top-7"
+            >
+              <ArrowUp size={19} />
             </a>
           </div>
         </div>
