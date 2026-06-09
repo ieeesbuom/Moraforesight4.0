@@ -1348,7 +1348,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative flex flex-col items-center gap-5 pt-7 text-center text-xs text-white/42 sm:min-h-11 sm:justify-center sm:gap-0">
+          <div className="flex min-h-11 items-center justify-center pt-7 text-center text-xs text-white/42">
             <div className="leading-5">
               <p className="font-medium text-white/52">
                 &copy; 2026 MoraForesight 4.0. All rights reserved.
@@ -1357,17 +1357,18 @@ export default function Home() {
                 IEEE Student Branch, University of Moratuwa.
               </p>
             </div>
-            <a
-              href="#home"
-              aria-label="Back to top"
-              title="Back to top"
-              className="flex h-11 w-11 items-center justify-center rounded-md border border-white/14 bg-white/[0.04] text-white/68 transition hover:border-[#F8C312]/60 hover:bg-[#F8C312]/10 hover:text-white sm:absolute sm:right-0 sm:top-7"
-            >
-              <ArrowUp size={19} />
-            </a>
           </div>
         </div>
       </footer>
+
+      <a
+        href="#home"
+        aria-label="Back to top"
+        title="Back to top"
+        className="fixed bottom-4 right-4 z-50 flex h-11 w-11 items-center justify-center rounded-md border border-white/18 bg-black/72 text-white/76 shadow-[0_12px_32px_rgba(0,0,0,0.42)] backdrop-blur-md transition hover:border-[#F8C312]/70 hover:bg-[#F8C312]/14 hover:text-white sm:bottom-6 sm:right-6"
+      >
+        <ArrowUp size={19} />
+      </a>
     </main>
   );
 }
