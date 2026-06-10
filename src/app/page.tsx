@@ -11,7 +11,6 @@ import {
   Bot,
   BrainCircuit,
   CalendarDays,
-  CheckCircle2,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -147,32 +146,51 @@ const tracks = [
   {
     title: "AI & Programming",
     detail:
-      "Practical foundations in modern computation, problem solving, and AI-driven thinking.",
+      "Build practical foundations in programming, computational thinking, and emerging AI tools.",
     icon: Cpu,
     accent: "from-[#01BEEB] to-[#66E1F7]",
   },
   {
     title: "Robotics & IoT",
     detail:
-      "Hands-on exposure to hardware, sensors, connected systems, and automation.",
+      "Explore hardware, sensors, connected systems, and automation through hands-on challenges.",
     icon: Bot,
     accent: "from-[#E585E4] to-[#F7A8F3]",
   },
   {
     title: "Entrepreneurship",
     detail:
-      "Startup thinking, leadership, communication, teamwork, and innovation-driven learning.",
+      "Turn ideas into action through teamwork, communication, leadership, and entrepreneurial thinking.",
     icon: Lightbulb,
     accent: "from-[#F8C312] to-[#FFE27A]",
   },
 ];
 
-const outcomes = [
-  "Inspiring innovation and entrepreneurship in the young generation",
-  "Unlocking the potential of talented Sri Lankan youth",
-  "Delivering a transformative learning experience",
-  "Fostering teamwork, leadership, communication, and problem solving",
-  "Nurturing the next generation of tech leaders for Sri Lanka",
+const aboutHighlights = [
+  {
+    title: "Islandwide Reach",
+    detail:
+      "MoraForesight 4.0 scouts talent across all 25 districts through trilingual outreach.",
+    icon: Users,
+  },
+  {
+    title: "Competitive Selection",
+    detail:
+      "Candidates advance through layered evaluations assessing intellect, creativity, commitment, and achievement.",
+    icon: BrainCircuit,
+  },
+  {
+    title: "Expert-Led Bootcamp",
+    detail:
+      "Top participants earn a fully funded residential bootcamp with immersive workshops, mentorship, and hands-on learning led by industry experts.",
+    icon: Rocket,
+  },
+  {
+    title: "National Recognition",
+    detail:
+      "MoraForesight 3.0 received the IEEE Sri Lanka Section Best Student Branch Project Award for its nationwide reach and transformative student impact.",
+    icon: Award,
+  },
 ];
 
 const galleryImages = (edition: string, filenames: string[]) =>
@@ -314,22 +332,57 @@ const faqs = [
   {
     question: "Who can apply?",
     answer:
-      "School students under the age of 20 can apply. The program targets high-potential students across all 25 districts of Sri Lanka.",
+      "School students under the age of 20 as of January 2026 are eligible to apply. MoraForesight welcomes high-potential students from all 25 districts of Sri Lanka who demonstrate curiosity, commitment, and leadership potential.",
+  },
+  {
+    question: "How are students selected?",
+    answer:
+      "Participants are selected through a competitive process designed to identify motivated, future-focused individuals. The stages may include online assessments, physical evaluations, and commitment-based screening.",
   },
   {
     question: "How many students will be selected?",
     answer:
-      "The final delegate cohort is planned for 100 students: 80 through the prime category and 20 through the special category.",
+      "A limited number of delegates are selected to keep the learning experience engaging and personal. Previous editions have hosted approximately 100 participants from across the island.",
   },
   {
-    question: "What makes the program fully funded?",
+    question: "Is the program fully funded?",
     answer:
-      "The final three-day residential bootcamp is designed as a fully-funded learning experience for selected delegates.",
+      "Yes. MoraForesight is a fully funded residential bootcamp made possible through the support of industry partners, collaborators, and the University of Moratuwa community.",
   },
   {
     question: "What will students learn?",
     answer:
-      "The focus areas include AI & Programming, Robotics & IoT, Entrepreneurship, teamwork, leadership, communication, and problem solving.",
+      "Delegates gain exposure to programming, artificial intelligence, robotics, innovation, entrepreneurship, leadership, and collaborative problem solving through workshops, competitions, and interactive sessions.",
+  },
+  {
+    question: "Where will the bootcamp be held?",
+    answer:
+      "The residential bootcamp is conducted at the University of Moratuwa and affiliated partner venues, giving students direct exposure to a leading university environment.",
+  },
+  {
+    question: "Is prior technical knowledge required?",
+    answer:
+      "No. Students are selected for their potential, enthusiasm, and willingness to learn. The program is designed to support participants from diverse academic backgrounds.",
+  },
+  {
+    question: "Does the program focus only on technology?",
+    answer:
+      "No. While technology is a core component, MoraForesight also emphasizes teamwork, communication, leadership, creativity, and entrepreneurial thinking.",
+  },
+  {
+    question: "Are accommodation and meals provided?",
+    answer:
+      "Yes. Accommodation, meals, and learning resources are provided for selected delegates throughout the residential program.",
+  },
+  {
+    question: "Will parents be informed throughout the process?",
+    answer:
+      "Yes. Important updates, schedules, and guidelines are communicated clearly to students and parents to ensure a smooth and transparent experience.",
+  },
+  {
+    question: "What opportunities can students gain after the program?",
+    answer:
+      "Participants gain exposure to emerging technologies, industry networks, collaborative projects, and a community of like-minded peers who can support their future academic and professional journeys.",
   },
 ];
 
@@ -660,99 +713,76 @@ export default function Home() {
       </section>
 
       <section id="about" className="relative py-20 md:py-28">
-        <div className="mx-auto grid max-w-7xl items-start gap-12 px-4 sm:px-6 md:grid-cols-[0.92fr_1.08fr] md:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            variants={fadeUp}
-          >
-            <p className="mb-3 text-sm font-semibold uppercase text-[#F8C312]">
-              About MoraForesight 4.0
-            </p>
-            <h2 className="text-3xl font-semibold text-white md:text-5xl">
-              A premier catalyst for technological literacy.
-            </h2>
-            <p className="mt-6 text-base leading-8 text-white/70 md:text-lg">
-              Established in 2023, MoraForesight narrows the divide between
-              traditional education and the cutting-edge advancements shaping
-              the world. The fourth iteration continues that legacy through a
-              multi-phase journey culminating in a signature residential
-              bootcamp.
-            </p>
-            <div className="mt-8 rounded-lg border border-[#F8C312]/35 bg-black/28 p-5 shadow-[0_0_32px_rgba(248,195,18,0.08)]">
-              <div className="flex items-center gap-4">
-                <Image
-                  src="/moraforesight-spark.webp"
-                  alt=""
-                  width={64}
-                  height={64}
-                  unoptimized
-                  className="h-12 w-12 object-contain"
-                />
-                <div>
-                  <p className="text-sm font-semibold uppercase text-[#01BEEB]">
-                    Organized by
-                  </p>
-                  <p className="text-xl font-semibold text-white">
-                    IEEE Student Branch of UOM
-                  </p>
-                </div>
-              </div>
-              <p className="mt-4 text-sm leading-7 text-white/62">
-                The branch brings together 15 specialized chapters and an
-                affinity group, connecting undergraduate expertise with
-                school-level innovation.
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+          <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              variants={fadeUp}
+            >
+              <p className="mb-3 text-sm font-semibold uppercase text-[#F8C312]">
+                About MoraForesight 4.0
               </p>
-            </div>
-          </motion.div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {[
-              {
-                title: "Nationwide Reach",
-                detail:
-                  "MoraForesight 4.0 targets students across all 25 districts through a trilingual approach.",
-                icon: Users,
-              },
-              {
-                title: "Competitive Selection",
-                detail:
-                  "Applicants progress through IQ, creativity, commitment, and achievement-based evaluations.",
-                icon: BrainCircuit,
-              },
-              {
-                title: "Immersive Bootcamp",
-                detail:
-                  "The final cohort enters an intensive residential environment with workshops and mentorship.",
-                icon: Rocket,
-              },
-              {
-                title: "Recognized Legacy",
-                detail:
-                  "MoraForesight 3.0 was awarded for nationwide impact and transformative student influence.",
-                icon: Award,
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.55, delay: index * 0.08 }}
-                variants={fadeUp}
-                className="rounded-lg border border-white/10 bg-white/[0.04] p-5"
-              >
-                <IconBadge icon={item.icon} />
-                <h3 className="mt-5 text-xl font-semibold text-white">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-white/64">
-                  {item.detail}
+              <h2 className="text-3xl font-semibold text-white md:text-5xl">
+                A visionary launchpad for aspiring tech innovators.
+              </h2>
+              <p className="mt-6 text-base leading-8 text-white/70 md:text-lg">
+                Launched in 2023, MoraForesight leads students beyond the
+                conventional curriculum and towards the drive to innovate with
+                technology. The fourth edition carries that vision forward
+                through thoughtfully designed stages, rewarding top
+                participants with a fully funded flagship residential bootcamp.
+              </p>
+              <div className="mt-8 border-l-2 border-[#F8C312] bg-white/[0.025] px-5 py-5">
+                <div className="flex items-center gap-4">
+                  <Image
+                    src="/moraforesight-spark-nav.webp"
+                    alt=""
+                    width={124}
+                    height={130}
+                    unoptimized
+                    className="h-11 w-11 shrink-0 object-contain"
+                  />
+                  <div>
+                    <p className="text-sm font-semibold uppercase text-[#01BEEB]">
+                      Organized by
+                    </p>
+                    <p className="text-xl font-semibold text-white">
+                      IEEE Student Branch of UOM
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-4 text-sm leading-7 text-white/62">
+                  The branch unites 15 specialized chapters and an affinity
+                  group, channeling undergraduate expertise into school-level
+                  innovation.
                 </p>
-              </motion.div>
-            ))}
+              </div>
+            </motion.div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {aboutHighlights.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.55, delay: index * 0.08 }}
+                  variants={fadeUp}
+                  className="rounded-lg border border-white/10 bg-white/[0.035] p-5 transition hover:border-white/20 hover:bg-white/[0.055]"
+                >
+                  <IconBadge icon={item.icon} />
+                  <h3 className="mt-5 text-xl font-semibold text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-white/64">
+                    {item.detail}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -1039,8 +1069,8 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <SectionHeader
             eyebrow="Bootcamp focus"
-            title="Technical skills, teamwork, and entrepreneurial confidence."
-            intro="The program goes beyond teaching technical skills by immersing delegates in a culture of problem solving and future-focused leadership."
+            title="Building technical excellence, team-driven collaboration, and entrepreneurial mindset."
+            intro="A prestigious bootcamp immersing delegates in a culture of creation, teamwork, and problem solving within a fast-moving, future-ready environment."
           />
 
           <div className="grid gap-5 md:grid-cols-3">
@@ -1065,18 +1095,6 @@ export default function Home() {
                   {track.detail}
                 </p>
               </motion.article>
-            ))}
-          </div>
-
-          <div className="mt-12 grid gap-4 md:grid-cols-5">
-            {outcomes.map((item) => (
-              <div
-                key={item}
-                className="flex items-start gap-3 border-t border-white/12 pt-5"
-              >
-                <CheckCircle2 className="mt-1 shrink-0 text-[#F8C312]" size={18} />
-                <p className="text-sm leading-6 text-white/68">{item}</p>
-              </div>
             ))}
           </div>
         </div>
@@ -1321,27 +1339,39 @@ export default function Home() {
         id="faq"
         className="border-y border-white/10 bg-[#0B0D12] py-20 md:py-28"
       >
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 md:px-8">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 md:px-8">
           <SectionHeader
             eyebrow="FAQ"
-            title="The essentials students and parents will look for."
+            title="All essential information for students and parents, right here."
           />
 
-          <div className="space-y-3">
+          <div className="grid items-start gap-3 lg:grid-cols-2 lg:gap-4">
             {faqs.map((faq, index) => {
               const isOpen = openFaq === index;
+
               return (
                 <div
                   key={faq.question}
-                  className="rounded-lg border border-white/10 bg-white/[0.04]"
+                  className={`self-start overflow-hidden rounded-lg border bg-white/[0.035] transition ${
+                    isOpen
+                      ? "border-[#01BEEB]/45"
+                      : "border-white/10 hover:border-white/20"
+                  }`}
                 >
                   <button
                     type="button"
-                    className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left"
+                    className="flex w-full items-center gap-4 px-5 py-5 text-left"
                     onClick={() => setOpenFaq(isOpen ? null : index)}
                     aria-expanded={isOpen}
                   >
-                    <span className="text-base font-semibold text-white md:text-lg">
+                    <span
+                      className={`text-xs font-semibold tabular-nums ${
+                        isOpen ? "text-[#01BEEB]" : "text-white/34"
+                      }`}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="flex-1 text-base font-semibold text-white md:text-lg">
                       {faq.question}
                     </span>
                     <ChevronDown
@@ -1357,7 +1387,7 @@ export default function Home() {
                       animate={{ opacity: 1, height: "auto" }}
                       className="overflow-hidden"
                     >
-                      <p className="px-5 pb-5 text-sm leading-7 text-white/66 md:text-base">
+                      <p className="border-t border-white/10 px-5 pb-5 pl-[3.75rem] pt-4 text-sm leading-7 text-white/66 md:text-base">
                         {faq.answer}
                       </p>
                     </motion.div>
