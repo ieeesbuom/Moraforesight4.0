@@ -27,7 +27,8 @@ import { Tshirt360Viewer } from "./components/Tshirt360Viewer";
 
 const registerUrl = "https://register.moraforesight.lk/";
 const updatesUrl = "https://whatsapp.com/channel/0029Vb82hWMEwEjowRgP0X0K";
-const merchOrderUrl = process.env.NEXT_PUBLIC_MERCH_ORDER_URL || registerUrl;
+const merchOrderUrl =
+  "https://docs.google.com/forms/d/e/1FAIpQLSc6sNf8xXAkCsz5_jZw7hUJmLkAnr_4_7C0cYpOXqQPciWCvg/viewform";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -271,6 +272,8 @@ const merchItems = [
       { label: "back view", src: "/merch/nova-back.webp" },
     ],
     note: "A deep navy event tee carrying the Own the Next Move front artwork, subtle MoraForesight patterns, and the 4.0 back mark.",
+    availabilityUrl:
+      "https://wa.me/94710334085?text=Hi%2C%20I%20would%20like%20to%20check%20the%20availability%20of%20the%20Nova%20Pulse%20T-shirt.",
   },
   {
     title: "Ether Bloom",
@@ -280,6 +283,8 @@ const merchItems = [
       { label: "back view", src: "/merch/ether-back.webp" },
     ],
     note: "A collar edition with magenta shoulder detailing, MoraForesight chest branding, and IEEE Student Branch recognition on the back.",
+    availabilityUrl:
+      "https://wa.me/94710988234?text=Hi%2C%20I%20would%20like%20to%20check%20the%20availability%20of%20the%20Ether%20Bloom%20T-shirt.",
   },
 ];
 
@@ -1318,15 +1323,17 @@ export default function Home() {
                     {item.note}
                   </p>
                   <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                  <GradientButton href={merchOrderUrl}>Order Merch</GradientButton>
-                  <a
-                    href={updatesUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-md border border-white/14 px-5 py-3 text-sm font-semibold text-white/80 transition hover:border-white/32 hover:bg-white/[0.06] hover:text-white"
-                  >
-                    Ask Availability
-                  </a>
+                    <GradientButton href={merchOrderUrl}>
+                      Order Merch
+                    </GradientButton>
+                    <a
+                      href={item.availabilityUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-md border border-white/14 px-5 py-3 text-sm font-semibold text-white/80 transition hover:border-white/32 hover:bg-white/[0.06] hover:text-white"
+                    >
+                      Ask Availability
+                    </a>
                   </div>
                 </div>
               </motion.article>
@@ -1401,16 +1408,12 @@ export default function Home() {
 
       <section
         id="contact"
-        className="relative overflow-hidden border-y border-white/10 bg-[#05060B] py-14 sm:py-16 lg:py-20"
+        className="relative overflow-hidden border-y border-white/10 bg-[#050608] py-14 sm:py-16 lg:py-20"
       >
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-[linear-gradient(125deg,rgba(1,190,235,0.12),transparent_30%,rgba(229,133,228,0.10)_58%,transparent_74%,rgba(248,195,18,0.12))]" />
-          <div className="absolute left-0 top-0 h-72 w-80 bg-[radial-gradient(circle,rgba(84,68,255,0.46)_1px,transparent_1.5px)] bg-[size:18px_18px] opacity-60" />
-          <div className="absolute -left-20 bottom-3 h-px w-[36rem] rotate-[-37deg] bg-gradient-to-r from-transparent via-[#F8C312] to-transparent opacity-70" />
-          <div className="absolute left-8 bottom-24 h-px w-[32rem] rotate-[-36deg] bg-gradient-to-r from-transparent via-[#01BEEB] to-transparent opacity-58" />
-          <div className="absolute right-0 top-16 h-px w-[42rem] rotate-[42deg] bg-gradient-to-r from-transparent via-[#E585E4] to-transparent opacity-50" />
-          <div className="absolute right-8 bottom-12 h-px w-[32rem] rotate-[-46deg] bg-gradient-to-r from-transparent via-[#E585E4] to-transparent opacity-45" />
-          <div className="absolute inset-0 bg-[linear-gradient(115deg,transparent_0%,rgba(255,255,255,0.04)_40%,transparent_49%)] opacity-70" />
+          <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.24)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.24)_1px,transparent_1px)] [background-size:72px_72px]" />
+          <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,#01BEEB,#E585E4,#F8C312,transparent)] opacity-55" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,13,18,0.2),transparent_32%,rgba(11,13,18,0.5))]" />
         </div>
         <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
           <div className="relative grid gap-12 md:grid-cols-3 md:gap-5 xl:gap-7">
