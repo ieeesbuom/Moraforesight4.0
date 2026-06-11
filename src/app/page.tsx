@@ -42,7 +42,7 @@ const navItems = [
 const socialLinks = [
   {
     label: "Facebook",
-    href: "https://web.facebook.com/IEEEUOMSB/",
+    href: "https://www.facebook.com/ieeesbuom",
     icon: "/social/facebook.png",
   },
   {
@@ -52,7 +52,7 @@ const socialLinks = [
   },
   {
     label: "YouTube",
-    href: "https://www.youtube.com/@IEEEUOMSB",
+    href: "https://www.youtube.com/@ieeesbuom",
     icon: "/social/youtube.png",
   },
   {
@@ -449,7 +449,7 @@ function GradientButton({
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="inline-flex items-center justify-center gap-2 rounded-md border border-transparent px-6 py-4 text-base font-semibold text-white transition hover:scale-[1.02]"
+      className="inline-flex items-center justify-center gap-2 rounded-md border border-transparent px-5 py-3 text-sm font-semibold text-white transition hover:scale-[1.02] sm:px-6 sm:text-base"
       style={{
         background:
           "linear-gradient(#050608, #050608) padding-box, linear-gradient(135deg, #01BEEB, #E585E4, #F8C312) border-box",
@@ -463,6 +463,7 @@ function GradientButton({
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [galleryEditionIndex, setGalleryEditionIndex] = useState<number | null>(
     null
@@ -484,6 +485,19 @@ export default function Home() {
     setGalleryEditionIndex(editionIndex);
     setActiveImageIndex(0);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 600);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const handleGalleryCardClick = (event: MouseEvent) => {
@@ -564,14 +578,14 @@ export default function Home() {
               width={124}
               height={130}
               unoptimized
-              className="h-5 w-5 shrink-0 object-contain"
+              className="h-6 w-6 shrink-0 object-contain"
             />
             <span className="text-sm font-semibold uppercase text-white md:text-base">
               MoraForesight 4.0
             </span>
           </a>
 
-          <div className="hidden items-center gap-6 md:flex">
+          <div className="hidden items-center gap-6 lg:flex">
             {navItems.map((item) => (
               <a
                 key={item.href}
@@ -583,7 +597,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden items-center gap-3 lg:flex">
             <a
               href={updatesUrl}
               target="_blank"
@@ -606,7 +620,7 @@ export default function Home() {
           <button
             type="button"
             aria-label={menuOpen ? "Close navigation" : "Open navigation"}
-            className="flex h-10 w-10 items-center justify-center rounded-md border border-white/14 bg-white/[0.04] text-white md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-md border border-white/14 bg-white/[0.04] text-white lg:hidden"
             onClick={() => setMenuOpen((value) => !value)}
           >
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -617,7 +631,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="border-t border-white/10 bg-[#050608] px-4 py-4 md:hidden"
+            className="border-t border-white/10 bg-[#050608] px-4 py-4 lg:hidden"
           >
             <div className="flex flex-col gap-1">
               {navItems.map((item) => (
@@ -646,19 +660,29 @@ export default function Home() {
 
       <section
         id="home"
-        className="relative flex min-h-[660px] items-start overflow-hidden bg-[url('/coming-soon.webp')] bg-[length:auto_100%] bg-[position:72%_bottom] bg-no-repeat pt-16 md:h-[calc(100svh-3rem)] md:max-h-[920px] md:min-h-[700px] md:bg-[length:cover] md:bg-[position:62%_center]"
+        className="hero-shell relative flex items-start overflow-hidden bg-[#050608] pt-16"
       >
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#050608_0%,rgba(5,6,8,0.98)_31%,rgba(5,6,8,0.7)_55%,rgba(5,6,8,0.08)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,6,8,0.62)_0%,rgba(5,6,8,0)_38%,rgba(5,6,8,0.3)_76%,#050608_100%)]" />
+        <div className="hero-artwork" aria-hidden="true">
+          <Image
+            src="/coming-soon-characters.webp"
+            alt=""
+            fill
+            priority
+            sizes="(min-width: 1536px) 900px, (min-width: 1024px) 58vw, (min-width: 640px) 72vw, 122vw"
+            className="object-contain"
+          />
+        </div>
+        <div className="hero-horizontal-shade absolute inset-0" />
+        <div className="hero-vertical-shade absolute inset-0" />
         <div className="absolute inset-0 opacity-[0.1] [background-image:linear-gradient(rgba(255,255,255,0.28)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.28)_1px,transparent_1px)] [background-size:72px_72px]" />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-8 px-4 pb-10 pt-5 sm:px-6 md:grid-cols-[minmax(0,650px)_1fr] md:px-8 md:pb-8 md:pt-8 lg:pt-10">
+        <div className="hero-content relative z-10 mx-auto grid w-full max-w-7xl gap-8 px-4 pb-10 pt-4 sm:px-6 sm:py-8 md:grid-cols-[minmax(0,600px)_1fr] md:px-8 xl:grid-cols-[minmax(0,650px)_1fr]">
           <motion.div
             initial="hidden"
             animate="visible"
             transition={{ duration: 0.75, ease: "easeOut" }}
             variants={fadeUp}
-            className="min-w-0 max-w-[650px]"
+            className="min-w-0 max-w-[620px] xl:max-w-[650px]"
           >
             <Image
               src="/moraforesight-logo-compact.webp"
@@ -668,44 +692,44 @@ export default function Home() {
               priority
               sizes="(min-width: 1024px) 235px, (min-width: 640px) 220px, 190px"
               unoptimized
-              className="h-auto w-full max-w-[190px] sm:max-w-[220px] lg:max-w-[235px]"
+              className="h-auto w-full max-w-[180px] sm:max-w-[210px] xl:max-w-[235px]"
             />
 
-            <div className="mt-4 inline-flex items-center gap-2 rounded-md border border-white/14 bg-black/34 px-3 py-2 text-xs font-semibold text-white/78 backdrop-blur-sm sm:text-sm">
+            <div className="mt-4 inline-flex items-center gap-2 rounded-md border border-white/14 bg-black/46 px-3 py-2 text-xs font-semibold text-white/82 backdrop-blur-sm sm:text-sm">
               <CalendarDays size={16} className="text-[#01BEEB]" />
               03 May - 08 Aug 2026 roadmap
             </div>
 
-            <h1 className="mt-4 max-w-[650px] break-words text-4xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem]">
+            <h1 className="mt-4 max-w-[650px] break-words text-4xl font-semibold leading-[1.03] text-white drop-shadow-[0_3px_20px_rgba(0,0,0,0.82)] sm:text-5xl lg:text-5xl xl:text-[3.375rem]">
               Fully-funded bootcamp for Sri Lanka&apos;s next tech leaders.
             </h1>
-            <p className="mt-4 max-w-[620px] text-base leading-7 text-white/72 lg:text-lg">
+            <p className="mt-4 max-w-[570px] text-base leading-7 text-white/76 lg:text-lg">
               A fully-funded three-day residential experience for school
               students under 20, organized by the IEEE Student Branch of the
               University of Moratuwa.
             </p>
 
-            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-5 flex flex-wrap items-center gap-3">
               <GradientButton href={registerUrl}>Register Now</GradientButton>
               <a
                 href="#timeline"
-                className="inline-flex items-center justify-center gap-2 rounded-md border border-white/16 bg-white/[0.04] px-6 py-4 text-base font-semibold text-white transition hover:border-white/34 hover:bg-white/[0.08]"
+                className="inline-flex items-center justify-center gap-2 rounded-md border border-white/16 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition hover:border-white/34 hover:bg-white/[0.08] sm:px-6 sm:text-base"
               >
                 View Timeline
                 <ChevronDown size={18} />
               </a>
             </div>
 
-            <div className="mt-5 hidden max-w-[620px] grid-cols-3 gap-3 sm:grid">
+            <div className="mt-5 grid max-w-[600px] grid-cols-3 gap-2 sm:gap-3">
               {heroStats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="min-w-0 overflow-hidden rounded-lg border border-white/12 bg-black/38 px-4 py-3 backdrop-blur-sm"
+                  className="min-w-0 overflow-hidden rounded-lg border border-white/12 bg-black/38 px-3 py-3 backdrop-blur-sm sm:px-4"
                 >
-                  <p className="text-2xl font-semibold text-white">
+                  <p className="text-xl font-semibold text-white sm:text-2xl">
                     {stat.value}
                   </p>
-                  <p className="mt-1 text-xs leading-5 text-white/62">
+                  <p className="mt-1 text-[11px] leading-4 text-white/62 sm:text-xs sm:leading-5">
                     {stat.label}
                   </p>
                 </div>
@@ -717,7 +741,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="relative py-20 md:py-28">
+      <section id="about" className="relative py-10 md:py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
             <motion.div
@@ -1605,7 +1629,11 @@ export default function Home() {
         href="#home"
         aria-label="Back to top"
         title="Back to top"
-        className="fixed bottom-4 right-4 z-50 flex h-11 w-11 items-center justify-center rounded-md border border-white/18 bg-black/72 text-white/76 shadow-[0_12px_32px_rgba(0,0,0,0.42)] backdrop-blur-md transition hover:border-[#F8C312]/70 hover:bg-[#F8C312]/14 hover:text-white sm:bottom-6 sm:right-6"
+        className={`fixed bottom-3 right-3 z-50 flex h-10 w-10 items-center justify-center rounded-md border border-white/18 bg-black/72 text-white/76 shadow-[0_12px_32px_rgba(0,0,0,0.42)] backdrop-blur-md transition duration-200 hover:border-[#F8C312]/70 hover:bg-[#F8C312]/14 hover:text-white sm:bottom-6 sm:right-6 sm:h-11 sm:w-11 ${
+          showBackToTop
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-2 opacity-0"
+        }`}
       >
         <ArrowUp size={19} />
       </a>
