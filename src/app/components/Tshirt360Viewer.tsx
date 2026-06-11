@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import type { KeyboardEvent, PointerEvent } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -107,6 +108,7 @@ export function Tshirt360Viewer({ frames, label }: Tshirt360ViewerProps) {
   const pausedRef = useRef(false);
   const [activeStep, setActiveStep] = useState(0);
   const [isReady, setIsReady] = useState(false);
+  const [useStaticFallback, setUseStaticFallback] = useState(false);
 
   const textureSources = useMemo(() => {
     const frontFrame = findFrame(frames, "front") ?? frames[0];
@@ -134,6 +136,13 @@ export function Tshirt360Viewer({ frames, label }: Tshirt360ViewerProps) {
     return steps;
   }, [textureSources.back, textureSources.side]);
 
+  const fallbackSource =
+    activeStep === 2
+      ? textureSources.back
+      : activeStep === 1
+        ? textureSources.side ?? textureSources.front
+        : textureSources.front;
+
   const syncStepFromRotation = useCallback((rotation: number) => {
     const rawStep = Math.round(rotation / ROTATION_STEP);
     const normalized =
@@ -149,15 +158,22 @@ export function Tshirt360Viewer({ frames, label }: Tshirt360ViewerProps) {
     setActiveStep((current) => (current === nearestStep ? current : nearestStep));
   }, [angleSteps]);
 
-  const rotateBy = useCallback((step: number) => {
-    const currentIndex = Math.max(0, angleSteps.indexOf(activeStep));
-    const nextIndex =
-      (currentIndex + step + angleSteps.length) % angleSteps.length;
-    const nextStep = angleSteps[nextIndex];
+  const showStep = useCallback((step: number) => {
+    targetRotationRef.current = step * ROTATION_STEP;
+    setActiveStep(step);
+  }, []);
 
-    targetRotationRef.current = nextStep * ROTATION_STEP;
-    setActiveStep(nextStep);
-  }, [activeStep, angleSteps]);
+  const rotateBy = useCallback((direction: number) => {
+    setActiveStep((currentStep) => {
+      const currentIndex = Math.max(0, angleSteps.indexOf(currentStep));
+      const nextIndex =
+        (currentIndex + direction + angleSteps.length) % angleSteps.length;
+      const nextStep = angleSteps[nextIndex];
+
+      targetRotationRef.current = nextStep * ROTATION_STEP;
+      return nextStep;
+    });
+  }, [angleSteps]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -170,10 +186,26 @@ export function Tshirt360Viewer({ frames, label }: Tshirt360ViewerProps) {
     let frameId = 0;
     let disposed = false;
 
+    const contextAttributes: WebGLContextAttributes = {
+      alpha: true,
+      antialias: true,
+      powerPreference: "high-performance",
+    };
+    const webglContext =
+      canvas.getContext("webgl2", contextAttributes) ??
+      canvas.getContext("webgl", contextAttributes);
+
+    if (!webglContext) {
+      setUseStaticFallback(true);
+      setIsReady(true);
+      return;
+    }
+
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
       antialias: true,
       canvas,
+      context: webglContext,
       powerPreference: "high-performance",
     });
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -439,6 +471,7 @@ export function Tshirt360Viewer({ frames, label }: Tshirt360ViewerProps) {
       resizeObserver.disconnect();
       groupRef.current = null;
       setIsReady(false);
+      setUseStaticFallback(false);
       geometries.forEach((geometry) => geometry.dispose());
       materials.forEach((material) => material.dispose());
       loadedTextures.forEach((texture) => texture.dispose());
@@ -447,6 +480,13 @@ export function Tshirt360Viewer({ frames, label }: Tshirt360ViewerProps) {
   }, [angleSteps.length, syncStepFromRotation, textureSources.back, textureSources.front, textureSources.side]);
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (
+      event.target instanceof Element &&
+      event.target.closest("button, a")
+    ) {
+      return;
+    }
+
     event.preventDefault();
     draggingRef.current = true;
     pausedRef.current = true;
@@ -527,10 +567,22 @@ export function Tshirt360Viewer({ frames, label }: Tshirt360ViewerProps) {
     >
       <canvas
         aria-hidden="true"
-        className="h-full w-full"
+        className={`h-full w-full ${useStaticFallback ? "invisible" : ""}`}
         data-merch-canvas={label}
         ref={canvasRef}
       />
+
+      {useStaticFallback && fallbackSource ? (
+        <div className="pointer-events-none absolute inset-8 sm:inset-10">
+          <Image
+            src={fallbackSource}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 560px, (min-width: 640px) 500px, 430px"
+            className="object-contain"
+          />
+        </div>
+      ) : null}
 
       <div
         className={`pointer-events-none absolute inset-0 flex items-center justify-center transition duration-500 ${
@@ -543,7 +595,8 @@ export function Tshirt360Viewer({ frames, label }: Tshirt360ViewerProps) {
       <button
         type="button"
         aria-label={`Rotate ${label} left`}
-        className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md border border-white/12 bg-black/42 text-white opacity-0 backdrop-blur transition hover:border-white/30 hover:bg-black/64 group-hover:opacity-100 group-focus-within:opacity-100"
+        className="absolute left-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 touch-manipulation items-center justify-center rounded-md border border-white/16 bg-black/58 text-white backdrop-blur transition hover:border-white/36 hover:bg-black/78"
+        onPointerDown={(event) => event.stopPropagation()}
         onClick={() => {
           pausedRef.current = true;
           rotateBy(-1);
@@ -554,7 +607,8 @@ export function Tshirt360Viewer({ frames, label }: Tshirt360ViewerProps) {
       <button
         type="button"
         aria-label={`Rotate ${label} right`}
-        className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md border border-white/12 bg-black/42 text-white opacity-0 backdrop-blur transition hover:border-white/30 hover:bg-black/64 group-hover:opacity-100 group-focus-within:opacity-100"
+        className="absolute right-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 touch-manipulation items-center justify-center rounded-md border border-white/16 bg-black/58 text-white backdrop-blur transition hover:border-white/36 hover:bg-black/78"
+        onPointerDown={(event) => event.stopPropagation()}
         onClick={() => {
           pausedRef.current = true;
           rotateBy(1);
@@ -569,15 +623,15 @@ export function Tshirt360Viewer({ frames, label }: Tshirt360ViewerProps) {
             key={step}
             type="button"
             aria-label={`Show ${label} 3D angle ${index + 1}`}
-            className={`h-2.5 rounded-full transition ${
+            className={`z-10 h-2.5 touch-manipulation rounded-full transition ${
               step === activeStep
                 ? "w-8 bg-[#F8C312]"
                 : "w-2.5 bg-white/28 hover:bg-white/55"
             }`}
+            onPointerDown={(event) => event.stopPropagation()}
             onClick={() => {
               pausedRef.current = true;
-              targetRotationRef.current = step * ROTATION_STEP;
-              setActiveStep(step);
+              showStep(step);
             }}
           />
         ))}
