@@ -1432,15 +1432,18 @@ export default function Home() {
 
       <section
         id="contact"
-        className="relative overflow-hidden border-y border-white/10 bg-[#050608] py-14 sm:py-16 lg:py-20"
+        className="relative border-t border-white/10 bg-[#050608] py-16 md:py-24"
       >
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.24)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.24)_1px,transparent_1px)] [background-size:72px_72px]" />
-          <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,#01BEEB,#E585E4,#F8C312,transparent)] opacity-55" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,13,18,0.2),transparent_32%,rgba(11,13,18,0.5))]" />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+          <SectionHeader
+            eyebrow="Contact us"
+            title="Contact the MoraForesight 4.0 organizing team."
+            intro="For registration, selection, and event-related inquiries, reach out to the team below."
+          />
         </div>
+
         <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-          <div className="relative grid gap-12 md:grid-cols-3 md:gap-5 xl:gap-7">
+          <div className="grid gap-12 md:grid-cols-3 md:gap-5 xl:gap-7">
             {contacts.map((contact, index) => (
               <motion.article
                 key={contact.role}
