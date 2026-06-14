@@ -10,7 +10,6 @@ import {
   Award,
   Bot,
   BrainCircuit,
-  CalendarDays,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -42,30 +41,19 @@ const navItems = [
 const socialLinks = [
   {
     label: "Facebook",
-    href: "https://www.facebook.com/ieeesbuom",
+    href: "https://www.facebook.com/moraforesight",
     icon: "/social/facebook.png",
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/company/ieeeuomsb/",
+    href: "https://www.linkedin.com/company/moraforesight",
     icon: "/social/linkedin.png",
   },
   {
-    label: "YouTube",
-    href: "https://www.youtube.com/@ieeesbuom",
-    icon: "/social/youtube.png",
-  },
-  {
     label: "Instagram",
-    href: "https://www.instagram.com/ieeesbuom/",
+    href: "https://www.instagram.com/moraforesight.lk",
     icon: "/social/instagram.png",
   },
-];
-
-const heroStats = [
-  { value: "2500+", label: "applicant target" },
-  { value: "25", label: "district reach" },
-  { value: "100", label: "final delegates" },
 ];
 
 const timelineStages = [
@@ -272,8 +260,6 @@ const merchItems = [
       { label: "back view", src: "/merch/nova-back.webp" },
     ],
     note: "A deep navy event tee carrying the Own the Next Move front artwork, subtle MoraForesight patterns, and the 4.0 back mark.",
-    availabilityUrl:
-      "https://wa.me/94710334085?text=Hi%2C%20I%20would%20like%20to%20check%20the%20availability%20of%20the%20Nova%20Pulse%20T-shirt.",
   },
   {
     title: "Ether Bloom",
@@ -283,8 +269,6 @@ const merchItems = [
       { label: "back view", src: "/merch/ether-back.webp" },
     ],
     note: "A collar edition with magenta shoulder detailing, MoraForesight chest branding, and IEEE Student Branch recognition on the back.",
-    availabilityUrl:
-      "https://wa.me/94710988234?text=Hi%2C%20I%20would%20like%20to%20check%20the%20availability%20of%20the%20Ether%20Bloom%20T-shirt.",
   },
 ];
 
@@ -397,11 +381,9 @@ const fadeUp = {
 };
 
 function SectionHeader({
-  eyebrow,
   title,
   intro,
 }: {
-  eyebrow: string;
   title: string;
   intro?: string;
 }) {
@@ -414,9 +396,6 @@ function SectionHeader({
       variants={fadeUp}
       className="mx-auto mb-10 max-w-3xl text-center md:mb-14"
     >
-      <p className="mb-3 text-sm font-semibold uppercase text-[#F8C312]">
-        {eyebrow}
-      </p>
       <h2 className="text-3xl font-semibold text-white md:text-5xl">
         {title}
       </h2>
@@ -458,6 +437,65 @@ function GradientButton({
       {children}
       <ArrowRight size={18} />
     </a>
+  );
+}
+
+function FaqItem({
+  answer,
+  index,
+  isOpen,
+  onToggle,
+  question,
+}: {
+  answer: string;
+  index: number;
+  isOpen: boolean;
+  onToggle: () => void;
+  question: string;
+}) {
+  return (
+    <div
+      className={`overflow-hidden rounded-lg border bg-white/[0.035] transition ${
+        isOpen
+          ? "border-[#01BEEB]/45"
+          : "border-white/10 hover:border-white/20"
+      }`}
+    >
+      <button
+        type="button"
+        className="flex w-full items-center gap-4 px-5 py-5 text-left"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+      >
+        <span
+          className={`text-xs font-semibold tabular-nums ${
+            isOpen ? "text-[#01BEEB]" : "text-white/34"
+          }`}
+        >
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <span className="flex-1 text-base font-semibold text-white md:text-lg">
+          {question}
+        </span>
+        <ChevronDown
+          size={20}
+          className={`shrink-0 text-[#01BEEB] transition ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      {isOpen ? (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          className="overflow-hidden"
+        >
+          <p className="border-t border-white/10 px-5 pb-5 pl-[3.75rem] pt-4 text-sm leading-7 text-white/66 md:text-base">
+            {answer}
+          </p>
+        </motion.div>
+      ) : null}
+    </div>
   );
 }
 
@@ -604,7 +642,7 @@ export default function Home() {
               rel="noreferrer"
               className="rounded-md border border-white/14 px-4 py-2 text-sm font-semibold text-white/80 transition hover:border-white/32 hover:bg-white/[0.06] hover:text-white"
             >
-              Updates
+              WhatsApp
             </a>
             <a
               href={registerUrl}
@@ -644,6 +682,15 @@ export default function Home() {
                   {item.label}
                 </a>
               ))}
+              <a
+                href={updatesUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={closeMenu}
+                className="rounded-md px-3 py-3 text-sm font-semibold text-white/76 hover:bg-white/[0.06] hover:text-white"
+              >
+                WhatsApp
+              </a>
               <a
                 href={registerUrl}
                 target="_blank"
@@ -695,11 +742,6 @@ export default function Home() {
               className="h-auto w-full max-w-[180px] sm:max-w-[210px] xl:max-w-[235px]"
             />
 
-            <div className="mt-4 inline-flex items-center gap-2 rounded-md border border-white/14 bg-black/46 px-3 py-2 text-xs font-semibold text-white/82 backdrop-blur-sm sm:text-sm">
-              <CalendarDays size={16} className="text-[#01BEEB]" />
-              03 May - 08 Aug 2026 roadmap
-            </div>
-
             <h1 className="mt-4 max-w-[650px] break-words text-4xl font-semibold leading-[1.03] text-white drop-shadow-[0_3px_20px_rgba(0,0,0,0.82)] sm:text-5xl lg:text-5xl xl:text-[3.375rem]">
               Fully-funded bootcamp for Sri Lanka&apos;s next tech leaders.
             </h1>
@@ -719,22 +761,6 @@ export default function Home() {
                 <ChevronDown size={18} />
               </a>
             </div>
-
-            <div className="mt-5 grid max-w-[600px] grid-cols-3 gap-2 sm:gap-3">
-              {heroStats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="min-w-0 overflow-hidden rounded-lg border border-white/12 bg-black/38 px-3 py-3 backdrop-blur-sm sm:px-4"
-                >
-                  <p className="text-xl font-semibold text-white sm:text-2xl">
-                    {stat.value}
-                  </p>
-                  <p className="mt-1 text-[11px] leading-4 text-white/62 sm:text-xs sm:leading-5">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
           </motion.div>
 
           <div className="hidden md:block" aria-hidden="true" />
@@ -751,9 +777,6 @@ export default function Home() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               variants={fadeUp}
             >
-              <p className="mb-3 text-sm font-semibold uppercase text-[#F8C312]">
-                About MoraForesight 4.0
-              </p>
               <h2 className="text-3xl font-semibold text-white md:text-5xl">
                 A visionary launchpad for aspiring tech innovators.
               </h2>
@@ -765,24 +788,17 @@ export default function Home() {
                 participants with a fully funded flagship residential bootcamp.
               </p>
               <div className="mt-8 border-l-2 border-[#F8C312] bg-white/[0.025] px-5 py-5">
-                <div className="flex items-center gap-4">
-                  <Image
-                    src="/moraforesight-spark-nav.webp"
-                    alt=""
-                    width={124}
-                    height={130}
-                    unoptimized
-                    className="h-11 w-11 shrink-0 object-contain"
-                  />
-                  <div>
-                    <p className="text-sm font-semibold uppercase text-[#01BEEB]">
-                      Organized by
-                    </p>
-                    <p className="text-xl font-semibold text-white">
-                      IEEE Student Branch of UOM
-                    </p>
-                  </div>
-                </div>
+                <p className="text-sm font-semibold uppercase text-[#01BEEB]">
+                  Organized by
+                </p>
+                <Image
+                  src="/ieee-uom-blue.webp"
+                  alt="University of Moratuwa IEEE Student Branch"
+                  width={1600}
+                  height={350}
+                  sizes="(min-width: 1024px) 420px, 90vw"
+                  className="mt-4 h-auto w-full max-w-[420px]"
+                />
                 <p className="mt-4 text-sm leading-7 text-white/62">
                   The branch unites 15 specialized chapters and an affinity
                   group, channeling undergraduate expertise into school-level
@@ -829,10 +845,7 @@ export default function Home() {
             variants={fadeUp}
             className="mb-5"
           >
-            <p className="text-xs font-semibold uppercase text-[#F8C312]">
-              Event timeline
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">
+            <h2 className="text-2xl font-semibold text-white sm:text-3xl">
               From registration to the residential bootcamp.
             </h2>
           </motion.div>
@@ -1097,7 +1110,6 @@ export default function Home() {
       <section id="tracks" className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <SectionHeader
-            eyebrow="Bootcamp focus"
             title="Building technical excellence, team-driven collaboration, and entrepreneurial mindset."
             intro="A prestigious bootcamp immersing delegates in a culture of creation, teamwork, and problem solving within a fast-moving, future-ready environment."
           />
@@ -1135,7 +1147,6 @@ export default function Home() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <SectionHeader
-            eyebrow="Legacy gallery"
             title="Year by year, the project has grown in scale and impact."
             intro="Each edition opens into a combined photo archive, curated from the official MoraForesight Facebook albums."
           />
@@ -1147,7 +1158,7 @@ export default function Home() {
                 type="button"
                 data-gallery-index={index}
                 onClick={() => openGallery(index)}
-                className="group overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] p-4 text-left transition hover:-translate-y-1 hover:border-[#01BEEB]/65 hover:bg-white/[0.07]"
+                className="group cursor-pointer overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] p-4 text-left transition hover:-translate-y-1 hover:border-[#01BEEB]/65 hover:bg-white/[0.07]"
               >
                 <div className="grid h-64 grid-cols-2 grid-rows-2 gap-2">
                   {edition.images.slice(0, 3).map((image, imageIndex) => (
@@ -1299,9 +1310,6 @@ export default function Home() {
             variants={fadeUp}
             className="mx-auto mb-7 max-w-2xl text-center md:mb-9"
           >
-            <p className="mb-3 text-sm font-semibold uppercase text-[#F8C312]">
-              Merch
-            </p>
             <h2 className="text-3xl font-semibold text-white md:text-4xl">
               Official MoraForesight 4.0 merch.
             </h2>
@@ -1334,10 +1342,7 @@ export default function Home() {
                     index % 2 === 1 ? "lg:order-1" : ""
                   }`}
                 >
-                  <p className="text-sm font-semibold uppercase text-[#F8C312]">
-                    Official merch
-                  </p>
-                  <h3 className="mt-2 text-3xl font-semibold text-white md:text-5xl">
+                  <h3 className="text-3xl font-semibold text-white md:text-5xl">
                     {item.title}
                   </h3>
                   <p className="mt-3 text-lg font-semibold text-[#01BEEB]">
@@ -1346,18 +1351,10 @@ export default function Home() {
                   <p className="mt-5 text-base leading-8 text-white/66">
                     {item.note}
                   </p>
-                  <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                  <div className="mt-7">
                     <GradientButton href={merchOrderUrl}>
                       Order Merch
                     </GradientButton>
-                    <a
-                      href={item.availabilityUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-md border border-white/14 px-5 py-3 text-sm font-semibold text-white/80 transition hover:border-white/32 hover:bg-white/[0.06] hover:text-white"
-                    >
-                      Ask Availability
-                    </a>
                   </div>
                 </div>
               </motion.article>
@@ -1372,60 +1369,41 @@ export default function Home() {
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 md:px-8">
           <SectionHeader
-            eyebrow="FAQ"
             title="All essential information for students and parents, right here."
           />
 
-          <div className="grid items-start gap-3 lg:grid-cols-2 lg:gap-4">
-            {faqs.map((faq, index) => {
-              const isOpen = openFaq === index;
+          <div className="space-y-3 lg:hidden">
+            {faqs.map((faq, index) => (
+              <FaqItem
+                key={faq.question}
+                {...faq}
+                index={index}
+                isOpen={openFaq === index}
+                onToggle={() =>
+                  setOpenFaq(openFaq === index ? null : index)
+                }
+              />
+            ))}
+          </div>
 
-              return (
-                <div
-                  key={faq.question}
-                  className={`self-start overflow-hidden rounded-lg border bg-white/[0.035] transition ${
-                    isOpen
-                      ? "border-[#01BEEB]/45"
-                      : "border-white/10 hover:border-white/20"
-                  }`}
-                >
-                  <button
-                    type="button"
-                    className="flex w-full items-center gap-4 px-5 py-5 text-left"
-                    onClick={() => setOpenFaq(isOpen ? null : index)}
-                    aria-expanded={isOpen}
-                  >
-                    <span
-                      className={`text-xs font-semibold tabular-nums ${
-                        isOpen ? "text-[#01BEEB]" : "text-white/34"
-                      }`}
-                    >
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span className="flex-1 text-base font-semibold text-white md:text-lg">
-                      {faq.question}
-                    </span>
-                    <ChevronDown
-                      size={20}
-                      className={`shrink-0 text-[#01BEEB] transition ${
-                        isOpen ? "rotate-180" : ""
-                      }`}
+          <div className="hidden items-start gap-4 lg:grid lg:grid-cols-2">
+            {[0, 1].map((column) => (
+              <div key={column} className="space-y-4">
+                {faqs.map((faq, index) =>
+                  index % 2 === column ? (
+                    <FaqItem
+                      key={faq.question}
+                      {...faq}
+                      index={index}
+                      isOpen={openFaq === index}
+                      onToggle={() =>
+                        setOpenFaq(openFaq === index ? null : index)
+                      }
                     />
-                  </button>
-                  {isOpen ? (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      className="overflow-hidden"
-                    >
-                      <p className="border-t border-white/10 px-5 pb-5 pl-[3.75rem] pt-4 text-sm leading-7 text-white/66 md:text-base">
-                        {faq.answer}
-                      </p>
-                    </motion.div>
-                  ) : null}
-                </div>
-              );
-            })}
+                  ) : null
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1436,7 +1414,6 @@ export default function Home() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <SectionHeader
-            eyebrow="Contact us"
             title="Contact the MoraForesight 4.0 organizing team."
             intro="For registration, selection, and event-related inquiries, reach out to the team below."
           />
@@ -1554,7 +1531,7 @@ export default function Home() {
                   rel="noreferrer"
                   className="inline-flex min-h-11 items-center justify-center rounded-md border border-white/16 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#01BEEB]/60 hover:bg-[#01BEEB]/10"
                 >
-                  Get Updates
+                  WhatsApp Channel
                 </a>
               </div>
             </div>
@@ -1589,7 +1566,7 @@ export default function Home() {
                 className="mt-4 h-auto w-full max-w-[340px]"
               />
               <p className="mt-7 text-xs font-semibold uppercase text-white/48">
-                Follow IEEE UOM
+                Follow MoraForesight
               </p>
               <div className="mt-3 flex gap-3">
                 {socialLinks.map((social) => (
