@@ -302,17 +302,45 @@ const contacts = [
     },
   },
   {
-    role: "Event Executive Chairman",
-    name: "Chanuka Anjana",
-    email: "chanukaanjana01@gmai.com",
-    phone: "+94 71 760 7248",
-    image: "/contact/chanuka-cutout.webp",
+    role: "Delegates Handling",
+    name: "Thimeshi Nipunika",
+    email: "thimeshi.np@gmail.com",
+    phone: "+94 77 398 8003",
+    image: "/contact/thimeshi-cutout.webp",
     accent: {
       border: "border-[#F8C312]",
       frame: "from-[#F8C312]/32 via-[#271F06]/88 to-black",
       glow: "shadow-[0_0_34px_rgba(248,195,18,0.18)]",
       panel: "from-[#F8C312] to-[#8A6800]",
       text: "text-[#F8C312]",
+    },
+  },
+  {
+    role: "Event Vice-Chair",
+    name: "Janidu Janadara",
+    email: "janidujanadara@gmail.com",
+    phone: "+94 71 918 9585",
+    image: "/contact/janidu-cutout.webp",
+    accent: {
+      border: "border-[#01BEEB]",
+      frame: "from-[#01BEEB]/32 via-[#04212B]/88 to-black",
+      glow: "shadow-[0_0_34px_rgba(1,190,235,0.18)]",
+      panel: "from-[#01BEEB] to-[#006F90]",
+      text: "text-[#01BEEB]",
+    },
+  },
+  {
+    role: "Event Vice-Chair",
+    name: "Lasan Perera",
+    email: "lasanperera.lsp@gmail.com",
+    phone: "+94 70 451 2644",
+    image: "/contact/lasan-cutout-v2.webp",
+    accent: {
+      border: "border-[#E585E4]",
+      frame: "from-[#E585E4]/32 via-[#24112B]/88 to-black",
+      glow: "shadow-[0_0_34px_rgba(229,133,228,0.18)]",
+      panel: "from-[#E585E4] to-[#7D0A82]",
+      text: "text-[#E585E4]",
     },
   },
 ];
@@ -1420,16 +1448,22 @@ export default function Home() {
         </div>
 
         <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 md:grid-cols-3 md:gap-5 xl:gap-7">
+          <div className="grid gap-12 md:grid-cols-2 md:gap-8 xl:grid-cols-6 xl:gap-7">
             {contacts.map((contact, index) => (
               <motion.article
-                key={contact.role}
+                key={contact.name}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.55, delay: index * 0.06 }}
                 variants={fadeUp}
-                className="group relative min-h-[430px] pt-[270px] sm:min-h-[470px] sm:pt-[300px] md:min-h-[430px] md:pt-[270px] lg:min-h-[470px] lg:pt-[300px]"
+                className={`group relative min-h-[430px] pt-[270px] sm:min-h-[470px] sm:pt-[300px] md:min-h-[430px] md:pt-[270px] lg:min-h-[470px] lg:pt-[300px] xl:col-span-2 ${
+                  index === 3 ? "xl:col-start-2" : ""
+                } ${
+                  index === 4
+                    ? "md:col-span-2 md:w-full md:max-w-[520px] md:justify-self-center xl:col-start-4 xl:col-span-2 xl:max-w-none"
+                    : ""
+                }`}
               >
                 <div
                   className={`absolute left-1/2 top-0 z-10 h-[295px] w-[76%] -translate-x-1/2 overflow-hidden rounded-[30px] border-[3px] ${contact.accent.border} bg-gradient-to-br ${contact.accent.frame} md:h-[286px] lg:h-[320px] ${contact.accent.glow}`}
