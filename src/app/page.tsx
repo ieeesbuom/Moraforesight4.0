@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -20,6 +20,7 @@ import {
   Rocket,
   Users,
   X,
+  Zap,
   type LucideIcon,
 } from "lucide-react";
 import { Tshirt360Viewer } from "./components/Tshirt360Viewer";
@@ -36,6 +37,16 @@ const navItems = [
   { label: "Gallery", href: "#gallery" },
   { label: "Merch", href: "#merch" },
   { label: "Contact", href: "#contact" },
+];
+
+const energyTopics = [
+  "Artificial Intelligence",
+  "Robotics",
+  "Programming",
+  "Entrepreneurship",
+  "Leadership",
+  "Innovation",
+  "IoT",
 ];
 
 const socialLinks = [
@@ -422,9 +433,9 @@ function SectionHeader({
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       variants={fadeUp}
-      className="mx-auto mb-10 max-w-3xl text-center md:mb-14"
+      className="energy-section-header mx-auto mb-10 max-w-3xl text-center md:mb-14"
     >
-      <h2 className="text-3xl font-semibold text-white md:text-5xl">
+      <h2 className="energy-section-title text-3xl font-semibold text-white md:text-5xl">
         {title}
       </h2>
       {intro ? (
@@ -438,7 +449,7 @@ function SectionHeader({
 
 function IconBadge({ icon: Icon }: { icon: LucideIcon }) {
   return (
-    <span className="flex h-11 w-11 items-center justify-center rounded-md border border-white/12 bg-white/[0.04] text-[#01BEEB]">
+    <span className="energy-icon flex h-11 w-11 items-center justify-center rounded-md border border-white/12 bg-white/[0.04] text-[#01BEEB]">
       <Icon size={22} strokeWidth={1.8} />
     </span>
   );
@@ -456,7 +467,7 @@ function GradientButton({
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="inline-flex items-center justify-center gap-2 rounded-md border border-transparent px-5 py-3 text-sm font-semibold text-white transition hover:scale-[1.02] sm:px-6 sm:text-base"
+      className="energy-primary-button inline-flex items-center justify-center gap-2 rounded-md border border-transparent px-5 py-3 text-sm font-semibold text-white transition sm:px-6 sm:text-base"
       style={{
         background:
           "linear-gradient(#050608, #050608) padding-box, linear-gradient(135deg, #01BEEB, #E585E4, #F8C312) border-box",
@@ -483,7 +494,7 @@ function FaqItem({
 }) {
   return (
     <div
-      className={`overflow-hidden rounded-lg border bg-white/[0.035] transition ${
+      className={`energy-card overflow-hidden rounded-lg border bg-white/[0.035] transition ${
         isOpen
           ? "border-[#01BEEB]/45"
           : "border-white/10 hover:border-white/20"
@@ -530,6 +541,7 @@ function FaqItem({
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [galleryEditionIndex, setGalleryEditionIndex] = useState<number | null>(
     null
@@ -555,6 +567,13 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 600);
+      const scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(
+        scrollableHeight > 0
+          ? Math.min(100, (window.scrollY / scrollableHeight) * 100)
+          : 0
+      );
     };
 
     handleScroll();
@@ -629,13 +648,20 @@ export default function Home() {
   }, [galleryEditionIndex]);
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#050608] text-white">
-      <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#050608]/80 backdrop-blur-xl">
+    <main className="site-shell min-h-screen overflow-x-hidden bg-[#050608] text-white">
+      <div className="fixed inset-x-0 top-0 z-[60] h-[2px] bg-white/5">
+        <div
+          className="h-full bg-[linear-gradient(90deg,#01BEEB,#E585E4,#F8C312)] shadow-[0_0_16px_rgba(1,190,235,0.8)] transition-[width] duration-100"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
+      <nav className="energy-nav fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#050608]/76 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <a
             href="#home"
             onClick={closeMenu}
-            className="flex items-center gap-3"
+            className="group flex items-center gap-3"
             aria-label="MoraForesight 4.0 home"
           >
             <Image
@@ -644,7 +670,7 @@ export default function Home() {
               width={124}
               height={130}
               unoptimized
-              className="h-6 w-6 shrink-0 object-contain"
+              className="nav-spark h-6 w-6 shrink-0 object-contain"
             />
             <span className="text-sm font-semibold uppercase text-white md:text-base">
               MoraForesight 4.0
@@ -656,7 +682,7 @@ export default function Home() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-white/70 transition hover:text-white"
+                className="energy-nav-link text-sm font-medium text-white/70 transition hover:text-white"
               >
                 {item.label}
               </a>
@@ -668,7 +694,7 @@ export default function Home() {
               href={updatesUrl}
               target="_blank"
               rel="noreferrer"
-              className="rounded-md border border-white/14 px-4 py-2 text-sm font-semibold text-white/80 transition hover:border-white/32 hover:bg-white/[0.06] hover:text-white"
+              className="energy-secondary-button rounded-md border border-white/14 px-4 py-2 text-sm font-semibold text-white/80 transition hover:text-white"
             >
               WhatsApp
             </a>
@@ -676,7 +702,7 @@ export default function Home() {
               href={registerUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-[#F8C312]"
+              className="nav-register inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-black transition"
             >
               Register
               <ArrowRight size={16} />
@@ -735,8 +761,16 @@ export default function Home() {
 
       <section
         id="home"
-        className="hero-shell relative flex items-start overflow-hidden bg-[#050608] pt-16"
+        className="hero-shell energetic-hero relative flex items-start overflow-hidden bg-[#050608] pt-16"
       >
+        <div className="hero-energy-orb hero-energy-orb-cyan" aria-hidden="true" />
+        <div className="hero-energy-orb hero-energy-orb-pink" aria-hidden="true" />
+        <div className="hero-energy-ring" aria-hidden="true" />
+        <div className="hero-particles" aria-hidden="true">
+          {Array.from({ length: 12 }).map((_, index) => (
+            <span key={index} style={{ "--particle": index } as CSSProperties} />
+          ))}
+        </div>
         <div className="hero-artwork" aria-hidden="true">
           <Image
             src="/coming-soon-characters.webp"
@@ -744,12 +778,12 @@ export default function Home() {
             fill
             priority
             sizes="(min-width: 1536px) 900px, (min-width: 1024px) 58vw, (min-width: 640px) 72vw, 122vw"
-            className="object-contain"
+            className="hero-characters object-contain"
           />
         </div>
         <div className="hero-horizontal-shade absolute inset-0" />
         <div className="hero-vertical-shade absolute inset-0" />
-        <div className="absolute inset-0 opacity-[0.1] [background-image:linear-gradient(rgba(255,255,255,0.28)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.28)_1px,transparent_1px)] [background-size:72px_72px]" />
+        <div className="hero-grid absolute inset-0 opacity-[0.13] [background-image:linear-gradient(rgba(255,255,255,0.28)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.28)_1px,transparent_1px)] [background-size:72px_72px]" />
 
         <div className="hero-content relative z-10 mx-auto grid w-full max-w-7xl gap-8 px-4 pb-10 pt-4 sm:px-6 sm:py-8 md:grid-cols-[minmax(0,600px)_1fr] md:px-8 xl:grid-cols-[minmax(0,650px)_1fr]">
           <motion.div
@@ -767,23 +801,26 @@ export default function Home() {
               priority
               sizes="(min-width: 1024px) 235px, (min-width: 640px) 220px, 190px"
               unoptimized
-              className="h-auto w-full max-w-[180px] sm:max-w-[210px] xl:max-w-[235px]"
+              className="hero-logo h-auto w-full max-w-[180px] sm:max-w-[210px] xl:max-w-[235px]"
             />
 
-            <h1 className="mt-4 max-w-[650px] break-words text-4xl font-semibold leading-[1.03] text-white drop-shadow-[0_3px_20px_rgba(0,0,0,0.82)] sm:text-5xl lg:text-5xl xl:text-[3.375rem]">
-              Fully-funded bootcamp for Sri Lanka&apos;s next tech leaders.
+            <h1 className="hero-title mt-5 max-w-[690px] break-words text-4xl font-bold leading-[0.98] text-white drop-shadow-[0_3px_20px_rgba(0,0,0,0.82)] sm:text-5xl lg:text-6xl xl:text-[4rem]">
+              Build what&apos;s next.
+              <span className="hero-gradient-text block">
+                Lead the future.
+              </span>
             </h1>
             <p className="mt-4 max-w-[570px] text-base leading-7 text-white/76 lg:text-lg">
-              A fully-funded three-day residential experience for school
-              students under 20, organized by the IEEE Student Branch of the
-              University of Moratuwa.
+              A fully-funded three-day residential bootcamp where school
+              students under 20 explore technology, create with purpose, and
+              meet the people shaping tomorrow.
             </p>
 
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <GradientButton href={registerUrl}>Register Now</GradientButton>
               <a
                 href="#timeline"
-                className="inline-flex items-center justify-center gap-2 rounded-md border border-white/16 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition hover:border-white/34 hover:bg-white/[0.08] sm:px-6 sm:text-base"
+                className="energy-secondary-button inline-flex items-center justify-center gap-2 rounded-md border border-white/16 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition sm:px-6 sm:text-base"
               >
                 View Timeline
                 <ChevronDown size={18} />
@@ -793,9 +830,28 @@ export default function Home() {
 
           <div className="hidden md:block" aria-hidden="true" />
         </div>
+
+        <a
+          href="#about"
+          className="hero-scroll-cue absolute bottom-5 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/46 lg:flex"
+        >
+          Explore
+          <span className="hero-scroll-line" />
+        </a>
       </section>
 
-      <section id="about" className="relative py-10 md:py-14 lg:py-20">
+      <div className="energy-ticker" aria-label="MoraForesight focus areas">
+        <div className="energy-ticker-track">
+          {[...energyTopics, ...energyTopics].map((topic, index) => (
+            <span key={`${topic}-${index}`}>
+              <Zap size={15} />
+              {topic}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <section id="about" className="energy-section relative py-14 md:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
             <motion.div
@@ -805,7 +861,7 @@ export default function Home() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               variants={fadeUp}
             >
-              <h2 className="text-3xl font-semibold text-white md:text-5xl">
+              <h2 className="energy-section-title text-3xl font-semibold text-white md:text-5xl">
                 A visionary launchpad for aspiring tech innovators.
               </h2>
               <p className="mt-6 text-base leading-8 text-white/70 md:text-lg">
@@ -815,7 +871,7 @@ export default function Home() {
                 through thoughtfully designed stages, rewarding top
                 participants with a fully funded flagship residential bootcamp.
               </p>
-              <div className="mt-8 border-l-2 border-[#F8C312] bg-white/[0.025] px-5 py-5">
+              <div className="energy-glass mt-8 border-l-2 border-[#F8C312] bg-white/[0.025] px-5 py-5">
                 <p className="text-sm font-semibold uppercase text-[#01BEEB]">
                   Organized by
                 </p>
@@ -844,7 +900,7 @@ export default function Home() {
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.55, delay: index * 0.08 }}
                   variants={fadeUp}
-                  className="rounded-lg border border-white/10 bg-white/[0.035] p-5 transition hover:border-white/20 hover:bg-white/[0.055]"
+                  className="energy-card rounded-lg border border-white/10 bg-white/[0.035] p-5 transition"
                 >
                   <IconBadge icon={item.icon} />
                   <h3 className="mt-5 text-xl font-semibold text-white">
@@ -862,7 +918,7 @@ export default function Home() {
 
       <section
         id="timeline"
-        className="overflow-hidden border-y border-white/10 bg-[#0B0D12] py-12"
+        className="energy-section energy-section-alt overflow-hidden border-y border-white/10 bg-[#0B0D12] py-14 md:py-20"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <motion.div
@@ -873,7 +929,7 @@ export default function Home() {
             variants={fadeUp}
             className="mb-5"
           >
-            <h2 className="text-2xl font-semibold text-white sm:text-3xl">
+            <h2 className="energy-section-title text-2xl font-semibold text-white sm:text-3xl">
               From registration to the residential bootcamp.
             </h2>
           </motion.div>
@@ -1135,7 +1191,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="tracks" className="py-20 md:py-28">
+      <section id="tracks" className="energy-section py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <SectionHeader
             title="Building technical excellence, team-driven collaboration, and entrepreneurial mindset."
@@ -1151,7 +1207,7 @@ export default function Home() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.55, delay: index * 0.08 }}
                 variants={fadeUp}
-                className="rounded-lg border border-white/10 bg-white/[0.04] p-6"
+                className="energy-card rounded-lg border border-white/10 bg-white/[0.04] p-6"
               >
                 <div
                   className={`mb-8 h-1.5 w-24 rounded-md bg-gradient-to-r ${track.accent}`}
@@ -1171,7 +1227,7 @@ export default function Home() {
 
       <section
         id="gallery"
-        className="border-y border-white/10 bg-[#0B0D12] py-20 md:py-28"
+        className="energy-section energy-section-alt border-y border-white/10 bg-[#0B0D12] py-20 md:py-28"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <SectionHeader
@@ -1186,7 +1242,7 @@ export default function Home() {
                 type="button"
                 data-gallery-index={index}
                 onClick={() => openGallery(index)}
-                className="group cursor-pointer overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] p-4 text-left transition hover:-translate-y-1 hover:border-[#01BEEB]/65 hover:bg-white/[0.07]"
+                className="energy-card group cursor-pointer overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] p-4 text-left transition"
               >
                 <div className="grid h-64 grid-cols-2 grid-rows-2 gap-2">
                   {edition.images.slice(0, 3).map((image, imageIndex) => (
@@ -1328,7 +1384,7 @@ export default function Home() {
         </motion.div>
       ) : null}
 
-      <section id="merch" className="py-12 md:py-16">
+      <section id="merch" className="energy-section py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <motion.div
             initial="hidden"
@@ -1356,7 +1412,7 @@ export default function Home() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.55 }}
                 variants={fadeUp}
-                className="grid items-center gap-5 md:gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)]"
+                className="energy-merch-row grid items-center gap-5 md:gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)]"
               >
                 <div className={index % 2 === 1 ? "lg:order-2" : ""}>
                   <Tshirt360Viewer
@@ -1393,7 +1449,7 @@ export default function Home() {
 
       <section
         id="faq"
-        className="border-y border-white/10 bg-[#0B0D12] py-20 md:py-28"
+        className="energy-section energy-section-alt border-y border-white/10 bg-[#0B0D12] py-20 md:py-28"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 md:px-8">
           <SectionHeader
@@ -1438,7 +1494,7 @@ export default function Home() {
 
       <section
         id="contact"
-        className="relative border-t border-white/10 bg-[#050608] py-16 md:py-24"
+        className="energy-section relative border-t border-white/10 bg-[#050608] py-16 md:py-24"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <SectionHeader
@@ -1450,14 +1506,9 @@ export default function Home() {
         <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 md:grid-cols-2 md:gap-8 xl:grid-cols-6 xl:gap-7">
             {contacts.map((contact, index) => (
-              <motion.article
+              <article
                 key={contact.name}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.55, delay: index * 0.06 }}
-                variants={fadeUp}
-                className={`group relative min-h-[430px] pt-[270px] sm:min-h-[470px] sm:pt-[300px] md:min-h-[430px] md:pt-[270px] lg:min-h-[470px] lg:pt-[300px] xl:col-span-2 ${
+                className={`relative min-h-[430px] pt-[270px] sm:min-h-[470px] sm:pt-[300px] md:min-h-[430px] md:pt-[270px] lg:min-h-[470px] lg:pt-[300px] xl:col-span-2 ${
                   index === 3 ? "xl:col-start-2" : ""
                 } ${
                   index === 4
@@ -1475,7 +1526,7 @@ export default function Home() {
                     alt={contact.name}
                     fill
                     sizes="(min-width: 1024px) 300px, (min-width: 768px) 28vw, 70vw"
-                    className="origin-bottom scale-[1.05] object-contain object-bottom px-1 pt-2 transition duration-500 group-hover:scale-[1.09]"
+                    className="origin-bottom scale-[1.05] object-contain object-bottom px-1 pt-2"
                   />
                   <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/55 to-transparent" />
                 </div>
@@ -1494,18 +1545,18 @@ export default function Home() {
                   </h3>
                   <a
                     href={`mailto:${contact.email}`}
-                    className={`mt-2 block break-words text-[1.05rem] leading-snug transition hover:text-white md:text-[0.95rem] lg:text-[1.05rem] xl:text-[1.25rem] ${contact.accent.text}`}
+                    className={`mt-2 block break-words text-[1.05rem] leading-snug md:text-[0.95rem] lg:text-[1.05rem] xl:text-[1.25rem] ${contact.accent.text}`}
                   >
                     {contact.email}
                   </a>
                   <a
                     href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                    className="mt-1 block text-[1.1rem] font-medium leading-tight text-white transition hover:text-white/75 md:text-[1rem] lg:text-[1.2rem] xl:text-[1.45rem]"
+                    className="mt-1 block text-[1.1rem] font-medium leading-tight text-white md:text-[1rem] lg:text-[1.2rem] xl:text-[1.45rem]"
                   >
                     {contact.phone}
                   </a>
                 </div>
-              </motion.article>
+              </article>
             ))}
           </div>
         </div>
