@@ -105,21 +105,21 @@ nav a:hover .nav-spark {
 }
 
 .hero-shell {
-  min-height: clamp(680px, 82svh, 760px);
+  min-height: auto;
 }
 
 .hero-content {
-  min-height: calc(clamp(680px, 82svh, 760px) - 64px);
+  min-height: auto;
   align-content: start;
 }
 
 .hero-artwork {
   position: absolute;
-  right: -22%;
+  right: -12%;
   bottom: 0;
-  width: min(138vw, 540px);
-  height: 62%;
-  opacity: 0.84;
+  width: min(122vw, 500px);
+  height: 58%;
+  opacity: 0.82;
 }
 
 .hero-artwork img {
@@ -264,7 +264,7 @@ nav a:hover .nav-spark {
   color: #050608;
   background: linear-gradient(90deg, #01beeb, #77e9ff 30%, #e585e4 68%, #f8c312);
   border-block: 1px solid rgba(255, 255, 255, 0.35);
-  transform: rotate(-0.6deg) scale(1.01);
+  transform: none;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
 }
 
@@ -284,6 +284,32 @@ nav a:hover .nav-spark {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+@media (max-width: 639px) {
+  .energy-ticker {
+    transform: none;
+    border-block-width: 0;
+    background: linear-gradient(180deg, #01beeb, #77e9ff 30%, #e585e4 68%, #f8c312);
+    box-shadow: none;
+  }
+
+  .energy-ticker-track {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    animation: none;
+  }
+
+  .energy-ticker-track span {
+    justify-content: center;
+    padding: 0.7rem 0.6rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    white-space: normal;
+    text-align: center;
+    border-top: 1px solid rgba(5, 6, 8, 0.16);
+  }
 }
 
 .energy-section {
@@ -622,11 +648,11 @@ nav a:hover .nav-spark {
 
 @media (min-width: 640px) and (max-width: 1023px) {
   .hero-shell {
-    min-height: 580px;
+    min-height: auto;
   }
 
   .hero-content {
-    min-height: 516px;
+    min-height: auto;
     align-content: start;
     padding-bottom: 1rem;
     padding-top: 1rem;
@@ -635,11 +661,11 @@ nav a:hover .nav-spark {
 
 @media (min-width: 600px) and (max-width: 639px) {
   .hero-shell {
-    min-height: 550px;
+    min-height: auto;
   }
 
   .hero-content {
-    min-height: 486px;
+    min-height: auto;
     padding-bottom: 1rem;
     padding-top: 1rem;
   }
@@ -725,6 +751,35 @@ nav a:hover .nav-spark {
 
   .energy-card:hover {
     transform: translateY(-3px);
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-energy-ring,
+  .hero-particles {
+    display: none;
+  }
+
+  .hero-artwork {
+    display: none;
+  }
+
+  .hero-horizontal-shade {
+    background: linear-gradient(
+      180deg,
+      rgba(5, 6, 8, 0.96) 0%,
+      rgba(5, 6, 8, 0.9) 46%,
+      rgba(5, 6, 8, 0.98) 100%
+    );
+  }
+
+  .hero-vertical-shade {
+    background: none;
+  }
+
+  .hero-grid {
+    opacity: 0.08;
+    mask-image: linear-gradient(to bottom, black 8%, transparent 84%);
   }
 }
 

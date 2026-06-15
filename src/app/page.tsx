@@ -72,8 +72,7 @@ const timelineStages = [
     stage: "Stage 01",
     title: "Registration Period",
     date: "03 May - 06 June 2026",
-    detail:
-      "Open island-wide registration for school students under 20 years.",
+    detail: "Open island-wide registration for school students under 20 years.",
     color: "#01BEEB",
     x: 10,
     y: 86,
@@ -419,13 +418,7 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-function SectionHeader({
-  title,
-  intro,
-}: {
-  title: string;
-  intro?: string;
-}) {
+function SectionHeader({ title, intro }: { title: string; intro?: string }) {
   return (
     <motion.div
       initial="hidden"
@@ -495,9 +488,7 @@ function FaqItem({
   return (
     <div
       className={`energy-card overflow-hidden rounded-lg border bg-white/[0.035] transition ${
-        isOpen
-          ? "border-[#01BEEB]/45"
-          : "border-white/10 hover:border-white/20"
+        isOpen ? "border-[#01BEEB]/45" : "border-white/10 hover:border-white/20"
       }`}
     >
       <button
@@ -544,7 +535,7 @@ export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [galleryEditionIndex, setGalleryEditionIndex] = useState<number | null>(
-    null
+    null,
   );
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
@@ -572,7 +563,7 @@ export default function Home() {
       setScrollProgress(
         scrollableHeight > 0
           ? Math.min(100, (window.scrollY / scrollableHeight) * 100)
-          : 0
+          : 0,
       );
     };
 
@@ -633,7 +624,7 @@ export default function Home() {
       }
       if (event.key === "ArrowLeft") {
         setActiveImageIndex(
-          (current) => (current - 1 + totalImages) % totalImages
+          (current) => (current - 1 + totalImages) % totalImages,
         );
       }
     };
@@ -761,23 +752,32 @@ export default function Home() {
 
       <section
         id="home"
-        className="hero-shell energetic-hero relative flex items-start overflow-hidden bg-[#050608] pt-16"
+        className="hero-shell energetic-hero relative flex items-stretch overflow-hidden bg-[#050608] pt-16"
       >
-        <div className="hero-energy-orb hero-energy-orb-cyan" aria-hidden="true" />
-        <div className="hero-energy-orb hero-energy-orb-pink" aria-hidden="true" />
+        <div
+          className="hero-energy-orb hero-energy-orb-cyan"
+          aria-hidden="true"
+        />
+        <div
+          className="hero-energy-orb hero-energy-orb-pink"
+          aria-hidden="true"
+        />
         <div className="hero-energy-ring" aria-hidden="true" />
         <div className="hero-particles" aria-hidden="true">
           {Array.from({ length: 12 }).map((_, index) => (
-            <span key={index} style={{ "--particle": index } as CSSProperties} />
+            <span
+              key={index}
+              style={{ "--particle": index } as CSSProperties}
+            />
           ))}
         </div>
-        <div className="hero-artwork" aria-hidden="true">
+        <div className="hero-artwork hidden lg:block" aria-hidden="true">
           <Image
             src="/coming-soon-characters.webp"
             alt=""
             fill
             priority
-            sizes="(min-width: 1536px) 900px, (min-width: 1024px) 58vw, (min-width: 640px) 72vw, 122vw"
+            sizes="(min-width: 1536px) 900px, (min-width: 1024px) 58vw, 100vw"
             className="hero-characters object-contain"
           />
         </div>
@@ -785,13 +785,13 @@ export default function Home() {
         <div className="hero-vertical-shade absolute inset-0" />
         <div className="hero-grid absolute inset-0 opacity-[0.13] [background-image:linear-gradient(rgba(255,255,255,0.28)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.28)_1px,transparent_1px)] [background-size:72px_72px]" />
 
-        <div className="hero-content relative z-10 mx-auto grid w-full max-w-7xl gap-8 px-4 pb-10 pt-4 sm:px-6 sm:py-8 md:grid-cols-[minmax(0,600px)_1fr] md:px-8 xl:grid-cols-[minmax(0,650px)_1fr]">
+        <div className="hero-content relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-4 pb-14 pt-8 sm:px-6 sm:pb-16 sm:pt-10 lg:grid-cols-[minmax(0,600px)_1fr] lg:px-8 lg:py-8 xl:grid-cols-[minmax(0,650px)_1fr]">
           <motion.div
             initial="hidden"
             animate="visible"
             transition={{ duration: 0.75, ease: "easeOut" }}
             variants={fadeUp}
-            className="min-w-0 max-w-[620px] xl:max-w-[650px]"
+            className="min-w-0 max-w-[42rem] xl:max-w-[650px]"
           >
             <Image
               src="/moraforesight-logo-compact.webp"
@@ -801,26 +801,24 @@ export default function Home() {
               priority
               sizes="(min-width: 1024px) 235px, (min-width: 640px) 220px, 190px"
               unoptimized
-              className="hero-logo h-auto w-full max-w-[180px] sm:max-w-[210px] xl:max-w-[235px]"
+              className="hero-logo h-auto w-full max-w-[160px] sm:max-w-[210px] xl:max-w-[235px]"
             />
 
-            <h1 className="hero-title mt-5 max-w-[690px] break-words text-4xl font-bold leading-[0.98] text-white drop-shadow-[0_3px_20px_rgba(0,0,0,0.82)] sm:text-5xl lg:text-6xl xl:text-[4rem]">
+            <h1 className="hero-title mt-6 max-w-[11ch] break-words text-[clamp(2.65rem,11vw,4.6rem)] font-bold leading-[0.93] text-white drop-shadow-[0_3px_20px_rgba(0,0,0,0.82)] lg:max-w-[690px] lg:text-6xl xl:text-[4rem]">
               Build what&apos;s next.
-              <span className="hero-gradient-text block">
-                Lead the future.
-              </span>
+              <span className="hero-gradient-text block">Lead the future.</span>
             </h1>
-            <p className="mt-4 max-w-[570px] text-base leading-7 text-white/76 lg:text-lg">
+            <p className="mt-4 max-w-[36rem] text-base leading-7 text-white/74 sm:text-lg lg:text-lg">
               A fully-funded three-day residential bootcamp where school
               students under 20 explore technology, create with purpose, and
               meet the people shaping tomorrow.
             </p>
 
-            <div className="mt-5 flex flex-wrap items-center gap-3">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <GradientButton href={registerUrl}>Register Now</GradientButton>
               <a
                 href="#timeline"
-                className="energy-secondary-button inline-flex items-center justify-center gap-2 rounded-md border border-white/16 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition sm:px-6 sm:text-base"
+                className="energy-secondary-button inline-flex w-full items-center justify-center gap-2 rounded-md border border-white/16 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition sm:w-auto sm:px-6 sm:text-base"
               >
                 View Timeline
                 <ChevronDown size={18} />
@@ -851,7 +849,10 @@ export default function Home() {
         </div>
       </div>
 
-      <section id="about" className="energy-section relative py-14 md:py-20 lg:py-24">
+      <section
+        id="about"
+        className="energy-section relative py-14 md:py-20 lg:py-24"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
             <motion.div
@@ -868,8 +869,8 @@ export default function Home() {
                 Launched in 2023, MoraForesight leads students beyond the
                 conventional curriculum and towards the drive to innovate with
                 technology. The fourth edition carries that vision forward
-                through thoughtfully designed stages, rewarding top
-                participants with a fully funded flagship residential bootcamp.
+                through thoughtfully designed stages, rewarding top participants
+                with a fully funded flagship residential bootcamp.
               </p>
               <div className="energy-glass mt-8 border-l-2 border-[#F8C312] bg-white/[0.025] px-5 py-5">
                 <p className="text-sm font-semibold uppercase text-[#01BEEB]">
@@ -1187,7 +1188,6 @@ export default function Home() {
               ))}
             </div>
           </div>
-
         </div>
       </section>
 
@@ -1357,7 +1357,7 @@ export default function Home() {
                     type="button"
                     aria-label={`Open MoraForesight ${galleryEdition.year} photo ${imageIndex + 1}`}
                     onClick={() => setModalImage(imageIndex)}
-                    className={`group relative overflow-hidden rounded-md border transition ${
+                    className={`group relative cursor-pointer overflow-hidden rounded-md border transition ${
                       imageIndex % 7 === 0
                         ? "aspect-[4/5]"
                         : imageIndex % 5 === 0
@@ -1415,16 +1415,11 @@ export default function Home() {
                 className="energy-merch-row grid items-center gap-5 md:gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)]"
               >
                 <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                  <Tshirt360Viewer
-                    frames={item.frames}
-                    label={item.title}
-                  />
+                  <Tshirt360Viewer frames={item.frames} label={item.title} />
                 </div>
 
                 <div
-                  className={`max-w-xl ${
-                    index % 2 === 1 ? "lg:order-1" : ""
-                  }`}
+                  className={`max-w-xl ${index % 2 === 1 ? "lg:order-1" : ""}`}
                 >
                   <h3 className="text-3xl font-semibold text-white md:text-5xl">
                     {item.title}
@@ -1452,9 +1447,7 @@ export default function Home() {
         className="energy-section energy-section-alt border-y border-white/10 bg-[#0B0D12] py-20 md:py-28"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 md:px-8">
-          <SectionHeader
-            title="All essential information for students and parents, right here."
-          />
+          <SectionHeader title="All essential information for students and parents, right here." />
 
           <div className="space-y-3 lg:hidden">
             {faqs.map((faq, index) => (
@@ -1463,9 +1456,7 @@ export default function Home() {
                 {...faq}
                 index={index}
                 isOpen={openFaq === index}
-                onToggle={() =>
-                  setOpenFaq(openFaq === index ? null : index)
-                }
+                onToggle={() => setOpenFaq(openFaq === index ? null : index)}
               />
             ))}
           </div>
@@ -1484,7 +1475,7 @@ export default function Home() {
                         setOpenFaq(openFaq === index ? null : index)
                       }
                     />
-                  ) : null
+                  ) : null,
                 )}
               </div>
             ))}
@@ -1597,8 +1588,8 @@ export default function Home() {
               </div>
               <p className="mt-5 max-w-lg text-sm leading-7 text-white/62">
                 A fully-funded three-day residential bootcamp empowering Sri
-                Lanka&apos;s next generation through technology, innovation,
-                and entrepreneurship.
+                Lanka&apos;s next generation through technology, innovation, and
+                entrepreneurship.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <a
