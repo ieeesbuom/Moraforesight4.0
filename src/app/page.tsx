@@ -41,12 +41,11 @@ const navItems = [
 
 const energyTopics = [
   "Artificial Intelligence",
-  "Robotics",
   "Programming",
-  "Entrepreneurship",
-  "Leadership",
-  "Innovation",
+  "Robotics",
   "IoT",
+  "Leadership",
+  "Entrepreneurship",
 ];
 
 const socialLinks = [
@@ -71,8 +70,9 @@ const timelineStages = [
   {
     stage: "Stage 01",
     title: "Registration Period",
-    date: "03 May - 06 June 2026",
-    detail: "Open island-wide registration for school students under 20 years.",
+    date: "03 May - 27 June 2026",
+    detail:
+      "Main registration runs from 03 May to 27 June 2026, followed by special category registration from 28 June to 11 July 2026.",
     color: "#01BEEB",
     x: 10,
     y: 86,
@@ -84,7 +84,7 @@ const timelineStages = [
     title: "Awareness Sessions",
     date: "During registration",
     detail:
-      "Physical school sessions plus virtual and physical sessions around technology and industry.",
+      "Awareness sessions were held during registration, with sessions noted in Badulla on 19 May and Galle on 23 May 2026.",
     color: "#F8C312",
     x: 27.5,
     y: 72.5,
@@ -94,9 +94,9 @@ const timelineStages = [
   {
     stage: "Stage 03",
     title: "Online Briefing Session",
-    date: "12 June 2026",
+    date: "1 July 2026",
     detail:
-      "A briefing session to guide applicants before the selection process.",
+      "General online briefing session for applicants before the selection process.",
     color: "#E585E4",
     x: 44.5,
     y: 67.5,
@@ -106,9 +106,9 @@ const timelineStages = [
   {
     stage: "Stage 04",
     title: "Selection & Assessments",
-    date: "22 June - 01 August 2026",
+    date: "04 - 25 July 2026",
     detail:
-      "Prime category assessments include online selection, IQ evaluation, commitment, creativity, and the physical evaluation.",
+      "Selection activities include the online exam on 04 July, makeup assessment on 07 July, commitment test submissions from 05 to 22 July, and the physical assessment on 25 July.",
     color: "#01D5FF",
     x: 61.25,
     y: 54,
@@ -118,9 +118,9 @@ const timelineStages = [
   {
     stage: "Stage 05",
     title: "Finalizing Selection",
-    date: "07 Aug 2026",
+    date: "10 - 28 July 2026",
     detail:
-      "Final delegate selection is completed across the prime and special categories.",
+      "Selection results are announced on 10 July, 23 July, and 28 July 2026.",
     color: "#F8C312",
     x: 77.5,
     y: 46,
@@ -130,7 +130,7 @@ const timelineStages = [
   {
     stage: "Stage 06",
     title: "Residential Bootcamp",
-    date: "06-08 Aug 2026",
+    date: "07-09 Aug 2026",
     detail:
       "A fully-funded three-day residential bootcamp for the selected delegate cohort.",
     color: "#E585E4",
@@ -289,6 +289,8 @@ const contacts = [
     email: "ranidu.jaya171@gmail.com",
     phone: "+94 76 292 1236",
     image: "/contact/tharusha-cutout.webp",
+    imageStyle: { transform: "translateY(0.05rem) scale(1.06)" },
+    layoutClass: "xl:col-start-2 xl:row-start-1",
     accent: {
       border: "border-[#01BEEB]",
       frame: "from-[#01BEEB]/32 via-[#04212B]/88 to-black",
@@ -303,6 +305,8 @@ const contacts = [
     email: "kushaniumanda2003@gmail.com",
     phone: "+94 71 697 1942",
     image: "/contact/kushani-cutout.webp",
+    imageStyle: { transform: "translateY(0.1rem) scale(1.05)" },
+    layoutClass: "xl:col-start-1 xl:row-start-2",
     accent: {
       border: "border-[#E585E4]",
       frame: "from-[#E585E4]/32 via-[#24112B]/88 to-black",
@@ -317,6 +321,8 @@ const contacts = [
     email: "thimeshi.np@gmail.com",
     phone: "+94 77 398 8003",
     image: "/contact/thimeshi-cutout.webp",
+    imageStyle: { transform: "translateY(0.1rem) scale(1.05)" },
+    layoutClass: "xl:col-start-4 xl:row-start-1",
     accent: {
       border: "border-[#F8C312]",
       frame: "from-[#F8C312]/32 via-[#271F06]/88 to-black",
@@ -331,6 +337,8 @@ const contacts = [
     email: "janidujanadara@gmail.com",
     phone: "+94 71 918 9585",
     image: "/contact/janidu-cutout.webp",
+    imageStyle: { transform: "translateY(-0.7rem) scale(1.16)" },
+    layoutClass: "xl:col-start-3 xl:row-start-2",
     accent: {
       border: "border-[#01BEEB]",
       frame: "from-[#01BEEB]/32 via-[#04212B]/88 to-black",
@@ -345,6 +353,8 @@ const contacts = [
     email: "lasanperera.lsp@gmail.com",
     phone: "+94 70 451 2644",
     image: "/contact/lasan-cutout-v2.webp",
+    imageStyle: { transform: "translateY(-0.45rem) scale(1.12)" },
+    layoutClass: "xl:col-start-5 xl:row-start-2",
     accent: {
       border: "border-[#E585E4]",
       frame: "from-[#E585E4]/32 via-[#24112B]/88 to-black",
@@ -840,12 +850,38 @@ export default function Home() {
 
       <div className="energy-ticker" aria-label="MoraForesight focus areas">
         <div className="energy-ticker-track">
-          {[...energyTopics, ...energyTopics].map((topic, index) => (
-            <span key={`${topic}-${index}`}>
-              <Zap size={15} />
-              {topic}
-            </span>
-          ))}
+          <div className="energy-ticker-group">
+            {energyTopics.map((topic) => (
+              <span key={`primary-${topic}`}>
+                <Zap size={15} />
+                {topic}
+              </span>
+            ))}
+          </div>
+          <div className="energy-ticker-group" aria-hidden="true">
+            {energyTopics.map((topic) => (
+              <span key={`secondary-${topic}`}>
+                <Zap size={15} />
+                {topic}
+              </span>
+            ))}
+          </div>
+          <div className="energy-ticker-group" aria-hidden="true">
+            {energyTopics.map((topic) => (
+              <span key={`tertiary-${topic}`}>
+                <Zap size={15} />
+                {topic}
+              </span>
+            ))}
+          </div>
+          <div className="energy-ticker-group" aria-hidden="true">
+            {energyTopics.map((topic) => (
+              <span key={`quaternary-${topic}`}>
+                <Zap size={15} />
+                {topic}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -1494,55 +1530,50 @@ export default function Home() {
           />
         </div>
 
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 md:grid-cols-2 md:gap-8 xl:grid-cols-6 xl:gap-7">
-            {contacts.map((contact, index) => (
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-6 xl:gap-7 xl:auto-rows-[1fr]">
+            {contacts.map((contact) => (
               <article
                 key={contact.name}
-                className={`relative min-h-[430px] pt-[270px] sm:min-h-[470px] sm:pt-[300px] md:min-h-[430px] md:pt-[270px] lg:min-h-[470px] lg:pt-[300px] xl:col-span-2 ${
-                  index === 3 ? "xl:col-start-2" : ""
-                } ${
-                  index === 4
-                    ? "md:col-span-2 md:w-full md:max-w-[520px] md:justify-self-center xl:col-start-4 xl:col-span-2 xl:max-w-none"
-                    : ""
-                }`}
+                className={`relative mx-auto w-full max-w-[360px] pt-[210px] sm:pt-[220px] xl:col-span-2 ${contact.layoutClass}`}
               >
                 <div
-                  className={`absolute left-1/2 top-0 z-10 h-[295px] w-[76%] -translate-x-1/2 overflow-hidden rounded-[30px] border-[3px] ${contact.accent.border} bg-gradient-to-br ${contact.accent.frame} md:h-[286px] lg:h-[320px] ${contact.accent.glow}`}
+                  className={`absolute left-1/2 top-0 z-10 h-[235px] w-[72%] -translate-x-1/2 overflow-hidden rounded-[28px] border-[3px] ${contact.accent.border} bg-gradient-to-br ${contact.accent.frame} md:h-[245px] lg:h-[255px] ${contact.accent.glow}`}
                 >
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.18),transparent_42%)]" />
-                  <div className="absolute inset-x-6 bottom-0 h-36 rounded-t-lg bg-gradient-to-t from-black/45 to-transparent" />
+                  <div className="absolute inset-x-4 bottom-0 h-[26px] rounded-t-lg bg-gradient-to-t from-black/45 to-transparent" />
                   <Image
                     src={contact.image}
                     alt={contact.name}
                     fill
-                    sizes="(min-width: 1024px) 300px, (min-width: 768px) 28vw, 70vw"
-                    className="origin-bottom scale-[1.05] object-contain object-bottom px-1 pt-2"
+                    sizes="(min-width: 1280px) 260px, (min-width: 768px) 24vw, 80vw"
+                    className="origin-top object-contain object-top px-2 pt-2"
+                    style={contact.imageStyle}
                   />
-                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/55 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/55 to-transparent" />
                 </div>
 
                 <div
-                  className={`relative z-20 min-h-[168px] rounded-[10px] border-[3px] ${contact.accent.border} bg-black/58 px-5 pb-6 pt-11 text-center backdrop-blur-sm ${contact.accent.glow}`}
+                  className={`relative z-20 min-h-[145px] rounded-[10px] border-[3px] ${contact.accent.border} bg-black/58 px-4 pb-5 pt-10 text-center backdrop-blur-sm ${contact.accent.glow}`}
                 >
                   <div
-                    className={`absolute left-1/2 top-0 flex min-h-[68px] w-[calc(100%+0.75rem)] -translate-x-1/2 -translate-y-[58%] items-center justify-center rounded-[13px] bg-gradient-to-r ${contact.accent.panel} px-4 py-3 text-center text-[clamp(0.95rem,1.35vw,1.7rem)] font-extrabold uppercase leading-tight text-white shadow-[0_18px_42px_rgba(0,0,0,0.30)] md:min-h-[62px] xl:min-h-[68px]`}
+                    className={`absolute left-1/2 top-0 flex min-h-[56px] w-[calc(100%+0.5rem)] -translate-x-1/2 -translate-y-[58%] items-center justify-center rounded-[13px] bg-gradient-to-r ${contact.accent.panel} px-3 py-2 text-center text-[clamp(0.8rem,0.98vw,1.05rem)] font-extrabold uppercase leading-tight text-white shadow-[0_18px_42px_rgba(0,0,0,0.30)] md:min-h-[54px]`}
                   >
                     {contact.role}
                   </div>
 
-                  <h3 className="text-[1.55rem] font-extrabold leading-tight text-white md:text-[1.35rem] lg:text-[1.55rem] xl:text-[1.75rem]">
+                  <h3 className="text-[1.18rem] font-extrabold leading-tight text-white md:text-[1.12rem] lg:text-[1.2rem] xl:text-[1.26rem]">
                     {contact.name}
                   </h3>
                   <a
                     href={`mailto:${contact.email}`}
-                    className={`mt-2 block break-words text-[1.05rem] leading-snug md:text-[0.95rem] lg:text-[1.05rem] xl:text-[1.25rem] ${contact.accent.text}`}
+                    className={`mt-2 block break-words text-[0.88rem] leading-snug text-white/78 md:text-[0.86rem] lg:text-[0.9rem] xl:text-[0.96rem] ${contact.accent.text}`}
                   >
                     {contact.email}
                   </a>
                   <a
                     href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                    className="mt-1 block text-[1.1rem] font-medium leading-tight text-white md:text-[1rem] lg:text-[1.2rem] xl:text-[1.45rem]"
+                    className="mt-1 block text-[0.92rem] font-medium leading-tight text-white md:text-[0.88rem] lg:text-[0.92rem] xl:text-[0.98rem]"
                   >
                     {contact.phone}
                   </a>
