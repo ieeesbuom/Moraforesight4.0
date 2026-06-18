@@ -260,6 +260,9 @@ nav a:hover .nav-spark {
 .energy-ticker {
   position: relative;
   z-index: 5;
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
   overflow: hidden;
   color: #050608;
   background: linear-gradient(90deg, #01beeb, #77e9ff 30%, #e585e4 68%, #f8c312);
@@ -270,8 +273,10 @@ nav a:hover .nav-spark {
 
 .energy-ticker-track {
   display: flex;
-  min-width: 400%;
+  flex: 0 0 auto;
+  min-width: max-content;
   width: max-content;
+  flex-wrap: nowrap;
   animation: ticker-move 40s linear infinite;
   will-change: transform;
 }
@@ -292,31 +297,25 @@ nav a:hover .nav-spark {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
+  line-height: 1;
 }
 
 @media (max-width: 639px) {
   .energy-ticker {
-    transform: none;
-    border-block-width: 0;
-    background: linear-gradient(180deg, #01beeb, #77e9ff 30%, #e585e4 68%, #f8c312);
-    box-shadow: none;
+    min-height: 2.8rem;
+    background: linear-gradient(90deg, #01beeb 0%, #77e9ff 34%, #e585e4 70%, #f8c312 100%);
+    border-block: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.26);
   }
 
   .energy-ticker-track {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
-    animation: none;
+    animation-duration: 28s;
   }
 
   .energy-ticker-track span {
-    justify-content: center;
-    padding: 0.7rem 0.6rem;
+    padding: 0.78rem 1.15rem;
     font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    white-space: normal;
-    text-align: center;
-    border-top: 1px solid rgba(5, 6, 8, 0.16);
+    letter-spacing: 0.095em;
   }
 }
 

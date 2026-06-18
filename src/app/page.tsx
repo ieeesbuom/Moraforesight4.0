@@ -51,7 +51,7 @@ const energyTopics = [
 const socialLinks = [
   {
     label: "Facebook",
-    href: "https://www.facebook.com/moraforesight",
+    href: "https://www.facebook.com/ieeesbuom",
     icon: "/social/facebook.png",
   },
   {
@@ -63,6 +63,11 @@ const socialLinks = [
     label: "Instagram",
     href: "https://www.instagram.com/moraforesight.lk",
     icon: "/social/instagram.png",
+  },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/@ieeesbuom",
+    icon: "/social/youtube.png",
   },
 ];
 
@@ -288,9 +293,10 @@ const contacts = [
     name: "Tharusha Jayasundara",
     email: "ranidu.jaya171@gmail.com",
     phone: "+94 76 292 1236",
-    image: "/contact/tharusha-cutout.webp",
-    imageStyle: { transform: "translateY(0.05rem) scale(1.06)" },
-    layoutClass: "xl:col-start-2 xl:row-start-1",
+    image: "/contact/tharusha-framed.webp",
+    imageStyle: { transform: "none" },
+    layoutClass:
+      "sm:col-span-2 sm:justify-self-center xl:col-span-2 xl:col-start-2 xl:row-start-1",
     accent: {
       border: "border-[#01BEEB]",
       frame: "from-[#01BEEB]/32 via-[#04212B]/88 to-black",
@@ -304,8 +310,8 @@ const contacts = [
     name: "Kushani Umanda",
     email: "kushaniumanda2003@gmail.com",
     phone: "+94 71 697 1942",
-    image: "/contact/kushani-cutout.webp",
-    imageStyle: { transform: "translateY(0.1rem) scale(1.05)" },
+    image: "/contact/kushani-framed.webp",
+    imageStyle: { transform: "none" },
     layoutClass: "xl:col-start-1 xl:row-start-2",
     accent: {
       border: "border-[#E585E4]",
@@ -320,8 +326,8 @@ const contacts = [
     name: "Thimeshi Nipunika",
     email: "thimeshi.np@gmail.com",
     phone: "+94 77 398 8003",
-    image: "/contact/thimeshi-cutout.webp",
-    imageStyle: { transform: "translateY(0.1rem) scale(1.05)" },
+    image: "/contact/thimeshi-framed.webp",
+    imageStyle: { transform: "none" },
     layoutClass: "xl:col-start-4 xl:row-start-1",
     accent: {
       border: "border-[#F8C312]",
@@ -336,8 +342,8 @@ const contacts = [
     name: "Janidu Janadara",
     email: "janidujanadara@gmail.com",
     phone: "+94 71 918 9585",
-    image: "/contact/janidu-cutout.webp",
-    imageStyle: { transform: "translateY(-0.7rem) scale(1.16)" },
+    image: "/contact/janidu-framed.webp",
+    imageStyle: { transform: "none" },
     layoutClass: "xl:col-start-3 xl:row-start-2",
     accent: {
       border: "border-[#01BEEB]",
@@ -352,8 +358,8 @@ const contacts = [
     name: "Lasan Perera",
     email: "lasanperera.lsp@gmail.com",
     phone: "+94 70 451 2644",
-    image: "/contact/lasan-cutout-v2.webp",
-    imageStyle: { transform: "translateY(-0.45rem) scale(1.12)" },
+    image: "/contact/lasan-framed.webp",
+    imageStyle: { transform: "none" },
     layoutClass: "xl:col-start-5 xl:row-start-2",
     accent: {
       border: "border-[#E585E4]",
