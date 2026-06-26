@@ -80,7 +80,7 @@ const timelineStages = [
       "Main registration runs from 03 May to 27 June 2026, followed by special category registration from 28 June to 11 July 2026.",
     color: "#01BEEB",
     x: 10,
-    y: 86,
+    y: 30,
     label: "left",
     mobileX: 46,
   },
@@ -92,7 +92,7 @@ const timelineStages = [
       "Awareness sessions were held during registration, with sessions noted in Badulla on 19 May and Galle on 23 May 2026.",
     color: "#F8C312",
     x: 27.5,
-    y: 72.5,
+    y: 43.5,
     label: "center",
     mobileX: 52,
   },
@@ -104,7 +104,7 @@ const timelineStages = [
       "General online briefing session for applicants before the selection process.",
     color: "#E585E4",
     x: 44.5,
-    y: 67.5,
+    y: 48.5,
     label: "center",
     mobileX: 72,
   },
@@ -116,7 +116,7 @@ const timelineStages = [
       "Selection activities include the online exam on 04 July, makeup assessment on 07 July, commitment test submissions from 05 to 22 July, and the physical assessment on 25 July.",
     color: "#01D5FF",
     x: 61.25,
-    y: 54,
+    y: 62,
     label: "center",
     mobileX: 52,
   },
@@ -128,7 +128,7 @@ const timelineStages = [
       "Selection results are announced on 10 July, 23 July, and 28 July 2026.",
     color: "#F8C312",
     x: 77.5,
-    y: 46,
+    y: 70,
     label: "center",
     mobileX: 55,
   },
@@ -140,7 +140,7 @@ const timelineStages = [
       "A fully-funded three-day residential bootcamp for the selected delegate cohort.",
     color: "#E585E4",
     x: 93.25,
-    y: 25.5,
+    y: 90.5,
     label: "right",
     mobileX: 59,
   },
@@ -289,12 +289,12 @@ const merchItems = [
 
 const contacts = [
   {
-    role: "Event Chair",
-    name: "Tharusha Jayasundara",
-    email: "ranidu.jaya171@gmail.com",
-    phone: "+94 76 292 1236",
-    image: "/contact/tharusha-framed.webp",
-    imageStyle: { transform: "none" },
+    role: "IEEE SB Chairman",
+    name: "Chanuka Anjana",
+    email: "chanukaanjana01@gmail.com",
+    phone: "+94 71 760 7248",
+    image: "/contact/chanuka-download.webp",
+    imageStyle: { transform: "translateY(3%) scale(1.18)" },
     layoutClass:
       "sm:col-span-2 sm:justify-self-center xl:col-span-2 xl:col-start-2 xl:row-start-1",
     accent: {
@@ -306,19 +306,37 @@ const contacts = [
     },
   },
   {
-    role: "Event Vice-Chair",
-    name: "Kushani Umanda",
-    email: "kushaniumanda2003@gmail.com",
-    phone: "+94 71 697 1942",
-    image: "/contact/kushani-framed.webp",
-    imageStyle: { transform: "none" },
-    layoutClass: "xl:col-start-1 xl:row-start-2",
+    role: "IEEE SB Vice Chairman",
+    name: "Uthsara Manul",
+    email: "uthzaaawim@gmail.com",
+    phone: "+94 70 312 6614",
+    image: "/contact/uthsara-download.webp",
+    imageStyle: { transform: "translateY(3%) scale(1.14)" },
+    layoutClass:
+      "sm:col-span-2 sm:justify-self-center xl:col-span-2 xl:col-start-4 xl:row-start-1",
     accent: {
-      border: "border-[#E585E4]",
-      frame: "from-[#E585E4]/32 via-[#24112B]/88 to-black",
-      glow: "shadow-[0_0_34px_rgba(229,133,228,0.18)]",
-      panel: "from-[#E585E4] to-[#7D0A82]",
-      text: "text-[#E585E4]",
+      border: "border-[#F8C312]",
+      frame: "from-[#F8C312]/32 via-[#271F06]/88 to-black",
+      glow: "shadow-[0_0_34px_rgba(248,195,18,0.18)]",
+      panel: "from-[#F8C312] to-[#8A6800]",
+      text: "text-[#F8C312]",
+    },
+  },
+  {
+    role: "Event Chair",
+    name: "Tharusha Jayasundara",
+    email: "ranidu.jaya171@gmail.com",
+    phone: "+94 76 292 1236",
+    image: "/contact/tharusha-framed.webp",
+    imageStyle: { transform: "none" },
+    layoutClass:
+      "sm:col-span-2 sm:justify-self-center xl:col-span-2 xl:col-start-1 xl:row-start-2",
+    accent: {
+      border: "border-[#01BEEB]",
+      frame: "from-[#01BEEB]/32 via-[#04212B]/88 to-black",
+      glow: "shadow-[0_0_34px_rgba(1,190,235,0.18)]",
+      panel: "from-[#01BEEB] to-[#006F90]",
+      text: "text-[#01BEEB]",
     },
   },
   {
@@ -328,7 +346,7 @@ const contacts = [
     phone: "+94 77 398 8003",
     image: "/contact/thimeshi-framed.webp",
     imageStyle: { transform: "none" },
-    layoutClass: "xl:col-start-4 xl:row-start-1",
+    layoutClass: "xl:col-start-3 xl:row-start-2",
     accent: {
       border: "border-[#F8C312]",
       frame: "from-[#F8C312]/32 via-[#271F06]/88 to-black",
@@ -344,29 +362,13 @@ const contacts = [
     phone: "+94 71 918 9585",
     image: "/contact/janidu-framed.webp",
     imageStyle: { transform: "none" },
-    layoutClass: "xl:col-start-3 xl:row-start-2",
+    layoutClass: "xl:col-start-5 xl:row-start-2",
     accent: {
       border: "border-[#01BEEB]",
       frame: "from-[#01BEEB]/32 via-[#04212B]/88 to-black",
       glow: "shadow-[0_0_34px_rgba(1,190,235,0.18)]",
       panel: "from-[#01BEEB] to-[#006F90]",
       text: "text-[#01BEEB]",
-    },
-  },
-  {
-    role: "Event Vice-Chair",
-    name: "Lasan Perera",
-    email: "lasanperera.lsp@gmail.com",
-    phone: "+94 70 451 2644",
-    image: "/contact/lasan-framed.webp",
-    imageStyle: { transform: "none" },
-    layoutClass: "xl:col-start-5 xl:row-start-2",
-    accent: {
-      border: "border-[#E585E4]",
-      frame: "from-[#E585E4]/32 via-[#24112B]/88 to-black",
-      glow: "shadow-[0_0_34px_rgba(229,133,228,0.18)]",
-      panel: "from-[#E585E4] to-[#7D0A82]",
-      text: "text-[#E585E4]",
     },
   },
 ];
@@ -432,6 +434,11 @@ const faqs = [
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
   visible: { opacity: 1, y: 0 },
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
 };
 
 function SectionHeader({ title, intro }: { title: string; intro?: string }) {
@@ -503,7 +510,7 @@ function FaqItem({
 }) {
   return (
     <div
-      className={`energy-card overflow-hidden rounded-lg border bg-white/[0.035] transition ${
+      className={`overflow-hidden rounded-lg border bg-white/[0.035] transition ${
         isOpen ? "border-[#01BEEB]/45" : "border-white/10 hover:border-white/20"
       }`}
     >
@@ -703,7 +710,7 @@ export default function Home() {
               rel="noreferrer"
               className="energy-secondary-button rounded-md border border-white/14 px-4 py-2 text-sm font-semibold text-white/80 transition hover:text-white"
             >
-              WhatsApp
+              WhatsApp Channel
             </a>
             <a
               href={registerUrl}
@@ -750,7 +757,7 @@ export default function Home() {
                 onClick={closeMenu}
                 className="rounded-md px-3 py-3 text-sm font-semibold text-white/76 hover:bg-white/[0.06] hover:text-white"
               >
-                WhatsApp
+                WhatsApp Channel
               </a>
               <a
                 href={registerUrl}
@@ -896,25 +903,26 @@ export default function Home() {
         className="energy-section relative py-14 md:py-20 lg:py-24"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-          <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch lg:gap-14">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              variants={fadeUp}
+              variants={fadeIn}
+              className="flex h-full flex-col"
             >
-              <h2 className="energy-section-title text-3xl font-semibold text-white md:text-5xl">
+              <h2 className="energy-section-title text-3xl font-semibold leading-tight text-white md:text-4xl lg:text-[2.45rem]">
                 A visionary launchpad for aspiring tech innovators.
               </h2>
-              <p className="mt-6 text-base leading-8 text-white/70 md:text-lg">
+              <p className="mt-5 text-base leading-[1.65] text-white/70">
                 Launched in 2023, MoraForesight leads students beyond the
                 conventional curriculum and towards the drive to innovate with
                 technology. The fourth edition carries that vision forward
                 through thoughtfully designed stages, rewarding top participants
                 with a fully funded flagship residential bootcamp.
               </p>
-              <div className="energy-glass mt-8 border-l-2 border-[#F8C312] bg-white/[0.025] px-5 py-5">
+              <div className="energy-glass mt-5 border-l-2 border-[#F8C312] bg-white/[0.025] px-5 py-3.5 lg:flex-1">
                 <p className="text-sm font-semibold uppercase text-[#01BEEB]">
                   Organized by
                 </p>
@@ -923,10 +931,10 @@ export default function Home() {
                   alt="University of Moratuwa IEEE Student Branch"
                   width={1600}
                   height={350}
-                  sizes="(min-width: 1024px) 420px, 90vw"
-                  className="mt-4 h-auto w-full max-w-[420px]"
+                  sizes="(min-width: 1024px) 300px, 90vw"
+                  className="mt-3 h-auto w-full max-w-[300px]"
                 />
-                <p className="mt-4 text-sm leading-7 text-white/62">
+                <p className="mt-2.5 text-sm leading-6 text-white/62">
                   The branch unites 15 specialized chapters and an affinity
                   group, channeling undergraduate expertise into school-level
                   innovation.
@@ -942,7 +950,7 @@ export default function Home() {
                   whileInView="visible"
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.55, delay: index * 0.08 }}
-                  variants={fadeUp}
+                  variants={fadeIn}
                   className="energy-card rounded-lg border border-white/10 bg-white/[0.035] p-5 transition"
                 >
                   <IconBadge icon={item.icon} />
@@ -961,7 +969,7 @@ export default function Home() {
 
       <section
         id="timeline"
-        className="energy-section energy-section-alt overflow-hidden border-y border-white/10 bg-[#0B0D12] py-14 md:py-20"
+        className="energy-section energy-section-alt overflow-hidden border-y border-white/10 bg-[#0B0D12] pb-14 pt-24 md:pb-20 md:pt-32"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <motion.div
@@ -970,9 +978,9 @@ export default function Home() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.55, ease: "easeOut" }}
             variants={fadeUp}
-            className="mb-5"
+            className="mb-5 lg:flex lg:justify-end"
           >
-            <h2 className="energy-section-title text-2xl font-semibold text-white sm:text-3xl">
+            <h2 className="energy-section-title text-2xl font-semibold text-white sm:text-3xl lg:ml-auto lg:max-w-none lg:whitespace-nowrap lg:text-right">
               From registration to the residential bootcamp.
             </h2>
           </motion.div>
@@ -988,9 +996,9 @@ export default function Home() {
                 <linearGradient
                   id="timeline-road-gradient"
                   x1="40"
-                  y1="590"
+                  y1="130"
                   x2="1180"
-                  y2="120"
+                  y2="600"
                   gradientUnits="userSpaceOnUse"
                 >
                   <stop offset="0%" stopColor="#01BEEB" />
@@ -1025,7 +1033,7 @@ export default function Home() {
                 </marker>
               </defs>
               <path
-                d="M20 590 C80 520 110 535 150 535 C250 535 245 460 330 450 C430 438 440 390 535 420 C610 444 650 380 735 335 C820 290 860 340 930 285 C1000 230 1030 240 1080 190 C1120 150 1145 160 1180 120"
+                d="M20 130 C80 200 110 185 150 185 C250 185 245 260 330 270 C430 282 440 330 535 300 C610 276 650 340 735 385 C820 430 860 380 930 435 C1000 490 1030 480 1080 530 C1120 570 1145 560 1180 600"
                 fill="none"
                 stroke="#02070C"
                 strokeWidth="86"
@@ -1033,7 +1041,7 @@ export default function Home() {
                 strokeLinejoin="round"
               />
               <path
-                d="M20 590 C80 520 110 535 150 535 C250 535 245 460 330 450 C430 438 440 390 535 420 C610 444 650 380 735 335 C820 290 860 340 930 285 C1000 230 1030 240 1080 190 C1120 150 1145 160 1180 120"
+                d="M20 130 C80 200 110 185 150 185 C250 185 245 260 330 270 C430 282 440 330 535 300 C610 276 650 340 735 385 C820 430 860 380 930 435 C1000 490 1030 480 1080 530 C1120 570 1145 560 1180 600"
                 fill="none"
                 stroke="url(#timeline-road-gradient)"
                 strokeWidth="70"
@@ -1043,7 +1051,7 @@ export default function Home() {
                 filter="url(#timeline-road-glow)"
               />
               <path
-                d="M20 590 C80 520 110 535 150 535 C250 535 245 460 330 450 C430 438 440 390 535 420 C610 444 650 380 735 335 C820 290 860 340 930 285 C1000 230 1030 240 1080 190 C1120 150 1145 160 1180 120"
+                d="M20 130 C80 200 110 185 150 185 C250 185 245 260 330 270 C430 282 440 330 535 300 C610 276 650 340 735 385 C820 430 860 380 930 435 C1000 490 1030 480 1080 530 C1120 570 1145 560 1180 600"
                 fill="none"
                 stroke="#06131E"
                 strokeWidth="56"
@@ -1051,7 +1059,7 @@ export default function Home() {
                 strokeLinejoin="round"
               />
               <path
-                d="M20 590 C80 520 110 535 150 535 C250 535 245 460 330 450 C430 438 440 390 535 420 C610 444 650 380 735 335 C820 290 860 340 930 285 C1000 230 1030 240 1080 190 C1120 150 1145 160 1180 120"
+                d="M20 130 C80 200 110 185 150 185 C250 185 245 260 330 270 C430 282 440 330 535 300 C610 276 650 340 735 385 C820 430 860 380 930 435 C1000 490 1030 480 1080 530 C1120 570 1145 560 1180 600"
                 fill="none"
                 stroke="url(#timeline-road-gradient)"
                 strokeWidth="4"
@@ -1064,8 +1072,8 @@ export default function Home() {
             {timelineStages.map((stage, index) => (
               <motion.div
                 key={`${stage.stage}-${stage.title}`}
-                initial={{ opacity: 0, scale: 0.88 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: -24, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.48, delay: index * 0.08 }}
                 className="absolute z-10"
@@ -1274,7 +1282,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <SectionHeader
             title="Year by year, the project has grown in scale and impact."
-            intro="Each edition opens into a combined photo archive, curated from the official MoraForesight Facebook albums."
+            intro="Each edition opens into a combined photo archive"
           />
 
           <div className="grid gap-5 md:grid-cols-3">
@@ -1544,7 +1552,7 @@ export default function Home() {
                 className={`relative mx-auto w-full max-w-[360px] pt-[210px] sm:pt-[220px] xl:col-span-2 ${contact.layoutClass}`}
               >
                 <div
-                  className={`absolute left-1/2 top-0 z-10 h-[235px] w-[72%] -translate-x-1/2 overflow-hidden rounded-[28px] border-[3px] ${contact.accent.border} bg-gradient-to-br ${contact.accent.frame} md:h-[245px] lg:h-[255px] ${contact.accent.glow}`}
+                  className={`absolute left-1/2 top-0 z-10 h-[235px] w-[72%] -translate-x-1/2 overflow-hidden rounded-lg border-[3px] ${contact.accent.border} bg-gradient-to-br ${contact.accent.frame} md:h-[245px] lg:h-[255px] ${contact.accent.glow}`}
                 >
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.18),transparent_42%)]" />
                   <div className="absolute inset-x-4 bottom-0 h-[26px] rounded-t-lg bg-gradient-to-t from-black/45 to-transparent" />
@@ -1560,10 +1568,10 @@ export default function Home() {
                 </div>
 
                 <div
-                  className={`relative z-20 min-h-[145px] rounded-[10px] border-[3px] ${contact.accent.border} bg-black/58 px-4 pb-5 pt-10 text-center backdrop-blur-sm ${contact.accent.glow}`}
+                  className={`relative z-20 min-h-[145px] rounded-lg border-[3px] ${contact.accent.border} bg-black/58 px-4 pb-5 pt-10 text-center backdrop-blur-sm ${contact.accent.glow}`}
                 >
                   <div
-                    className={`absolute left-1/2 top-0 flex min-h-[56px] w-[calc(100%+0.5rem)] -translate-x-1/2 -translate-y-[58%] items-center justify-center rounded-[13px] bg-gradient-to-r ${contact.accent.panel} px-3 py-2 text-center text-[clamp(0.8rem,0.98vw,1.05rem)] font-extrabold uppercase leading-tight text-white shadow-[0_18px_42px_rgba(0,0,0,0.30)] md:min-h-[54px]`}
+                    className={`absolute left-1/2 top-0 flex min-h-[56px] w-[calc(100%+0.5rem)] -translate-x-1/2 -translate-y-[58%] items-center justify-center rounded-lg bg-gradient-to-r ${contact.accent.panel} px-3 py-2 text-center text-[clamp(0.8rem,0.98vw,1.05rem)] font-extrabold uppercase leading-tight text-white shadow-[0_18px_42px_rgba(0,0,0,0.30)] md:min-h-[54px]`}
                   >
                     {contact.role}
                   </div>
@@ -1577,12 +1585,14 @@ export default function Home() {
                   >
                     {contact.email}
                   </a>
-                  <a
-                    href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                    className="mt-1 block text-[0.92rem] font-medium leading-tight text-white md:text-[0.88rem] lg:text-[0.92rem] xl:text-[0.98rem]"
-                  >
-                    {contact.phone}
-                  </a>
+                  {contact.phone ? (
+                    <a
+                      href={`tel:${contact.phone.replace(/\s/g, "")}`}
+                      className="mt-1 block text-[0.92rem] font-medium leading-tight text-white md:text-[0.88rem] lg:text-[0.92rem] xl:text-[0.98rem]"
+                    >
+                      {contact.phone}
+                    </a>
+                  ) : null}
                 </div>
               </article>
             ))}
