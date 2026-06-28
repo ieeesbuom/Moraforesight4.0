@@ -104,6 +104,27 @@ nav a:hover .nav-spark {
   transform: translateY(-2px);
 }
 
+.phase-status {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #f8c312;
+  background: linear-gradient(180deg, rgba(248, 195, 18, 0.14), rgba(248, 195, 18, 0.055));
+  border: 1px solid rgba(248, 195, 18, 0.44);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 26px rgba(248, 195, 18, 0.08);
+}
+
+.phase-status::before {
+  width: 0.34rem;
+  height: 0.34rem;
+  content: "";
+  background: currentColor;
+  border-radius: 999px;
+  box-shadow: 0 0 10px currentColor;
+}
+
 .hero-shell {
   min-height: auto;
 }

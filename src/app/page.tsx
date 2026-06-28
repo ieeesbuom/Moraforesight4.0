@@ -25,7 +25,6 @@ import {
 } from "lucide-react";
 import { Tshirt360Viewer } from "./components/Tshirt360Viewer";
 
-const registerUrl = "https://register.moraforesight.lk/";
 const updatesUrl = "https://whatsapp.com/channel/0029Vb82hWMEwEjowRgP0X0K";
 const merchOrderUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSc6sNf8xXAkCsz5_jZw7hUJmLkAnr_4_7C0cYpOXqQPciWCvg/viewform";
@@ -74,10 +73,10 @@ const socialLinks = [
 const timelineStages = [
   {
     stage: "Stage 01",
-    title: "Registration Period",
-    date: "03 May - 27 June 2026",
+    title: "Registration Closed",
+    date: "Closed 27 June 2026",
     detail:
-      "Main registration runs from 03 May to 27 June 2026, followed by special category registration from 28 June to 11 July 2026.",
+      "Registration for MoraForesight 4.0 is now closed. Applicants should follow official updates for briefing details and the next selection steps.",
     color: "#01BEEB",
     x: 10,
     y: 30,
@@ -87,7 +86,7 @@ const timelineStages = [
   {
     stage: "Stage 02",
     title: "Awareness Sessions",
-    date: "During registration",
+    date: "Completed",
     detail:
       "Awareness sessions were held during registration, with sessions noted in Badulla on 19 May and Galle on 23 May 2026.",
     color: "#F8C312",
@@ -377,7 +376,7 @@ const faqs = [
   {
     question: "Who can apply?",
     answer:
-      "School students under the age of 20 as of January 2026 are eligible to apply. MoraForesight welcomes high-potential students from all 25 districts of Sri Lanka who demonstrate curiosity, commitment, and leadership potential.",
+      "Registration for MoraForesight 4.0 is now closed. The program was open to school students under the age of 20 as of January 2026 from all 25 districts of Sri Lanka.",
   },
   {
     question: "How are students selected?",
@@ -712,15 +711,9 @@ export default function Home() {
             >
               WhatsApp Channel
             </a>
-            <a
-              href={registerUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="nav-register inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-black transition"
-            >
-              Register
-              <ArrowRight size={16} />
-            </a>
+            <span className="phase-status rounded-md px-4 py-2 text-sm font-semibold">
+              Applications Closed
+            </span>
           </div>
 
           <button
@@ -759,15 +752,9 @@ export default function Home() {
               >
                 WhatsApp Channel
               </a>
-              <a
-                href={registerUrl}
-                target="_blank"
-                rel="noreferrer"
-                onClick={closeMenu}
-                className="mt-3 rounded-md bg-white px-4 py-3 text-center text-sm font-semibold text-black"
-              >
-                Register
-              </a>
+              <span className="phase-status mt-3 rounded-md px-4 py-3 text-center text-sm font-semibold">
+                Applications Closed
+              </span>
             </div>
           </motion.div>
         ) : null}
@@ -831,19 +818,24 @@ export default function Home() {
               Build what&apos;s next.
               <span className="hero-gradient-text block">Lead the future.</span>
             </h1>
+            <p className="phase-status mt-5 rounded-md px-3 py-2 text-xs font-bold uppercase tracking-[0.16em]">
+              Selection phase now live
+            </p>
             <p className="mt-4 max-w-[36rem] text-base leading-7 text-white/74 sm:text-lg lg:text-lg">
-              A fully-funded three-day residential bootcamp where school
-              students under 20 explore technology, create with purpose, and
-              meet the people shaping tomorrow.
+              Applications for MoraForesight 4.0 are now closed. Applicants can
+              follow the official channel and timeline for briefing,
+              assessments, and selection updates.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <GradientButton href={registerUrl}>Register Now</GradientButton>
+              <GradientButton href={updatesUrl}>
+                Join WhatsApp Channel
+              </GradientButton>
               <a
                 href="#timeline"
                 className="energy-secondary-button inline-flex w-full items-center justify-center gap-2 rounded-md border border-white/16 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition sm:w-auto sm:px-6 sm:text-base"
               >
-                View Timeline
+                Selection Timeline
                 <ChevronDown size={18} />
               </a>
             </div>
@@ -981,7 +973,7 @@ export default function Home() {
             className="mb-5 lg:flex lg:justify-end"
           >
             <h2 className="energy-section-title text-2xl font-semibold text-white sm:text-3xl lg:ml-auto lg:max-w-none lg:whitespace-nowrap lg:text-right">
-              From registration to the residential bootcamp.
+              From registration closure to the residential bootcamp.
             </h2>
           </motion.div>
 
@@ -1540,7 +1532,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <SectionHeader
             title="Contact the MoraForesight 4.0 organizing team."
-            intro="For registration, selection, and event-related inquiries, reach out to the team below."
+            intro="For selection, assessment, and event-related inquiries, reach out to the team below."
           />
         </div>
 
@@ -1639,15 +1631,9 @@ export default function Home() {
                 entrepreneurship.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <a
-                  href={registerUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-white px-5 text-sm font-bold text-black transition hover:bg-[#F8C312]"
-                >
-                  Register
-                  <ArrowRight size={17} />
-                </a>
+                <span className="phase-status min-h-11 rounded-md px-5 text-sm font-bold">
+                  Applications Closed
+                </span>
                 <a
                   href={updatesUrl}
                   target="_blank"
