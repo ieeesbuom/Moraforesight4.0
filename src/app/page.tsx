@@ -43,8 +43,8 @@ const energyTopics = [
   "Programming",
   "Robotics",
   "IoT",
-  "Leadership",
   "Entrepreneurship",
+  "Leadership",
 ];
 
 const socialLinks = [
@@ -73,11 +73,11 @@ const socialLinks = [
 const timelineStages = [
   {
     stage: "Stage 01",
-    title: "Registration Closed",
-    date: "Closed 27 June 2026",
+    title: "Registration Period",
+    date: "03 May - 06 June",
     detail:
-      "Registration for MoraForesight 4.0 is now closed. Applicants should follow official updates for briefing details and the next selection steps.",
-    color: "#01BEEB",
+      "Official registration window for MoraForesight 4.0. Interested candidates register online to begin the selection process.",
+    color: "#F8C312",
     x: 10,
     y: 30,
     label: "left",
@@ -85,59 +85,72 @@ const timelineStages = [
   },
   {
     stage: "Stage 02",
-    title: "Awareness Sessions",
-    date: "Completed",
+    title: "Online Briefing Session",
+    date: "09 July",
     detail:
-      "Awareness sessions were held during registration, with sessions noted in Badulla on 19 May and Galle on 23 May 2026.",
-    color: "#F8C312",
-    x: 27.5,
-    y: 43.5,
+      "A general briefing session conducted online to guide registered applicants through the upcoming stages and competition rules.",
+    color: "#E585E4",
+    x: 23.5,
+    y: 40,
     label: "center",
     mobileX: 52,
   },
   {
     stage: "Stage 03",
-    title: "Online Briefing Session",
-    date: "1 July 2026",
+    title: "Online Selection Round",
+    date: "11 July",
     detail:
-      "General online briefing session for applicants before the selection process.",
-    color: "#E585E4",
-    x: 44.5,
-    y: 48.5,
+      "Initial screening quiz assessing IQ, mathematical analysis, and logical problem-solving skills to qualify candidates.",
+    color: "#01D5FF",
+    x: 37,
+    y: 46,
     label: "center",
     mobileX: 72,
   },
   {
     stage: "Stage 04",
-    title: "Selection & Assessments",
-    date: "04 - 25 July 2026",
+    title: "Impact Challenge",
+    date: "11 July - 01 August",
     detail:
-      "Selection activities include the online exam on 04 July, makeup assessment on 07 July, commitment test submissions from 05 to 22 July, and the physical assessment on 25 July.",
-    color: "#01D5FF",
-    x: 61.25,
-    y: 62,
+      "Focuses on practical programming and aesthetics. Participants complete the python course on Mora Open and gain points towards final selection.",
+    color: "#F8C312",
+    x: 51,
+    y: 52.5,
     label: "center",
     mobileX: 52,
   },
   {
     stage: "Stage 05",
-    title: "Finalizing Selection",
-    date: "10 - 28 July 2026",
+    title: "Special Category Registration",
+    date: "17 July - 21 July",
     detail:
-      "Selection results are announced on 10 July, 23 July, and 28 July 2026.",
+      "Selection of candidates based on exceptional co-curricular and extracurricular performance. Participants must have taken the online round.",
     color: "#F8C312",
-    x: 77.5,
-    y: 70,
+    x: 65,
+    y: 64,
     label: "center",
     mobileX: 55,
   },
   {
     stage: "Stage 06",
-    title: "Residential Bootcamp",
-    date: "07-09 Aug 2026",
+    title: "In-Person Final Round",
+    date: "01 August",
     detail:
-      "A fully-funded three-day residential bootcamp for the selected delegate cohort.",
+      "Physical selection round held at the University of Moratuwa. Tests programming, logical capabilities, and critical thinking.",
     color: "#E585E4",
+    x: 79,
+    y: 71,
+    label: "center",
+    mobileX: 52,
+    // Note: Stage 07 is set below
+  },
+  {
+    stage: "Stage 07",
+    title: "Fully Funded 3-Day Bootcamp",
+    date: "14, 15, 16 August",
+    detail:
+      "A fully funded flagship bootcamp. Day 1 covers Programming + AI; Day 2 covers Robotics + Entertainment; Day 3 focuses on Leadership + Entrepreneurship.",
+    color: "#01D5FF",
     x: 93.25,
     y: 90.5,
     label: "right",
@@ -163,7 +176,7 @@ const tracks = [
   {
     title: "Entrepreneurship",
     detail:
-      "Turn ideas into action through teamwork, communication, leadership, and entrepreneurial thinking.",
+      "Develop the entrepreneurial mindset to innovate, pitch with confidence, and transform ideas into impactful and scalable ventures.",
     icon: Lightbulb,
     accent: "from-[#F8C312] to-[#FFE27A]",
   },
@@ -185,7 +198,7 @@ const aboutHighlights = [
   {
     title: "Expert-Led Bootcamp",
     detail:
-      "Top participants earn a fully funded residential bootcamp with immersive workshops, mentorship, and hands-on learning led by industry experts.",
+      "Top participants earn a fully funded bootcamp with immersive workshops, mentorship, and hands-on learning led by industry experts.",
     icon: Rocket,
   },
   {
@@ -266,6 +279,15 @@ const legacyEditions = [
 
 const merchItems = [
   {
+    title: "Ether Bloom",
+    type: "Premium collar T-shirt",
+    frames: [
+      { label: "front view", src: "/merch/ether-front.webp" },
+      { label: "back view", src: "/merch/ether-back.webp" },
+    ],
+    note: "A collar edition with magenta shoulder detailing, MoraForesight chest branding, and IEEE Student Branch recognition on the back.",
+  },
+  {
     title: "Nova Pulse",
     type: "Crew-neck event T-shirt",
     frames: [
@@ -275,20 +297,11 @@ const merchItems = [
     ],
     note: "A deep navy event tee carrying the Own the Next Move front artwork, subtle MoraForesight patterns, and the 4.0 back mark.",
   },
-  {
-    title: "Ether Bloom",
-    type: "Premium collar T-shirt",
-    frames: [
-      { label: "front view", src: "/merch/ether-front.webp" },
-      { label: "back view", src: "/merch/ether-back.webp" },
-    ],
-    note: "A collar edition with magenta shoulder detailing, MoraForesight chest branding, and IEEE Student Branch recognition on the back.",
-  },
 ];
 
 const contacts = [
   {
-    role: "IEEE SB Chairman",
+    role: "Chairman, IEEE Student Branch, University of Moratuwa",
     name: "Chanuka Anjana",
     email: "chanukaanjana01@gmail.com",
     phone: "+94 71 760 7248",
@@ -305,7 +318,7 @@ const contacts = [
     },
   },
   {
-    role: "IEEE SB Vice Chairman",
+    role: "Vice Chairman, IEEE Student Branch, University of Moratuwa",
     name: "Uthsara Manul",
     email: "uthzaaawim@gmail.com",
     phone: "+94 70 312 6614",
@@ -322,7 +335,7 @@ const contacts = [
     },
   },
   {
-    role: "Event Chair",
+    role: "Event Chairperson, MoraForesight 4.0",
     name: "Tharusha Jayasundara",
     email: "ranidu.jaya171@gmail.com",
     phone: "+94 76 292 1236",
@@ -339,35 +352,35 @@ const contacts = [
     },
   },
   {
-    role: "Delegates Handling",
-    name: "Thimeshi Nipunika",
-    email: "thimeshi.np@gmail.com",
-    phone: "+94 77 398 8003",
-    image: "/contact/thimeshi-framed.webp",
-    imageStyle: { transform: "none" },
-    layoutClass: "xl:col-start-3 xl:row-start-2",
-    accent: {
-      border: "border-[#F8C312]",
-      frame: "from-[#F8C312]/32 via-[#271F06]/88 to-black",
-      glow: "shadow-[0_0_34px_rgba(248,195,18,0.18)]",
-      panel: "from-[#F8C312] to-[#8A6800]",
-      text: "text-[#F8C312]",
-    },
-  },
-  {
-    role: "Event Vice-Chair",
+    role: "Event Chairperson, MoraForesight 4.0",
     name: "Janidu Janadara",
     email: "janidujanadara@gmail.com",
     phone: "+94 71 918 9585",
     image: "/contact/janidu-framed.webp",
     imageStyle: { transform: "none" },
-    layoutClass: "xl:col-start-5 xl:row-start-2",
+    layoutClass: "xl:col-start-3 xl:row-start-2",
     accent: {
       border: "border-[#01BEEB]",
       frame: "from-[#01BEEB]/32 via-[#04212B]/88 to-black",
       glow: "shadow-[0_0_34px_rgba(1,190,235,0.18)]",
       panel: "from-[#01BEEB] to-[#006F90]",
       text: "text-[#01BEEB]",
+    },
+  },
+  {
+    role: "Committee Lead, Delegates Handling Committee",
+    name: "Thimeshi Nipunika",
+    email: "thimeshi.np@gmail.com",
+    phone: "+94 77 398 8003",
+    image: "/contact/thimeshi-framed.webp",
+    imageStyle: { transform: "none" },
+    layoutClass: "xl:col-start-5 xl:row-start-2",
+    accent: {
+      border: "border-[#F8C312]",
+      frame: "from-[#F8C312]/32 via-[#271F06]/88 to-black",
+      glow: "shadow-[0_0_34px_rgba(248,195,18,0.18)]",
+      panel: "from-[#F8C312] to-[#8A6800]",
+      text: "text-[#F8C312]",
     },
   },
 ];
@@ -391,7 +404,7 @@ const faqs = [
   {
     question: "Is the program fully funded?",
     answer:
-      "Yes. MoraForesight is a fully funded residential bootcamp made possible through the support of industry partners, collaborators, and the University of Moratuwa community.",
+      "Yes. MoraForesight is a fully funded bootcamp made possible through the support of industry partners, collaborators, and the University of Moratuwa community.",
   },
   {
     question: "What will students learn?",
@@ -401,7 +414,7 @@ const faqs = [
   {
     question: "Where will the bootcamp be held?",
     answer:
-      "The residential bootcamp is conducted at the University of Moratuwa and affiliated partner venues, giving students direct exposure to a leading university environment.",
+      "The bootcamp is conducted at the University of Moratuwa and affiliated partner venues, giving students direct exposure to a leading university environment.",
   },
   {
     question: "Is prior technical knowledge required?",
@@ -416,7 +429,7 @@ const faqs = [
   {
     question: "Are accommodation and meals provided?",
     answer:
-      "Yes. Accommodation, meals, and learning resources are provided for selected delegates throughout the residential program.",
+      "Yes. Accommodation, meals, and learning resources are provided for selected delegates throughout the program.",
   },
   {
     question: "Will parents be informed throughout the process?",
@@ -509,9 +522,8 @@ function FaqItem({
 }) {
   return (
     <div
-      className={`overflow-hidden rounded-lg border bg-white/[0.035] transition ${
-        isOpen ? "border-[#01BEEB]/45" : "border-white/10 hover:border-white/20"
-      }`}
+      className={`overflow-hidden rounded-lg border bg-white/[0.035] transition ${isOpen ? "border-[#01BEEB]/45" : "border-white/10 hover:border-white/20"
+        }`}
     >
       <button
         type="button"
@@ -520,9 +532,8 @@ function FaqItem({
         aria-expanded={isOpen}
       >
         <span
-          className={`text-xs font-semibold tabular-nums ${
-            isOpen ? "text-[#01BEEB]" : "text-white/34"
-          }`}
+          className={`text-xs font-semibold tabular-nums ${isOpen ? "text-[#01BEEB]" : "text-white/34"
+            }`}
         >
           {String(index + 1).padStart(2, "0")}
         </span>
@@ -531,9 +542,8 @@ function FaqItem({
         </span>
         <ChevronDown
           size={20}
-          className={`shrink-0 text-[#01BEEB] transition ${
-            isOpen ? "rotate-180" : ""
-          }`}
+          className={`shrink-0 text-[#01BEEB] transition ${isOpen ? "rotate-180" : ""
+            }`}
         />
       </button>
       {isOpen ? (
@@ -566,9 +576,9 @@ export default function Home() {
     galleryEditionIndex === null ? null : legacyEditions[galleryEditionIndex];
   const modalImages = galleryEdition
     ? galleryEdition.images.map((src, imageIndex) => ({
-        src,
-        imageIndex,
-      }))
+      src,
+      imageIndex,
+    }))
     : [];
   const selectedModalImage = modalImages[activeImageIndex] ?? modalImages[0];
 
@@ -819,7 +829,7 @@ export default function Home() {
               <span className="hero-gradient-text block">Lead the future.</span>
             </h1>
             <p className="phase-status mt-5 rounded-md px-3 py-2 text-xs font-bold uppercase tracking-[0.16em]">
-              Selection phase now live
+              SELECTION PHASE IS NOW LIVE
             </p>
             <p className="mt-4 max-w-[36rem] text-base leading-7 text-white/74 sm:text-lg lg:text-lg">
               Applications for MoraForesight 4.0 are now closed. Applicants can
@@ -905,14 +915,10 @@ export default function Home() {
               className="flex h-full flex-col"
             >
               <h2 className="energy-section-title text-3xl font-semibold leading-tight text-white md:text-4xl lg:text-[2.45rem]">
-                A visionary launchpad for aspiring tech innovators.
+                The Launchpad For Tomorrow’s Tech
               </h2>
               <p className="mt-5 text-base leading-[1.65] text-white/70">
-                Launched in 2023, MoraForesight leads students beyond the
-                conventional curriculum and towards the drive to innovate with
-                technology. The fourth edition carries that vision forward
-                through thoughtfully designed stages, rewarding top participants
-                with a fully funded flagship residential bootcamp.
+                Launched in 2023, MoraForesight empowers young minds to move beyond traditional learning, explore emerging technologies, and become the innovators and technology leaders of tomorrow. The fourth edition continues this journey by discovering Sri Lanka’s brightest talents and transforming their potential through a fully-funded flagship bootcamp.
               </p>
               <div className="energy-glass mt-5 border-l-2 border-[#F8C312] bg-white/[0.025] px-5 py-3.5 lg:flex-1">
                 <p className="text-sm font-semibold uppercase text-[#01BEEB]">
@@ -927,9 +933,7 @@ export default function Home() {
                   className="mt-3 h-auto w-full max-w-[300px]"
                 />
                 <p className="mt-2.5 text-sm leading-6 text-white/62">
-                  The branch unites 15 specialized chapters and an affinity
-                  group, channeling undergraduate expertise into school-level
-                  innovation.
+                  The Student Branch unites a diverse community of 16 spcialized Chapters and an Affinity Group, channeling undergraduate expertise into school-level innovation.
                 </p>
               </div>
             </motion.div>
@@ -973,7 +977,7 @@ export default function Home() {
             className="mb-5 lg:flex lg:justify-end"
           >
             <h2 className="energy-section-title text-2xl font-semibold text-white sm:text-3xl lg:ml-auto lg:max-w-none lg:whitespace-nowrap lg:text-right">
-              From registration closure to the residential bootcamp.
+              From registration closure to the flagship bootcamp.
             </h2>
           </motion.div>
 
@@ -1077,13 +1081,12 @@ export default function Home() {
               >
                 <div className="relative">
                   <div
-                    className={`absolute bottom-[116px] w-48 ${
-                      stage.label === "left"
-                        ? "left-[-18px] text-left"
-                        : stage.label === "right"
-                          ? "right-[-18px] text-right"
-                          : "left-1/2 -translate-x-1/2 text-center"
-                    }`}
+                    className={`absolute bottom-[116px] w-48 ${stage.label === "left"
+                      ? "left-[-18px] text-left"
+                      : stage.label === "right"
+                        ? "right-[-18px] text-right"
+                        : "left-1/2 -translate-x-1/2 text-center"
+                      }`}
                   >
                     <p
                       className="text-lg font-extrabold uppercase leading-none"
@@ -1290,9 +1293,8 @@ export default function Home() {
                   {edition.images.slice(0, 3).map((image, imageIndex) => (
                     <div
                       key={image}
-                      className={`relative overflow-hidden rounded-md bg-black/35 ${
-                        imageIndex === 0 ? "row-span-2" : ""
-                      }`}
+                      className={`relative overflow-hidden rounded-md bg-black/35 ${imageIndex === 0 ? "row-span-2" : ""
+                        }`}
                     >
                       <Image
                         src={image}
@@ -1399,17 +1401,15 @@ export default function Home() {
                     type="button"
                     aria-label={`Open MoraForesight ${galleryEdition.year} photo ${imageIndex + 1}`}
                     onClick={() => setModalImage(imageIndex)}
-                    className={`group relative cursor-pointer overflow-hidden rounded-md border transition ${
-                      imageIndex % 7 === 0
-                        ? "aspect-[4/5]"
-                        : imageIndex % 5 === 0
-                          ? "aspect-[16/10]"
-                          : "aspect-square"
-                    } ${
-                      activeImageIndex === imageIndex
+                    className={`group relative cursor-pointer overflow-hidden rounded-md border transition ${imageIndex % 7 === 0
+                      ? "aspect-[4/5]"
+                      : imageIndex % 5 === 0
+                        ? "aspect-[16/10]"
+                        : "aspect-square"
+                      } ${activeImageIndex === imageIndex
                         ? "border-[#F8C312] opacity-100 shadow-[0_0_0_1px_rgba(248,195,18,0.55)]"
                         : "border-white/10 opacity-75 hover:border-white/34 hover:opacity-100"
-                    }`}
+                      }`}
                   >
                     <Image
                       src={image.src}
@@ -1531,7 +1531,7 @@ export default function Home() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <SectionHeader
-            title="Contact the MoraForesight 4.0 organizing team."
+            title="Connect With the MoraForesight 4.0 Team"
             intro="For selection, assessment, and event-related inquiries, reach out to the team below."
           />
         </div>
@@ -1626,7 +1626,7 @@ export default function Home() {
                 </div>
               </div>
               <p className="mt-5 max-w-lg text-sm leading-7 text-white/62">
-                A fully-funded three-day residential bootcamp empowering Sri
+                A fully-funded three-day bootcamp empowering Sri
                 Lanka&apos;s next generation through technology, innovation, and
                 entrepreneurship.
               </p>
@@ -1718,11 +1718,10 @@ export default function Home() {
         href="#home"
         aria-label="Back to top"
         title="Back to top"
-        className={`fixed bottom-3 right-3 z-50 flex h-10 w-10 items-center justify-center rounded-md border border-white/18 bg-black/72 text-white/76 shadow-[0_12px_32px_rgba(0,0,0,0.42)] backdrop-blur-md transition duration-200 hover:border-[#F8C312]/70 hover:bg-[#F8C312]/14 hover:text-white sm:bottom-6 sm:right-6 sm:h-11 sm:w-11 ${
-          showBackToTop
-            ? "translate-y-0 opacity-100"
-            : "pointer-events-none translate-y-2 opacity-0"
-        }`}
+        className={`fixed bottom-3 right-3 z-50 flex h-10 w-10 items-center justify-center rounded-md border border-white/18 bg-black/72 text-white/76 shadow-[0_12px_32px_rgba(0,0,0,0.42)] backdrop-blur-md transition duration-200 hover:border-[#F8C312]/70 hover:bg-[#F8C312]/14 hover:text-white sm:bottom-6 sm:right-6 sm:h-11 sm:w-11 ${showBackToTop
+          ? "translate-y-0 opacity-100"
+          : "pointer-events-none translate-y-2 opacity-0"
+          }`}
       >
         <ArrowUp size={19} />
       </a>

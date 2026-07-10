@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: "%s | MoraForesight 4.0",
   },
   description:
-    "MoraForesight 4.0 is a fully-funded three-day residential innovation bootcamp for school students under 20, organized by the IEEE Student Branch of the University of Moratuwa.",
+    "MoraForesight 4.0 is a fully-funded three-day innovation bootcamp for school students under 20, organized by the IEEE Student Branch of the University of Moratuwa.",
   keywords: [
     "MoraForesight",
     "MoraForesight 4.0",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "Innovation Event",
     "Sri Lanka",
     "School Students",
-    "Residential Bootcamp",
+    "Innovation Bootcamp",
     "AI",
     "Programming",
     "Robotics",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "MoraForesight 4.0 | Fully-Funded School Innovation Bootcamp",
     description:
-      "A fully-funded three-day residential bootcamp for school students under 20, organized by IEEE Student Branch, University of Moratuwa.",
+      "A fully-funded three-day bootcamp for school students under 20, organized by IEEE Student Branch, University of Moratuwa.",
     url: "https://moraforesight.lk",
     siteName: "MoraForesight 4.0",
     images: [
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MoraForesight 4.0 | Fully-Funded School Innovation Bootcamp",
     description:
-      "A fully-funded three-day residential bootcamp for school students under 20, organized by IEEE Student Branch, University of Moratuwa.",
+      "A fully-funded three-day bootcamp for school students under 20, organized by IEEE Student Branch, University of Moratuwa.",
     images: ["/coming-soon.webp"],
   },
   robots: {
