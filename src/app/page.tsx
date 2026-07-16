@@ -352,7 +352,7 @@ const contacts = [
     },
   },
   {
-    role: "Event Chairperson, MoraForesight 4.0",
+    role: "Event ViceChairperson, MoraForesight 4.0",
     name: "Janidu Janadara",
     email: "janidujanadara@gmail.com",
     phone: "+94 71 918 9585",
