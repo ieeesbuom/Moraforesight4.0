@@ -110,7 +110,7 @@ const timelineStages = [
   {
     stage: "Stage 04",
     title: "Impact Challenge",
-    date: "11 July - 01 August",
+    date: "21 July - 03 August",
     detail:
       "Focuses on practical programming and aesthetics. Participants complete the python course on Mora Open and gain points towards final selection.",
     color: "#F8C312",
@@ -122,7 +122,7 @@ const timelineStages = [
   {
     stage: "Stage 05",
     title: "Special Category Registration",
-    date: "17 July - 21 July",
+    date: "24 July - 02 August",
     detail:
       "Selection of candidates based on exceptional co-curricular and extracurricular performance. Participants must have taken the online round.",
     color: "#F8C312",
@@ -134,7 +134,7 @@ const timelineStages = [
   {
     stage: "Stage 06",
     title: "In-Person Final Round",
-    date: "01 August",
+    date: "02 August",
     detail:
       "Physical selection round held at the University of Moratuwa. Tests programming, logical capabilities, and critical thinking.",
     color: "#E585E4",
