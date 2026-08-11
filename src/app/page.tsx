@@ -1101,6 +1101,138 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── Past Events Photo Highlights ──────────────────────────────── */}
+      <section
+        id="past-highlights"
+        className="photo-strip-section border-y border-white/[0.07] bg-[#050608] py-14 md:py-20"
+        aria-label="Past events highlights"
+      >
+        <div className="mx-auto mb-10 max-w-7xl px-4 sm:px-6 md:px-8 md:mb-12">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            variants={fadeUp}
+            className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between"
+          >
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#01BEEB]">
+                MoraForesight 1.0 · 2.0 · 3.0
+              </p>
+              <h2 className="energy-section-title mt-2 text-2xl font-semibold text-white sm:text-3xl md:text-4xl">
+                Three editions. Hundreds of stories.
+              </h2>
+            </div>
+            <a
+              href="#gallery"
+              className="energy-secondary-button shrink-0 inline-flex items-center gap-2 rounded-md border border-white/14 px-5 py-2.5 text-sm font-semibold text-white/80 transition hover:text-white"
+            >
+              View All Galleries
+              <ArrowRight size={16} />
+            </a>
+          </motion.div>
+        </div>
+
+        {/* Row 1 — scrolls left */}
+        <div className="photo-strip-track-wrap mb-3">
+          <div className="photo-strip-track">
+            {/* duplicated for seamless loop */}
+            {[0, 1].map((dupe) => (
+              <div key={dupe} className="photo-strip-row" aria-hidden={dupe === 1}>
+                {/* 1.0 picks */}
+                {(
+                  [
+                    { src: "/gallery/1.0/1-0-18.webp", edition: "MoraForesight 1.0", color: "#F8C312" },
+                    { src: "/gallery/1.0/1-0-17.webp", edition: "MoraForesight 1.0", color: "#F8C312" },
+                    { src: "/gallery/2.0/2-0-03.webp", edition: "MoraForesight 2.0", color: "#01BEEB" },
+                    { src: "/gallery/2.0/2-0-07.webp", edition: "MoraForesight 2.0", color: "#01BEEB" },
+                    { src: "/gallery/3.0/3-0-03.webp", edition: "MoraForesight 3.0", color: "#E585E4" },
+                    { src: "/gallery/3.0/3-0-28.webp", edition: "MoraForesight 3.0", color: "#E585E4" },
+                    { src: "/gallery/1.0/1-0-19.webp", edition: "MoraForesight 1.0", color: "#F8C312" },
+                    { src: "/gallery/2.0/2-0-09.webp", edition: "MoraForesight 2.0", color: "#01BEEB" },
+                    { src: "/gallery/3.0/3-0-26.webp", edition: "MoraForesight 3.0", color: "#E585E4" },
+                  ] as { src: string; edition: string; color: string }[]
+                ).map((item, idx) => (
+                  <div
+                    key={`r1-${dupe}-${idx}`}
+                    className="photo-strip-item"
+                    style={{
+                      width: idx % 3 === 0 ? "260px" : idx % 3 === 1 ? "220px" : "240px",
+                      height: "200px",
+                    }}
+                  >
+                    <Image
+                      src={item.src}
+                      alt={`${item.edition} event photo`}
+                      fill
+                      sizes="260px"
+                      className="object-cover"
+                    />
+                    <div className="photo-strip-item-overlay">
+                      <span
+                        className="photo-strip-item-label"
+                        style={{ color: item.color, textShadow: `0 0 12px ${item.color}` }}
+                      >
+                        {item.edition}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Row 2 — scrolls right (reverse direction) */}
+        <div className="photo-strip-track-wrap">
+          <div className="photo-strip-track reverse">
+            {[0, 1].map((dupe) => (
+              <div key={dupe} className="photo-strip-row" aria-hidden={dupe === 1}>
+                {(
+                  [
+                    { src: "/gallery/3.0/3-0-09.webp", edition: "MoraForesight 3.0", color: "#E585E4" },
+                    { src: "/gallery/3.0/3-0-13.webp", edition: "MoraForesight 3.0", color: "#E585E4" },
+                    { src: "/gallery/2.0/2-0-02.webp", edition: "MoraForesight 2.0", color: "#01BEEB" },
+                    { src: "/gallery/2.0/2-0-17.webp", edition: "MoraForesight 2.0", color: "#01BEEB" },
+                    { src: "/gallery/1.0/1-0-16.webp", edition: "MoraForesight 1.0", color: "#F8C312" },
+                    { src: "/gallery/1.0/1-0-20.webp", edition: "MoraForesight 1.0", color: "#F8C312" },
+                    { src: "/gallery/3.0/3-0-05.webp", edition: "MoraForesight 3.0", color: "#E585E4" },
+                    { src: "/gallery/2.0/2-0-22.webp", edition: "MoraForesight 2.0", color: "#01BEEB" },
+                    { src: "/gallery/1.0/1-0-04.webp", edition: "MoraForesight 1.0", color: "#F8C312" },
+                  ] as { src: string; edition: string; color: string }[]
+                ).map((item, idx) => (
+                  <div
+                    key={`r2-${dupe}-${idx}`}
+                    className="photo-strip-item"
+                    style={{
+                      width: idx % 3 === 0 ? "230px" : idx % 3 === 1 ? "260px" : "210px",
+                      height: "200px",
+                    }}
+                  >
+                    <Image
+                      src={item.src}
+                      alt={`${item.edition} event photo`}
+                      fill
+                      sizes="260px"
+                      className="object-cover"
+                    />
+                    <div className="photo-strip-item-overlay">
+                      <span
+                        className="photo-strip-item-label"
+                        style={{ color: item.color, textShadow: `0 0 12px ${item.color}` }}
+                      >
+                        {item.edition}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section
         id="timeline"
         className="energy-section energy-section-alt overflow-hidden border-y border-white/10 bg-[#0B0D12] pb-14 pt-24 md:pb-20 md:pt-32"
