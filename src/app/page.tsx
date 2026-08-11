@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowUp,
+  ArrowUpRight,
   ArrowRight,
   Award,
   Bot,
@@ -17,6 +18,7 @@ import {
   Images,
   Lightbulb,
   Menu,
+  Play,
   Rocket,
   Users,
   X,
@@ -34,6 +36,7 @@ const navItems = [
   { label: "Timeline", href: "#timeline" },
   { label: "Tracks", href: "#tracks" },
   { label: "Gallery", href: "#gallery" },
+  { label: "Highlights", href: "#highlights" },
   { label: "Merch", href: "#merch" },
   { label: "Contact", href: "#contact" },
 ];
@@ -158,6 +161,41 @@ const timelineStages = [
   },
 ];
 
+const bootcampStartsAt = Date.parse("2026-08-14T00:00:00+05:30");
+const bootcampEndsAt = Date.parse("2026-08-17T00:00:00+05:30");
+
+type BootcampPhase = "selected" | "live" | "complete";
+
+function getBootcampPhase(now = Date.now()): BootcampPhase {
+  if (now >= bootcampEndsAt) return "complete";
+  if (now >= bootcampStartsAt) return "live";
+  return "selected";
+}
+
+const bootcampPhaseCopy: Record<
+  BootcampPhase,
+  { badge: string; heroBadge: string; heroBody: string }
+> = {
+  selected: {
+    badge: "Final 100 Selected",
+    heroBadge: "FINAL 100 SELECTED",
+    heroBody:
+      "Selection for MoraForesight 4.0 is complete. The final 100 delegates are confirmed and preparing for the fully funded 3-day bootcamp on 14–16 August.",
+  },
+  live: {
+    badge: "Bootcamp Live",
+    heroBadge: "BOOTCAMP IS LIVE",
+    heroBody:
+      "The fully funded 3-day bootcamp is underway at the University of Moratuwa. The final 100 delegates are in session through 16 August.",
+  },
+  complete: {
+    badge: "Bootcamp Complete",
+    heroBadge: "BOOTCAMP COMPLETE",
+    heroBody:
+      "MoraForesight 4.0’s fully funded 3-day bootcamp has concluded. Thank you to the final 100 delegates who joined us on 14–16 August.",
+  },
+};
+
 const tracks = [
   {
     title: "AI & Programming",
@@ -198,7 +236,7 @@ const aboutHighlights = [
   {
     title: "Expert-Led Bootcamp",
     detail:
-      "Top participants earn a fully funded bootcamp with immersive workshops, mentorship, and hands-on learning led by industry experts.",
+      "The selected 100 delegates join a fully funded bootcamp with immersive workshops, mentorship, and hands-on learning led by industry experts.",
     icon: Rocket,
   },
   {
@@ -212,7 +250,13 @@ const aboutHighlights = [
 const galleryImages = (edition: string, filenames: string[]) =>
   filenames.map((filename) => `/gallery/${edition}/${filename}.webp`);
 
-const legacyEditions = [
+const legacyEditions: {
+  year: string;
+  images: string[];
+  subtitle?: string;
+  href?: string;
+  cta?: string;
+}[] = [
   {
     year: "1.0",
     images: galleryImages("1.0", [
@@ -274,6 +318,37 @@ const legacyEditions = [
       "3-0-30",
       "3-0-31",
     ]),
+  },
+  {
+    year: "4.0",
+    subtitle: "In-Person Final Round",
+    href: "https://www.facebook.com/media/set/?set=a.1470810021745303&type=3",
+    images: ["/gallery/4.0/album-cover.webp"],
+    cta: "Open album on Facebook",
+  },
+];
+
+const highlightVideos = [
+  {
+    id: "S_tG3nws0c8",
+    label: "Launch Film",
+    title: "MoraForesight 4.0 Delegate Registrations Are Open!",
+    thumbnail: "/highlights/S_tG3nws0c8.webp",
+    cta: "Watch the film",
+  },
+  {
+    id: "vU-zTdBUv1Q",
+    label: "Top 400 Summit",
+    title: "MoraForesight 4.0 Top 400 Summit",
+    thumbnail: "/highlights/vU-zTdBUv1Q.webp",
+    cta: "Watch the summit",
+  },
+  {
+    id: "KtpOTGNyUf4",
+    label: "02 August · UoM",
+    title: "MoraForesight 4.0 | In-Person Final Round",
+    thumbnail: "/highlights/KtpOTGNyUf4.webp",
+    cta: "Watch the aftermovie",
   },
 ];
 
@@ -394,12 +469,12 @@ const faqs = [
   {
     question: "How are students selected?",
     answer:
-      "Participants are selected through a competitive process designed to identify motivated, future-focused individuals. The stages may include online assessments, physical evaluations, and commitment-based screening.",
+      "Participants were selected through a competitive process designed to identify motivated, future-focused individuals, including online assessments, the in-person final round, and commitment-based screening.",
   },
   {
-    question: "How many students will be selected?",
+    question: "How many students were selected?",
     answer:
-      "A limited number of delegates are selected to keep the learning experience engaging and personal. Previous editions have hosted approximately 100 participants from across the island.",
+      "The final 100 delegates have been selected for MoraForesight 4.0, keeping the bootcamp experience focused, engaging, and personal.",
   },
   {
     question: "Is the program fully funded?",
@@ -570,8 +645,14 @@ export default function Home() {
     null,
   );
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+  const [bootcampPhase, setBootcampPhase] =
+    useState<BootcampPhase>(getBootcampPhase);
+  const phaseCopy = bootcampPhaseCopy[bootcampPhase];
 
   const closeMenu = () => setMenuOpen(false);
+  const activeVideo =
+    highlightVideos.find((video) => video.id === activeVideoId) ?? null;
   const galleryEdition =
     galleryEditionIndex === null ? null : legacyEditions[galleryEditionIndex];
   const modalImages = galleryEdition
@@ -583,9 +664,37 @@ export default function Home() {
   const selectedModalImage = modalImages[activeImageIndex] ?? modalImages[0];
 
   const openGallery = (editionIndex: number) => {
+    if (legacyEditions[editionIndex]?.href) return;
+    setActiveVideoId(null);
     setGalleryEditionIndex(editionIndex);
     setActiveImageIndex(0);
   };
+
+  useEffect(() => {
+    let timeoutId = 0;
+
+    const schedulePhase = () => {
+      const now = Date.now();
+      setBootcampPhase(getBootcampPhase(now));
+
+      const nextBoundary =
+        now < bootcampStartsAt
+          ? bootcampStartsAt
+          : now < bootcampEndsAt
+            ? bootcampEndsAt
+            : null;
+
+      if (nextBoundary === null) return;
+
+      timeoutId = window.setTimeout(
+        schedulePhase,
+        nextBoundary - now + 250,
+      );
+    };
+
+    schedulePhase();
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -617,7 +726,9 @@ export default function Home() {
 
       const editionIndex = Number(trigger.dataset.galleryIndex);
       if (!Number.isInteger(editionIndex)) return;
+      if (legacyEditions[editionIndex]?.href) return;
 
+      setActiveVideoId(null);
       setGalleryEditionIndex(editionIndex);
       setActiveImageIndex(0);
     };
@@ -632,6 +743,16 @@ export default function Home() {
   const closeGallery = () => {
     setGalleryEditionIndex(null);
     setActiveImageIndex(0);
+  };
+
+  const openVideo = (videoId: string) => {
+    setGalleryEditionIndex(null);
+    setActiveImageIndex(0);
+    setActiveVideoId(videoId);
+  };
+
+  const closeVideo = () => {
+    setActiveVideoId(null);
   };
 
   const setModalImage = (imageIndex: number) => {
@@ -669,6 +790,25 @@ export default function Home() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [galleryEditionIndex]);
+
+  useEffect(() => {
+    if (activeVideoId === null) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveVideoId(null);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeVideoId]);
 
   return (
     <main className="site-shell min-h-screen overflow-x-hidden bg-[#050608] text-white">
@@ -722,7 +862,7 @@ export default function Home() {
               WhatsApp Channel
             </a>
             <span className="phase-status rounded-md px-4 py-2 text-sm font-semibold">
-              Applications Closed
+              {phaseCopy.badge}
             </span>
           </div>
 
@@ -763,7 +903,7 @@ export default function Home() {
                 WhatsApp Channel
               </a>
               <span className="phase-status mt-3 rounded-md px-4 py-3 text-center text-sm font-semibold">
-                Applications Closed
+                {phaseCopy.badge}
               </span>
             </div>
           </motion.div>
@@ -829,12 +969,10 @@ export default function Home() {
               <span className="hero-gradient-text block">Lead the future.</span>
             </h1>
             <p className="phase-status mt-5 rounded-md px-3 py-2 text-xs font-bold uppercase tracking-[0.16em]">
-              SELECTION PHASE IS NOW LIVE
+              {phaseCopy.heroBadge}
             </p>
             <p className="mt-4 max-w-[36rem] text-base leading-7 text-white/74 sm:text-lg lg:text-lg">
-              Applications for MoraForesight 4.0 are now closed. Applicants can
-              follow the official channel and timeline for briefing,
-              assessments, and selection updates.
+              {phaseCopy.heroBody}
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
@@ -845,7 +983,7 @@ export default function Home() {
                 href="#timeline"
                 className="energy-secondary-button inline-flex w-full items-center justify-center gap-2 rounded-md border border-white/16 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition sm:w-auto sm:px-6 sm:text-base"
               >
-                Selection Timeline
+                View Timeline
                 <ChevronDown size={18} />
               </a>
             </div>
@@ -1280,45 +1418,147 @@ export default function Home() {
             intro="Each edition opens into a combined photo archive"
           />
 
-          <div className="grid gap-5 md:grid-cols-3">
-            {legacyEditions.map((edition, index) => (
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {legacyEditions.map((edition, index) => {
+              const isExternal = Boolean(edition.href);
+              const previewImages = edition.images.slice(0, 3);
+              const cardClassName =
+                "energy-card group cursor-pointer overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] p-4 text-left transition";
+              const cardBody = (
+                <>
+                  <div
+                    className={
+                      previewImages.length === 1
+                        ? "relative aspect-square overflow-hidden rounded-md bg-black"
+                        : "grid h-64 grid-cols-2 grid-rows-2 gap-2"
+                    }
+                  >
+                    {previewImages.map((image, imageIndex) => (
+                      <div
+                        key={image}
+                        className={
+                          previewImages.length === 1
+                            ? "absolute inset-0"
+                            : `relative overflow-hidden rounded-md bg-black/35 ${imageIndex === 0 ? "row-span-2" : ""}`
+                        }
+                      >
+                        <Image
+                          src={image}
+                          alt={`MoraForesight ${edition.year} gallery preview ${imageIndex + 1}`}
+                          fill
+                          sizes="(min-width: 1280px) 300px, (min-width: 768px) 50vw, 100vw"
+                          className="object-cover transition duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-5 flex items-center justify-between gap-4">
+                    <span className="min-w-0">
+                      <span className="block text-sm font-semibold uppercase text-[#F8C312]">
+                        MoraForesight {edition.year}
+                      </span>
+                      {edition.subtitle ? (
+                        <span className="mt-1 block text-sm font-semibold text-white">
+                          {edition.subtitle}
+                        </span>
+                      ) : null}
+                    </span>
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-white/12 bg-white/[0.04] text-[#01BEEB] transition group-hover:border-[#01BEEB]/55">
+                      {isExternal ? <ArrowUpRight size={19} /> : <Images size={19} />}
+                    </span>
+                  </div>
+
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#01BEEB]">
+                    {edition.cta ?? "Open edition gallery"}
+                    {isExternal ? <ArrowUpRight size={16} /> : <ArrowRight size={16} />}
+                  </span>
+                </>
+              );
+
+              if (edition.href) {
+                return (
+                  <a
+                    key={edition.year}
+                    href={edition.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={cardClassName}
+                  >
+                    {cardBody}
+                  </a>
+                );
+              }
+
+              return (
+                <button
+                  key={edition.year}
+                  type="button"
+                  data-gallery-index={index}
+                  onClick={() => openGallery(index)}
+                  className={cardClassName}
+                >
+                  {cardBody}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="highlights" className="energy-section py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+          <SectionHeader
+            title="The 4.0 story, told on film."
+            intro="Official highlights from across the edition."
+          />
+
+          <div
+            className={
+              highlightVideos.length >= 3
+                ? "grid gap-5 md:grid-cols-2 lg:grid-cols-3"
+                : "mx-auto grid max-w-5xl gap-5 md:grid-cols-2"
+            }
+          >
+            {highlightVideos.map((video) => (
               <button
-                key={edition.year}
+                key={video.id}
                 type="button"
-                data-gallery-index={index}
-                onClick={() => openGallery(index)}
+                onClick={() => openVideo(video.id)}
                 className="energy-card group cursor-pointer overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] p-4 text-left transition"
               >
-                <div className="grid h-64 grid-cols-2 grid-rows-2 gap-2">
-                  {edition.images.slice(0, 3).map((image, imageIndex) => (
-                    <div
-                      key={image}
-                      className={`relative overflow-hidden rounded-md bg-black/35 ${imageIndex === 0 ? "row-span-2" : ""
-                        }`}
-                    >
-                      <Image
-                        src={image}
-                        alt={`MoraForesight ${edition.year} gallery preview ${imageIndex + 1}`}
-                        fill
-                        sizes="(min-width: 1280px) 400px, (min-width: 768px) 33vw, 100vw"
-                        className="object-cover transition duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                    </div>
-                  ))}
+                <div className="relative aspect-video overflow-hidden rounded-md bg-black/35">
+                  <Image
+                    src={video.thumbnail}
+                    alt={`${video.title} video thumbnail`}
+                    fill
+                    sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                  <span className="absolute inset-0 flex items-center justify-center">
+                    <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/16 bg-black/58 text-[#01BEEB] backdrop-blur transition group-hover:border-[#01BEEB]/55 group-hover:bg-black/78">
+                      <Play size={22} fill="currentColor" />
+                    </span>
+                  </span>
                 </div>
 
                 <div className="mt-5 flex items-center justify-between gap-4">
                   <span className="text-sm font-semibold uppercase text-[#F8C312]">
-                    MoraForesight {edition.year}
+                    {video.label}
                   </span>
                   <span className="flex h-10 w-10 items-center justify-center rounded-md border border-white/12 bg-white/[0.04] text-[#01BEEB] transition group-hover:border-[#01BEEB]/55">
-                    <Images size={19} />
+                    <Play size={19} />
                   </span>
                 </div>
 
+                <h3 className="mt-3 text-xl font-semibold leading-snug text-white md:text-2xl">
+                  {video.title}
+                </h3>
+
                 <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#01BEEB]">
-                  Open edition gallery
+                  {video.cta}
                   <ArrowRight size={16} />
                 </span>
               </button>
@@ -1420,6 +1660,50 @@ export default function Home() {
                     />
                   </button>
                 ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      ) : null}
+
+      {activeVideo ? (
+        <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeVideo.title}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-[100] overflow-y-auto bg-[#030406]/98 px-3 py-3 backdrop-blur-xl sm:px-5"
+        >
+          <div className="mx-auto flex min-h-full max-w-5xl flex-col">
+            <div className="sticky top-0 z-20 flex items-center justify-between gap-3 bg-[#030406]/92 py-3 backdrop-blur-xl">
+              <div className="min-w-0">
+                <p className="truncate text-sm font-semibold uppercase text-[#F8C312]">
+                  {activeVideo.label}
+                </p>
+                <p className="mt-1 truncate text-base font-semibold text-white">
+                  {activeVideo.title}
+                </p>
+              </div>
+              <button
+                type="button"
+                aria-label="Close video"
+                onClick={closeVideo}
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-white/14 bg-white/[0.04] text-white transition hover:border-white/32 hover:bg-white/[0.08]"
+              >
+                <X size={22} />
+              </button>
+            </div>
+
+            <div className="relative overflow-hidden rounded-lg border border-white/10 bg-black">
+              <div className="relative aspect-video">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${activeVideo.id}?autoplay=1&rel=0`}
+                  title={activeVideo.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="absolute inset-0 h-full w-full"
+                />
               </div>
             </div>
           </div>
@@ -1532,7 +1816,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <SectionHeader
             title="Connect With the MoraForesight 4.0 Team"
-            intro="For selection, assessment, and event-related inquiries, reach out to the team below."
+            intro="For bootcamp, delegate, and event-related inquiries, reach out to the team below."
           />
         </div>
 
@@ -1632,7 +1916,7 @@ export default function Home() {
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <span className="phase-status min-h-11 rounded-md px-5 text-sm font-bold">
-                  Applications Closed
+                  {phaseCopy.badge}
                 </span>
                 <a
                   href={updatesUrl}
